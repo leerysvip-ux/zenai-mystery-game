@@ -1118,11 +1118,338 @@ window.MYSTERY_GAMES = [
         ending: "Plate Ending"
       }
     ]
+  },
+    {
+    id: "black-lake-reflection",
+    title: "The Black Lake Reflection",
+    cardText: "A lake reflects someone standing behind you, but the shore is empty.",
+    intro: "You walk past a black lake after midnight. The water is still, but your reflection is not alone.",
+    scene: "In the lake, someone stands behind you with one hand on your shoulder. You feel nothing on your shoulder in real life.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Turn around",
+        scene: "You turn away from the lake...",
+        result: "<strong>Shore Ending.</strong><br>No one is there. When you look back, your reflection is still facing the opposite direction.",
+        ending: "Shore Ending"
+      },
+      {
+        text: "Touch the water",
+        scene: "You kneel and touch the lake...",
+        result: "<strong>Ripple Ending.</strong><br>The water feels warm. A hand from beneath the surface presses against your palm.",
+        ending: "Ripple Ending"
+      },
+      {
+        text: "Walk away",
+        scene: "You step away from the lake...",
+        result: "<strong>Follow Ending.</strong><br>Your wet footprints appear in front of you, leading home before you take each step.",
+        ending: "Follow Ending"
+      },
+      {
+        text: "Throw a stone",
+        scene: "You throw a stone into the reflection...",
+        result: "<strong>Stone Ending.</strong><br>The stone sinks upward into the reflected sky. Behind you, someone whispers, You missed.",
+        ending: "Stone Ending"
+      }
+    ]
+  },
+  {
+    id: "elevator-b13",
+    title: "Elevator B13",
+    cardText: "Your office elevator shows a basement level that should not exist.",
+    intro: "You work in a building with twelve floors and no basement. Tonight, the elevator panel shows one extra button: B13.",
+    scene: "The B13 button is glowing red. The elevator doors are already open, waiting.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Press B13",
+        scene: "You press the glowing button...",
+        result: "<strong>Basement Ending.</strong><br>The elevator drops for far too long. When it opens, the hallway looks exactly like your childhood home.",
+        ending: "Basement Ending"
+      },
+      {
+        text: "Press lobby",
+        scene: "You press the lobby button instead...",
+        result: "<strong>Lobby Ending.</strong><br>The elevator says Going down. Every floor number on the display changes to B13.",
+        ending: "Lobby Ending"
+      },
+      {
+        text: "Step out",
+        scene: "You leave the elevator quickly...",
+        result: "<strong>Door Ending.</strong><br>The doors close behind you. The elevator indicator shows that you are still inside.",
+        ending: "Door Ending"
+      },
+      {
+        text: "Hold the door open",
+        scene: "You press the door-open button...",
+        result: "<strong>Hold Ending.</strong><br>A hand reaches from the elevator wall and presses the close button.",
+        ending: "Hold Ending"
+      }
+    ]
+  },
+  {
+    id: "room-that-breathes",
+    title: "The Room That Breathes",
+    cardText: "A locked room in your house expands and contracts like lungs.",
+    intro: "There is one locked room in your house you never use. Tonight, you notice the door moving slightly in and out.",
+    scene: "The wood creaks like breathing. Warm air leaks from the keyhole.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Look through the keyhole",
+        scene: "You lower your eye to the keyhole...",
+        result: "<strong>Keyhole Ending.</strong><br>Something on the other side is looking back through another keyhole.",
+        ending: "Keyhole Ending"
+      },
+      {
+        text: "Unlock the room",
+        scene: "You turn the key slowly...",
+        result: "<strong>Breath Ending.</strong><br>The room inhales. The door pulls you inward before you can scream.",
+        ending: "Breath Ending"
+      },
+      {
+        text: "Seal the door",
+        scene: "You tape the edges of the door shut...",
+        result: "<strong>Sealed Ending.</strong><br>The breathing stops. Then every window in the house begins to fog from the inside.",
+        ending: "Sealed Ending"
+      },
+      {
+        text: "Call someone over",
+        scene: "You call a friend to witness it...",
+        result: "<strong>Witness Ending.</strong><br>Your friend arrives and says the room was never locked. Then they step inside and vanish.",
+        ending: "Witness Ending"
+      }
+    ]
+  },
+  {
+    id: "number-station",
+    title: "The Number Station",
+    cardText: "Your radio picks up a voice reading numbers that match your life.",
+    intro: "An old radio in your closet turns on by itself. A calm voice begins reading numbers.",
+    scene: "The numbers are your birthday, your apartment number, and the time you will wake up tomorrow. Then the voice says: Next sequence begins now.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Keep listening",
+        scene: "You let the radio continue...",
+        result: "<strong>Sequence Ending.</strong><br>The next numbers match your heartbeat. With every number, your pulse slows.",
+        ending: "Sequence Ending"
+      },
+      {
+        text: "Turn it off",
+        scene: "You switch off the radio...",
+        result: "<strong>Static Ending.</strong><br>The speaker goes silent, but the numbers continue from inside your walls.",
+        ending: "Static Ending"
+      },
+      {
+        text: "Write the numbers down",
+        scene: "You grab a pen and paper...",
+        result: "<strong>Code Ending.</strong><br>The numbers form coordinates. They point to your bedroom.",
+        ending: "Code Ending"
+      },
+      {
+        text: "Answer back",
+        scene: "You speak into the radio...",
+        result: "<strong>Broadcast Ending.</strong><br>The voice stops. Then it repeats your sentence in a room full of other voices.",
+        ending: "Broadcast Ending"
+      }
+    ]
+  },
+  {
+    id: "forgotten-app",
+    title: "The Forgotten App",
+    cardText: "An app you never installed appears on your phone.",
+    intro: "A black icon appears on your phone. It has no name, only a red eye. You do not remember installing it.",
+    scene: "When you open it, the screen shows a live map of your apartment. One red dot is moving behind you.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Delete the app",
+        scene: "You hold the icon and delete it...",
+        result: "<strong>Deleted Ending.</strong><br>The app disappears. Then your phone receives a message: You cannot uninstall what installed you.",
+        ending: "Deleted Ending"
+      },
+      {
+        text: "Follow the red dot",
+        scene: "You watch the dot move through the map...",
+        result: "<strong>Map Ending.</strong><br>The dot reaches your bedroom. Your bedroom door opens by itself.",
+        ending: "Map Ending"
+      },
+      {
+        text: "Turn off your phone",
+        scene: "You power down your phone...",
+        result: "<strong>Offline Ending.</strong><br>The screen stays black, but the red dot is still visible in the glass reflection.",
+        ending: "Offline Ending"
+      },
+      {
+        text: "Tap the red dot",
+        scene: "You tap the moving dot...",
+        result: "<strong>Contact Ending.</strong><br>Your phone vibrates. Something behind you taps your shoulder at the same time.",
+        ending: "Contact Ending"
+      }
+    ]
+  },
+  {
+    id: "train-window-face",
+    title: "The Face in the Train Window",
+    cardText: "A face appears in the train window when you pass through a tunnel.",
+    intro: "You take the last train home. When the train enters a tunnel, the window becomes a mirror.",
+    scene: "In the reflection, a pale face sits beside you. The seat beside you is empty.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Look at the empty seat",
+        scene: "You turn to the seat beside you...",
+        result: "<strong>Seat Ending.</strong><br>The seat is empty, but it is warm. The window reflection smiles.",
+        ending: "Seat Ending"
+      },
+      {
+        text: "Stare at the window",
+        scene: "You keep your eyes on the reflection...",
+        result: "<strong>Window Ending.</strong><br>The face leans closer until its forehead touches the glass from your side.",
+        ending: "Window Ending"
+      },
+      {
+        text: "Move cars",
+        scene: "You walk into the next car...",
+        result: "<strong>Car Ending.</strong><br>Every passenger in the next car has the same pale face turned toward you.",
+        ending: "Car Ending"
+      },
+      {
+        text: "Get off early",
+        scene: "You step off at the next station...",
+        result: "<strong>Station Ending.</strong><br>The train leaves. In every window, the face is still sitting beside where you were.",
+        ending: "Station Ending"
+      }
+    ]
+  },
+  {
+    id: "red-umbrella",
+    title: "The Red Umbrella",
+    cardText: "A red umbrella waits outside your door every rainy night.",
+    intro: "For three rainy nights, a red umbrella has appeared outside your door. It is always dry.",
+    scene: "Tonight, a note is tied to the handle: Take it before the rain remembers you.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Take the umbrella",
+        scene: "You pick up the umbrella...",
+        result: "<strong>Umbrella Ending.</strong><br>When you open it, the rain stops everywhere except directly above you.",
+        ending: "Umbrella Ending"
+      },
+      {
+        text: "Leave it outside",
+        scene: "You close the door and ignore it...",
+        result: "<strong>Doorstep Ending.</strong><br>At midnight, water starts dripping from your ceiling in the shape of footprints.",
+        ending: "Doorstep Ending"
+      },
+      {
+        text: "Read the note again",
+        scene: "You untie the wet note...",
+        result: "<strong>Note Ending.</strong><br>The back of the note says: Too late. It already remembers.",
+        ending: "Note Ending"
+      },
+      {
+        text: "Throw it away",
+        scene: "You throw the umbrella into the trash...",
+        result: "<strong>Return Ending.</strong><br>The trash can fills with rainwater. The umbrella floats back to the surface.",
+        ending: "Return Ending"
+      }
+    ]
+  },
+  {
+    id: "locked-inbox",
+    title: "The Locked Inbox",
+    cardText: "Your email inbox receives messages from yourself one year later.",
+    intro: "You open your email and find a new folder called LOCKED. Inside are messages sent from your own address.",
+    scene: "The newest message is dated one year from now. Subject: Do not reply this time.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Open the message",
+        scene: "You open the future email...",
+        result: "<strong>Email Ending.</strong><br>The message contains one sentence: If you are reading this, the first loop failed.",
+        ending: "Email Ending"
+      },
+      {
+        text: "Reply to yourself",
+        scene: "You type a reply...",
+        result: "<strong>Reply Ending.</strong><br>Your reply sends instantly. A new message appears: That is exactly what I did.",
+        ending: "Reply Ending"
+      },
+      {
+        text: "Delete the folder",
+        scene: "You delete the LOCKED folder...",
+        result: "<strong>Deleted Ending.</strong><br>Your screen refreshes. The folder returns, now titled OPENED.",
+        ending: "Deleted Ending"
+      },
+      {
+        text: "Check sent mail",
+        scene: "You open your sent folder...",
+        result: "<strong>Sent Ending.</strong><br>There are hundreds of emails you never wrote. All of them are warnings.",
+        ending: "Sent Ending"
+      }
+    ]
+  },
+  {
+    id: "corridor-camera",
+    title: "The Corridor Camera",
+    cardText: "A security camera records you walking through a corridor you never entered.",
+    intro: "Your apartment building sends you a security alert. The video shows you walking through a service corridor at 2:13 AM.",
+    scene: "In the footage, you stop, face the camera, and mouth two words: Help me.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Find the corridor",
+        scene: "You search the building for the service corridor...",
+        result: "<strong>Corridor Ending.</strong><br>You find it behind a door marked Storage. The camera is already pointed at you.",
+        ending: "Corridor Ending"
+      },
+      {
+        text: "Call building security",
+        scene: "You call the security desk...",
+        result: "<strong>Security Ending.</strong><br>The guard says the camera was removed last month. Then he asks why you are on it.",
+        ending: "Security Ending"
+      },
+      {
+        text: "Watch the video again",
+        scene: "You replay the footage...",
+        result: "<strong>Replay Ending.</strong><br>This time, the version of you in the video mouths different words: Behind you.",
+        ending: "Replay Ending"
+      },
+      {
+        text: "Delete the alert",
+        scene: "You delete the notification...",
+        result: "<strong>Alert Ending.</strong><br>A new alert appears immediately: Motion detected inside your apartment.",
+        ending: "Alert Ending"
+      }
+    ]
+  },
+  {
+    id: "birthday-call",
+    title: "The Birthday Call",
+    cardText: "Every year on your birthday, someone calls and counts down.",
+    intro: "At exactly midnight on your birthday, an unknown number calls. It has happened every year since you were ten.",
+    scene: "This year, the voice does not say happy birthday. It starts counting backward from ten.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Listen to the countdown",
+        scene: "You stay silent and listen...",
+        result: "<strong>Countdown Ending.</strong><br>When the voice reaches zero, someone knocks on your door exactly once.",
+        ending: "Countdown Ending"
+      },
+      {
+        text: "Hang up",
+        scene: "You end the call...",
+        result: "<strong>Hang Up Ending.</strong><br>The phone rings again from inside your closed drawer.",
+        ending: "Hang Up Ending"
+      },
+      {
+        text: "Ask who is calling",
+        scene: "You interrupt the voice...",
+        result: "<strong>Caller Ending.</strong><br>The voice says your name, then adds, Not yet, but soon.",
+        ending: "Caller Ending"
+      },
+      {
+        text: "Block the number",
+        scene: "You block the unknown number...",
+        result: "<strong>Blocked Ending.</strong><br>Your screen shows one blocked contact: Future You.",
+        ending: "Blocked Ending"
+      }
+    ]
   }
 ];
 
-// trigger deploy 31-40
-
-
-// trigger deploy 21-30
+// trigger deploy 41-50
 
