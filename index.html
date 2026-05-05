@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Do Not Open The Door - Mystery Choice Game</title>
-  <meta name="description" content="A short interactive mystery game. You are alone at night. Someone knocks. A message says: Do not open the door. What will you choose?" />
+  <title>ZenAI Mystery Games - Short Interactive Suspense Games</title>
+  <meta name="description" content="Play short interactive mystery games online. Make quick choices, unlock strange endings, and test your survival instincts." />
 
   <style>
     * {
@@ -17,56 +17,210 @@
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top, rgba(120, 0, 0, 0.35), transparent 35%),
-        linear-gradient(180deg, #050505, #111827);
+        radial-gradient(circle at top left, rgba(127, 29, 29, 0.45), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(30, 64, 175, 0.25), transparent 30%),
+        linear-gradient(180deg, #030303, #0f172a);
       color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
     }
 
-    .game-wrap {
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site {
       width: 100%;
-      max-width: 760px;
-      background: rgba(0, 0, 0, 0.72);
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 34px;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 14px;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+      margin-bottom: 34px;
+    }
+
+    .hero-card,
+    .game-card,
+    .section-card {
+      background: rgba(0, 0, 0, 0.62);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7);
+      border-radius: 26px;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.55);
+    }
+
+    .hero-card {
+      padding: 34px;
     }
 
     .tag {
       display: inline-block;
-      padding: 7px 12px;
+      padding: 8px 13px;
       border-radius: 999px;
-      background: rgba(239, 68, 68, 0.15);
+      background: rgba(239, 68, 68, 0.16);
       color: #fca5a5;
       font-size: 13px;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
       margin-bottom: 18px;
     }
 
     h1 {
-      font-size: 34px;
-      line-height: 1.15;
+      font-size: 52px;
+      line-height: 1.05;
+      margin: 0 0 18px;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      line-height: 1.75;
+      font-size: 18px;
+      margin: 0 0 24px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      padding: 15px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(135deg, #991b1b, #111827);
+      color: white;
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.07);
+      color: #dbeafe;
+    }
+
+    .stats {
+      display: grid;
+      gap: 14px;
+      padding: 26px;
+    }
+
+    .stat {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      color: #bfdbfe;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .section-title {
+      margin: 36px 0 18px;
+      font-size: 30px;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+
+    .game-card {
+      padding: 22px;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .game-card h3 {
+      font-size: 23px;
+      margin: 0 0 10px;
+    }
+
+    .game-card p {
+      color: #cbd5e1;
+      line-height: 1.65;
+      margin: 0 0 18px;
+    }
+
+    .status {
+      display: inline-block;
+      font-size: 12px;
+      color: #fca5a5;
+      background: rgba(239, 68, 68, 0.14);
+      padding: 7px 10px;
+      border-radius: 999px;
+      width: fit-content;
+      margin-bottom: 14px;
+    }
+
+    .status.live {
+      color: #86efac;
+      background: rgba(34, 197, 94, 0.14);
+    }
+
+    .play-area {
+      margin-top: 36px;
+      padding: 28px;
+    }
+
+    .game-title {
+      font-size: 38px;
       margin: 0 0 14px;
     }
 
-    .subtitle {
+    .game-intro {
       color: #cbd5e1;
       font-size: 17px;
-      line-height: 1.7;
-      margin-bottom: 24px;
+      line-height: 1.75;
+      margin-bottom: 22px;
     }
 
     .scene {
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      padding: 22px;
+      border-radius: 20px;
+      padding: 24px;
       margin-bottom: 22px;
-      line-height: 1.8;
+      line-height: 1.85;
       color: #e5e7eb;
       font-size: 18px;
       min-height: 150px;
@@ -74,7 +228,7 @@
 
     .choices {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 14px;
       margin-top: 18px;
     }
@@ -101,7 +255,7 @@
       margin-top: 22px;
       padding: 22px;
       border-radius: 18px;
-      background: rgba(15, 23, 42, 0.85);
+      background: rgba(15, 23, 42, 0.88);
       border: 1px solid rgba(255, 255, 255, 0.12);
       line-height: 1.75;
       font-size: 18px;
@@ -125,7 +279,7 @@
 
     .ad-box {
       margin-top: 24px;
-      min-height: 90px;
+      min-height: 96px;
       border: 1px dashed rgba(255, 255, 255, 0.18);
       border-radius: 16px;
       display: flex;
@@ -135,90 +289,182 @@
       font-size: 14px;
     }
 
-    .more-games {
-      margin-top: 20px;
-      display: grid;
-      gap: 12px;
+    .seo-card {
+      padding: 26px;
+      margin-top: 30px;
+      color: #cbd5e1;
+      line-height: 1.8;
     }
 
-    .more-games a {
-      color: #bfdbfe;
-      text-decoration: none;
-      padding: 14px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    .seo-card h2 {
+      color: #ffffff;
+      margin-top: 0;
     }
 
     footer {
-      margin-top: 22px;
+      margin-top: 34px;
       color: #64748b;
       font-size: 13px;
       text-align: center;
     }
 
-    @media (min-width: 640px) {
-      .choices {
-        grid-template-columns: 1fr 1fr;
+    @media (max-width: 820px) {
+      .hero {
+        grid-template-columns: 1fr;
       }
 
       h1 {
-        font-size: 42px;
+        font-size: 40px;
+      }
+
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .choices {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="game-wrap">
-    <div class="tag">Interactive Mystery Game</div>
+  <div class="site">
+    <header>
+      <div class="brand">ZenAI Mystery Games</div>
+      <nav class="nav">
+        <a href="#games">Games</a>
+        <a href="#play">Play Now</a>
+        <a href="#about">About</a>
+      </nav>
+    </header>
 
-    <h1>Do Not Open The Door</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <div class="tag">Short Mystery Games Online</div>
+        <h1>Make the wrong choice, and the story changes.</h1>
+        <p>
+          Play fast interactive suspense games built around strange messages, locked rooms,
+          missing people, and decisions you only have seconds to make.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="#play">Play First Game</a>
+          <a class="btn secondary" href="#games">View Game List</a>
+        </div>
+      </div>
 
-    <div class="subtitle">
-      You are alone at night. Someone knocks three times.  
-      Then your phone lights up with one message:
-      <br />
-      <strong>“Do not open the door.”</strong>
-    </div>
+      <div class="hero-card stats">
+        <div class="stat">
+          <strong>1</strong>
+          <span>Live mystery game</span>
+        </div>
+        <div class="stat">
+          <strong>3</strong>
+          <span>Upcoming short suspense games</span>
+        </div>
+        <div class="stat">
+          <strong>30s</strong>
+          <span>Average play time per ending</span>
+        </div>
+      </div>
+    </section>
 
-    <div class="scene" id="scene">
-      It is 2:13 AM. The hallway is silent.  
-      A shadow moves under the door.  
-      The knocking begins again.
-      <br /><br />
-      What do you do?
-    </div>
+    <h2 class="section-title" id="games">Mystery Game List</h2>
 
-    <div class="choices" id="choices">
-      <button onclick="choose('open')">Open the door</button>
-      <button onclick="choose('hide')">Hide in the closet</button>
-      <button onclick="choose('call')">Call the police</button>
-      <button onclick="choose('look')">Look through the peephole</button>
-    </div>
+    <section class="games-grid">
+      <div class="game-card">
+        <div>
+          <span class="status live">Live Now</span>
+          <h3>Do Not Open The Door</h3>
+          <p>
+            You are alone at night. Someone knocks. Your phone says: “Do not open.”
+          </p>
+        </div>
+        <a class="btn" href="#play">Play</a>
+      </div>
 
-    <div class="result" id="result"></div>
-    <button class="restart" id="restart" onclick="restartGame()">Play Again</button>
+      <div class="game-card">
+        <div>
+          <span class="status">Coming Soon</span>
+          <h3>The Missing Room</h3>
+          <p>
+            You wake up in a house with one room missing from the floor plan.
+          </p>
+        </div>
+        <a class="btn secondary" href="#play">Preview</a>
+      </div>
 
-    <div class="score" id="score"></div>
+      <div class="game-card">
+        <div>
+          <span class="status">Coming Soon</span>
+          <h3>Last Message</h3>
+          <p>
+            A dead friend sends you one final text. You have three replies.
+          </p>
+        </div>
+        <a class="btn secondary" href="#play">Preview</a>
+      </div>
+    </section>
 
-    <div class="ad-box">
-      Ad space reserved
-    </div>
+    <section class="game-card play-area" id="play">
+      <div class="tag">Interactive Mystery Game</div>
 
-    <div class="more-games">
-      <a href="#" onclick="alert('Second mystery game coming soon.'); return false;">
-        Next Game: The Missing Room
-      </a>
-      <a href="#" onclick="alert('More short mystery games will be added soon.'); return false;">
-        More Mystery Games
-      </a>
-    </div>
+      <h2 class="game-title">Do Not Open The Door</h2>
+
+      <div class="game-intro">
+        You are alone at night. Someone knocks three times.
+        Then your phone lights up with one message:
+        <br />
+        <strong>“Do not open the door.”</strong>
+      </div>
+
+      <div class="scene" id="scene">
+        It is 2:13 AM. The hallway is silent.
+        A shadow moves under the door.
+        The knocking begins again.
+        <br /><br />
+        What do you do?
+      </div>
+
+      <div class="choices" id="choices">
+        <button onclick="choose('open')">Open the door</button>
+        <button onclick="choose('hide')">Hide in the closet</button>
+        <button onclick="choose('call')">Call the police</button>
+        <button onclick="choose('look')">Look through the peephole</button>
+      </div>
+
+      <div class="result" id="result"></div>
+      <button class="restart" id="restart" onclick="restartGame()">Play Again</button>
+
+      <div class="score" id="score"></div>
+
+      <div class="ad-box">
+        Ad space reserved
+      </div>
+    </section>
+
+    <section class="section-card seo-card" id="about">
+      <h2>Play Short Mystery Games Online</h2>
+      <p>
+        ZenAI Mystery Games is a collection of short interactive suspense games.
+        Each game is designed around fast decisions, strange clues, and multiple endings.
+        These games are built for quick online play and are easy to share with friends.
+      </p>
+      <p>
+        More mystery games will be added soon, including locked-room puzzles,
+        missing-person stories, phone-message mysteries, and survival choice games.
+      </p>
+    </section>
 
     <footer>
-      ZenAI Mystery Games · Short suspense games for quick decisions
+      ZenAI Mystery Games · Short interactive suspense games online
     </footer>
-  </main>
+  </div>
 
   <script>
     let bestEnding = localStorage.getItem("bestEnding") || "None";
