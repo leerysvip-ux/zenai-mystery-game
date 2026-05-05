@@ -458,6 +458,338 @@ window.MYSTERY_GAMES = [
         ending: "Alone Ending"
       }
     ]
+    },
+    {
+    id: "house-without-doors",
+    title: "The House Without Doors",
+    cardText: "You enter a house. When you turn around, every door is gone.",
+    intro: "You step into an old house during a storm. The moment you enter, the front door disappears into a smooth wall.",
+    scene: "There are windows, stairs, and rooms, but no doors anywhere. On the wall, someone has written: “You came in. Now find how you leave.”<br><br>What do you do?",
+    choices: [
+      {
+        text: "Break a window",
+        scene: "You pick up a chair and smash the nearest window...",
+        result: "<strong>Glass Ending.</strong><br>The glass breaks, but outside is not the street. It is the same living room, seen from another angle.",
+        ending: "Glass Ending"
+      },
+      {
+        text: "Search upstairs",
+        scene: "You climb the stairs slowly...",
+        result: "<strong>Upstairs Ending.</strong><br>Every room upstairs contains the same photo: you standing outside the house, deciding whether to enter.",
+        ending: "Upstairs Ending"
+      },
+      {
+        text: "Follow the writing",
+        scene: "You touch the words on the wall...",
+        result: "<strong>Wall Ending.</strong><br>The letters sink into the paint. A new sentence appears: “Leaving is not the same as surviving.”",
+        ending: "Wall Ending"
+      },
+      {
+        text: "Stay still",
+        scene: "You stop moving and listen...",
+        result: "<strong>Quiet Ending.</strong><br>The house begins breathing around you. After a minute, a door appears on your chest.",
+        ending: "Quiet Ending"
+      }
+    ]
+  },
+  {
+    id: "whispering-wall",
+    title: "The Whispering Wall",
+    cardText: "A wall in your apartment whispers names while you sleep.",
+    intro: "For a week, you have heard whispers coming from the wall beside your bed. Tonight, the whisper says your full name.",
+    scene: "You press your ear against the wall. A voice from inside says: “Wrong side.”<br><br>What do you do?",
+    choices: [
+      {
+        text: "Knock on the wall",
+        scene: "You knock three times...",
+        result: "<strong>Knock Ending.</strong><br>Something knocks back from inside the wall, but the sound comes from directly behind your head.",
+        ending: "Knock Ending"
+      },
+      {
+        text: "Cut the wall open",
+        scene: "You take a knife and cut into the wallpaper...",
+        result: "<strong>Inside Ending.</strong><br>Behind the wall is another layer of wallpaper. It has your handwriting all over it.",
+        ending: "Inside Ending"
+      },
+      {
+        text: "Record the whisper",
+        scene: "You open your phone recorder...",
+        result: "<strong>Playback Ending.</strong><br>When you play it back, the whisper is much clearer: “He is listening too.”",
+        ending: "Playback Ending"
+      },
+      {
+        text: "Sleep in another room",
+        scene: "You move to the couch...",
+        result: "<strong>Follow Ending.</strong><br>At 2:13 AM, the wall behind the couch whispers: “Better. Now we can see you.”",
+        ending: "Follow Ending"
+      }
+    ]
+  },
+  {
+    id: "old-video-tape",
+    title: "The Old Video Tape",
+    cardText: "A video tape shows your house before you were born.",
+    intro: "You find an old VHS tape in a box labeled with your address. The tape is dated twenty years before you moved in.",
+    scene: "The video shows your living room. Someone walks past the camera wearing your clothes.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Keep watching",
+        scene: "You let the tape continue...",
+        result: "<strong>Tape Ending.</strong><br>The person in the video sits down and stares at the camera. Then they mouth your name.",
+        ending: "Tape Ending"
+      },
+      {
+        text: "Fast forward",
+        scene: "You press fast forward...",
+        result: "<strong>Future Ending.</strong><br>The tape jumps to tomorrow. It shows you placing the tape back into the box.",
+        ending: "Future Ending"
+      },
+      {
+        text: "Destroy the tape",
+        scene: "You pull the tape out and tear it...",
+        result: "<strong>Static Ending.</strong><br>The TV turns to static. Inside the noise, you hear someone rewinding.",
+        ending: "Static Ending"
+      },
+      {
+        text: "Check the room",
+        scene: "You look around your living room...",
+        result: "<strong>Camera Ending.</strong><br>In the corner, hidden behind a shelf, you find the same camera still recording.",
+        ending: "Camera Ending"
+      }
+    ]
+  },
+  {
+    id: "locked-hospital-room",
+    title: "The Locked Hospital Room",
+    cardText: "A hospital room is locked from the outside, but someone inside knows you.",
+    intro: "You visit an abandoned hospital for a video. On the third floor, one room has fresh light coming from under the door.",
+    scene: "The room number is scratched off. From inside, a weak voice says: “You finally came back.”<br><br>What do you do?",
+    choices: [
+      {
+        text: "Unlock the room",
+        scene: "You turn the rusty key left in the lock...",
+        result: "<strong>Patient Ending.</strong><br>The bed is empty. The patient file at the foot of the bed has your photo on it.",
+        ending: "Patient Ending"
+      },
+      {
+        text: "Ask who is inside",
+        scene: "You speak through the door...",
+        result: "<strong>Voice Ending.</strong><br>The voice says, “The part of you they removed.”",
+        ending: "Voice Ending"
+      },
+      {
+        text: "Look through the window",
+        scene: "You wipe dust from the small glass window...",
+        result: "<strong>Window Ending.</strong><br>You see yourself lying in the hospital bed, eyes open, staring back.",
+        ending: "Window Ending"
+      },
+      {
+        text: "Leave the hospital",
+        scene: "You run toward the stairwell...",
+        result: "<strong>Discharge Ending.</strong><br>Every exit sign now points back to the locked room.",
+        ending: "Discharge Ending"
+      }
+    ]
+  },
+  {
+    id: "missing-neighbor",
+    title: "The Missing Neighbor",
+    cardText: "Your neighbor vanished, but their TV keeps turning on.",
+    intro: "Your neighbor disappeared three weeks ago. Their apartment is sealed, but every night their TV turns on at full volume.",
+    scene: "Tonight, the TV sound is not a show. It is someone whispering your apartment number.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Call the landlord",
+        scene: "You call the landlord...",
+        result: "<strong>Landlord Ending.</strong><br>The landlord says the apartment next door has been empty for six years.",
+        ending: "Landlord Ending"
+      },
+      {
+        text: "Knock on the wall",
+        scene: "You knock on the shared wall...",
+        result: "<strong>Neighbor Ending.</strong><br>The TV goes silent. Then someone knocks back from inside your closet.",
+        ending: "Neighbor Ending"
+      },
+      {
+        text: "Enter the apartment",
+        scene: "You find the spare key under the mat...",
+        result: "<strong>Apartment Ending.</strong><br>The living room is empty except for a TV showing a live feed of your bedroom.",
+        ending: "Apartment Ending"
+      },
+      {
+        text: "Turn up your own TV",
+        scene: "You try to drown out the noise...",
+        result: "<strong>Broadcast Ending.</strong><br>Your TV turns on by itself. The same whisper now comes from both sides.",
+        ending: "Broadcast Ending"
+      }
+    ]
+  },
+  {
+    id: "phone-under-bed",
+    title: "The Phone Under The Bed",
+    cardText: "A phone rings under your bed. It is not yours.",
+    intro: "At 2:13 AM, a phone starts ringing under your bed. Your own phone is charging on the desk.",
+    scene: "The ringtone is old and slow. When you look down, the glow under the bed pulses like a heartbeat.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Reach under the bed",
+        scene: "You slowly reach into the darkness...",
+        result: "<strong>Reach Ending.</strong><br>Your hand touches another hand. It is already holding the phone out to you.",
+        ending: "Reach Ending"
+      },
+      {
+        text: "Answer the call",
+        scene: "You pull the phone out and answer...",
+        result: "<strong>Call Ending.</strong><br>A voice under the bed whispers, “Do not look down while we talk.”",
+        ending: "Call Ending"
+      },
+      {
+        text: "Kick it away",
+        scene: "You kick the phone across the room...",
+        result: "<strong>Return Ending.</strong><br>The phone slides back under the bed by itself. This time it is ringing louder.",
+        ending: "Return Ending"
+      },
+      {
+        text: "Check your own phone",
+        scene: "You grab your phone from the desk...",
+        result: "<strong>Mirror Call Ending.</strong><br>Your phone shows one missed call from the number under the bed.",
+        ending: "Mirror Call Ending"
+      }
+    ]
+  },
+  {
+    id: "doorbell-camera",
+    title: "The Doorbell Camera",
+    cardText: "Your doorbell camera records someone entering your home while you sleep.",
+    intro: "In the morning, your doorbell app says there was motion at 2:13 AM. The video shows someone walking up to your door.",
+    scene: "The person has their face covered. They unlock the door with a key you have never seen.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Replay the video",
+        scene: "You watch the video again...",
+        result: "<strong>Replay Ending.</strong><br>On the second viewing, the person stops at the camera and says, “Stop watching.”",
+        ending: "Replay Ending"
+      },
+      {
+        text: "Check your locks",
+        scene: "You inspect the front door...",
+        result: "<strong>Lock Ending.</strong><br>There are no scratches. But inside the lock, you find a small piece of red thread.",
+        ending: "Lock Ending"
+      },
+      {
+        text: "Call the police",
+        scene: "You send the video to the police...",
+        result: "<strong>Evidence Ending.</strong><br>The officer calls back and says the video file is from tomorrow night.",
+        ending: "Evidence Ending"
+      },
+      {
+        text: "Wait tonight",
+        scene: "You sit by the door at 2:13 AM...",
+        result: "<strong>Waiting Ending.</strong><br>The camera notification appears before anything moves: “You are at the door.”",
+        ending: "Waiting Ending"
+      }
+    ]
+  },
+  {
+    id: "staircase-changed",
+    title: "The Staircase That Changed",
+    cardText: "Your apartment staircase has one extra floor tonight.",
+    intro: "You climb the same staircase every night. Your apartment is on the fourth floor. Tonight, the stairs keep going.",
+    scene: "After floor four, there is a landing marked 4.5. The light above it flickers red.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Climb to 4.5",
+        scene: "You step onto the strange landing...",
+        result: "<strong>Half Floor Ending.</strong><br>The hallway is shorter than it should be. Every door is half your height.",
+        ending: "Half Floor Ending"
+      },
+      {
+        text: "Go back down",
+        scene: "You turn and descend...",
+        result: "<strong>Down Ending.</strong><br>The stairs lead down for ten minutes. The ground floor sign now says -4.",
+        ending: "Down Ending"
+      },
+      {
+        text: "Open the fire door",
+        scene: "You push open the fire door...",
+        result: "<strong>Fire Door Ending.</strong><br>Behind it is your apartment, but all the furniture is covered in dust.",
+        ending: "Fire Door Ending"
+      },
+      {
+        text: "Call the elevator",
+        scene: "You press the elevator button...",
+        result: "<strong>Elevator Ending.</strong><br>The elevator arrives from floor 4.5. Inside, someone has written your name on every wall.",
+        ending: "Elevator Ending"
+      }
+    ]
+  },
+  {
+    id: "woman-in-rain",
+    title: "The Woman in the Rain",
+    cardText: "A woman stands in the rain outside your window every night.",
+    intro: "Every night this week, a woman in a dark coat has stood across the street in the rain, looking up at your window.",
+    scene: "Tonight she is closer. She holds a cardboard sign that says: “You let me in once.”<br><br>What do you do?",
+    choices: [
+      {
+        text: "Close the blinds",
+        scene: "You pull the blinds shut...",
+        result: "<strong>Blind Ending.</strong><br>Her shadow appears on the blinds from inside the room.",
+        ending: "Blind Ending"
+      },
+      {
+        text: "Take a picture",
+        scene: "You take a photo through the glass...",
+        result: "<strong>Photo Ending.</strong><br>The picture shows her standing behind you, dry and smiling.",
+        ending: "Photo Ending"
+      },
+      {
+        text: "Go outside",
+        scene: "You walk downstairs into the rain...",
+        result: "<strong>Rain Ending.</strong><br>She is gone. On the pavement where she stood is a key to your apartment.",
+        ending: "Rain Ending"
+      },
+      {
+        text: "Ask what she wants",
+        scene: "You open the window slightly...",
+        result: "<strong>Window Ending.</strong><br>She whispers, “I want back the years I spent in your walls.”",
+        ending: "Window Ending"
+      }
+    ]
+  },
+  {
+    id: "last-bus-stop",
+    title: "The Last Bus Stop",
+    cardText: "A bus arrives at a stop that was removed years ago.",
+    intro: "You are walking home late when you see an old bus stop sign that should not be there. A bus pulls up with no driver.",
+    scene: "The destination board reads: “LAST STOP.” The doors open, and every passenger turns to look at you.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Get on the bus",
+        scene: "You step onto the bus...",
+        result: "<strong>Passenger Ending.</strong><br>The doors close. On the seat beside you is a ticket with your death date printed on it.",
+        ending: "Passenger Ending"
+      },
+      {
+        text: "Ask where it goes",
+        scene: "You speak toward the driver’s seat...",
+        result: "<strong>Route Ending.</strong><br>A speaker crackles: “You already know. You have taken this route before.”",
+        ending: "Route Ending"
+      },
+      {
+        text: "Walk away",
+        scene: "You walk past the bus stop...",
+        result: "<strong>Return Ending.</strong><br>Every street corner now has the same bus stop sign waiting for you.",
+        ending: "Return Ending"
+      },
+      {
+        text: "Read the timetable",
+        scene: "You check the old timetable...",
+        result: "<strong>Schedule Ending.</strong><br>The only listed departure time is the exact minute you were born.",
+        ending: "Schedule Ending"
+      }
+    ]
   }
 ];
-// trigger deploy 11-20
+
+// trigger deploy 21-30
+
