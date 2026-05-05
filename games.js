@@ -128,7 +128,6 @@ window.MYSTERY_GAMES = [
       { text: "Ask the driver", scene: "You walk to the front car...", result: "<strong>Driver Ending.</strong><br>The driver's seat is empty. The controls are covered in dust.", ending: "Driver Ending" },
       { text: "Wake a passenger", scene: "You shake a sleeping passenger...", result: "<strong>Wake Ending.</strong><br>The passenger opens their eyes and says, “You are not supposed to be awake.”", ending: "Wake Ending" }
     ]
-  }
 },
     {
     id: "red-notebook",
