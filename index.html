@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Do Not Open The Door - Mystery Choice Game</title>
+  <meta name="description" content="A short interactive mystery game. You are alone at night. Someone knocks. A message says: Do not open the door. What will you choose?" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(120, 0, 0, 0.35), transparent 35%),
+        linear-gradient(180deg, #050505, #111827);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .game-wrap {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(0, 0, 0, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(239, 68, 68, 0.15);
+      color: #fca5a5;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: 34px;
+      line-height: 1.15;
+      margin: 0 0 14px;
+    }
+
+    .subtitle {
+      color: #cbd5e1;
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .scene {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 22px;
+      line-height: 1.8;
+      color: #e5e7eb;
+      font-size: 18px;
+      min-height: 150px;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 16px;
+      padding: 18px 20px;
+      font-size: 17px;
+      cursor: pointer;
+      color: white;
+      background: linear-gradient(135deg, #7f1d1d, #111827);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #991b1b, #1f2937);
+    }
+
+    .result {
+      display: none;
+      margin-top: 22px;
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      line-height: 1.75;
+      font-size: 18px;
+    }
+
+    .result strong {
+      color: #fca5a5;
+    }
+
+    .score {
+      margin-top: 18px;
+      color: #93c5fd;
+      font-size: 15px;
+    }
+
+    .restart {
+      display: none;
+      margin-top: 18px;
+      background: linear-gradient(135deg, #2563eb, #1e3a8a);
+    }
+
+    .ad-box {
+      margin-top: 24px;
+      min-height: 90px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .more-games {
+      margin-top: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .more-games a {
+      color: #bfdbfe;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    footer {
+      margin-top: 22px;
+      color: #64748b;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (min-width: 640px) {
+      .choices {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="game-wrap">
+    <div class="tag">Interactive Mystery Game</div>
+
+    <h1>Do Not Open The Door</h1>
+
+    <div class="subtitle">
+      You are alone at night. Someone knocks three times.  
+      Then your phone lights up with one message:
+      <br />
+      <strong>“Do not open the door.”</strong>
+    </div>
+
+    <div class="scene" id="scene">
+      It is 2:13 AM. The hallway is silent.  
+      A shadow moves under the door.  
+      The knocking begins again.
+      <br /><br />
+      What do you do?
+    </div>
+
+    <div class="choices" id="choices">
+      <button onclick="choose('open')">Open the door</button>
+      <button onclick="choose('hide')">Hide in the closet</button>
+      <button onclick="choose('call')">Call the police</button>
+      <button onclick="choose('look')">Look through the peephole</button>
+    </div>
+
+    <div class="result" id="result"></div>
+    <button class="restart" id="restart" onclick="restartGame()">Play Again</button>
+
+    <div class="score" id="score"></div>
+
+    <div class="ad-box">
+      Ad space reserved
+    </div>
+
+    <div class="more-games">
+      <a href="#" onclick="alert('Second mystery game coming soon.'); return false;">
+        Next Game: The Missing Room
+      </a>
+      <a href="#" onclick="alert('More short mystery games will be added soon.'); return false;">
+        More Mystery Games
+      </a>
+    </div>
+
+    <footer>
+      ZenAI Mystery Games · Short suspense games for quick decisions
+    </footer>
+  </main>
+
+  <script>
+    let bestEnding = localStorage.getItem("bestEnding") || "None";
+
+    function updateScore(text) {
+      document.getElementById("score").innerText = "Best result: " + text;
+      localStorage.setItem("bestEnding", text);
+    }
+
+    function choose(choice) {
+      const scene = document.getElementById("scene");
+      const choices = document.getElementById("choices");
+      const result = document.getElementById("result");
+      const restart = document.getElementById("restart");
+
+      choices.style.display = "none";
+      result.style.display = "block";
+      restart.style.display = "inline-block";
+
+      if (choice === "open") {
+        scene.innerHTML = "You slowly unlock the door...";
+        result.innerHTML =
+          "<strong>Bad Ending.</strong><br>The hallway is empty. Then you hear breathing behind you.";
+        updateScore("Bad Ending");
+      }
+
+      if (choice === "hide") {
+        scene.innerHTML = "You hide inside the closet and hold your breath...";
+        result.innerHTML =
+          "<strong>Survived.</strong><br>The knocking stops. But your phone receives another message: “I know where you are.”";
+        updateScore("Survived");
+      }
+
+      if (choice === "call") {
+        scene.innerHTML = "You dial emergency services...";
+        result.innerHTML =
+          "<strong>Strange Ending.</strong><br>The operator answers before the call connects: “Do not make a sound.”";
+        updateScore("Strange Ending");
+      }
+
+      if (choice === "look") {
+        scene.innerHTML = "You step closer and look through the peephole...";
+        result.innerHTML =
+          "<strong>True Ending.</strong><br>You see yourself standing outside the door, smiling.";
+        updateScore("True Ending");
+      }
+    }
+
+    function restartGame() {
+      document.getElementById("scene").innerHTML =
+        "It is 2:13 AM. The hallway is silent. A shadow moves under the door. The knocking begins again.<br><br>What do you do?";
+
+      document.getElementById("choices").style.display = "grid";
+      document.getElementById("result").style.display = "none";
+      document.getElementById("restart").style.display = "none";
+    }
+
+    document.getElementById("score").innerText = "Best result: " + bestEnding;
+  </script>
+</body>
+</html>
