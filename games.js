@@ -788,8 +788,341 @@ window.MYSTERY_GAMES = [
         ending: "Schedule Ending"
       }
     ]
+    },
+    {
+    id: "mirror-at-the-end",
+    title: "The Mirror at the End",
+    cardText: "A mirror appears at the end of a hallway that was never there.",
+    intro: "You wake up and find a new hallway outside your bedroom. At the end of it stands a tall mirror covered with dust.",
+    scene: "The hallway is too long for your apartment. In the mirror, your reflection is already walking toward you.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Walk toward the mirror",
+        scene: "You step into the hallway...",
+        result: "<strong>Reflection Ending.</strong><br>Your reflection reaches the mirror first and places its hand on the glass from the other side.",
+        ending: "Reflection Ending"
+      },
+      {
+        text: "Turn off the lights",
+        scene: "You switch off the hallway light...",
+        result: "<strong>Dark Mirror Ending.</strong><br>The mirror still shines in the dark. Now it shows your room behind you, empty except for someone under the bed.",
+        ending: "Dark Mirror Ending"
+      },
+      {
+        text: "Cover the mirror",
+        scene: "You throw a blanket over the mirror...",
+        result: "<strong>Covered Ending.</strong><br>The blanket moves like something is breathing beneath it. Then it whispers your name.",
+        ending: "Covered Ending"
+      },
+      {
+        text: "Break the mirror",
+        scene: "You hit the mirror with a chair...",
+        result: "<strong>Shattered Ending.</strong><br>The mirror breaks into hundreds of pieces. Every piece shows you making a different choice.",
+        ending: "Shattered Ending"
+      }
+    ]
+  },
+  {
+    id: "letter-from-basement",
+    title: "The Letter From The Basement",
+    cardText: "A sealed letter slides out from under a locked basement door.",
+    intro: "Your basement has been locked since you moved in. Tonight, a sealed letter slides out from under the door.",
+    scene: "The envelope is old and damp. On the front, it says: “Open before you go downstairs.”<br><br>What do you do?",
+    choices: [
+      {
+        text: "Open the letter",
+        scene: "You tear the envelope open...",
+        result: "<strong>Warning Ending.</strong><br>The letter says: “Whatever calls your name from below already knows your voice.”",
+        ending: "Warning Ending"
+      },
+      {
+        text: "Ignore it and unlock the door",
+        scene: "You put the key into the basement lock...",
+        result: "<strong>Stair Ending.</strong><br>The stairs are wet. At the bottom, someone is reading the same letter aloud.",
+        ending: "Stair Ending"
+      },
+      {
+        text: "Slide the letter back",
+        scene: "You push the letter under the door...",
+        result: "<strong>Return Ending.</strong><br>A hand pushes it back immediately. Now it is covered in fresh fingerprints.",
+        ending: "Return Ending"
+      },
+      {
+        text: "Call your landlord",
+        scene: "You call the landlord about the basement...",
+        result: "<strong>Landlord Ending.</strong><br>He says your house does not have a basement. Then something knocks from below.",
+        ending: "Landlord Ending"
+      }
+    ]
+  },
+  {
+    id: "black-envelope",
+    title: "The Black Envelope",
+    cardText: "A black envelope appears in your mailbox with no stamp.",
+    intro: "You open your mailbox and find a black envelope. There is no stamp, no sender, only your name written in silver ink.",
+    scene: "Inside is a photo of your front door taken from inside your house. On the back: “Tonight.”<br><br>What do you do?",
+    choices: [
+      {
+        text: "Check the front door",
+        scene: "You walk to your front door...",
+        result: "<strong>Door Ending.</strong><br>The door is locked. But the peephole shows someone standing inside your hallway.",
+        ending: "Door Ending"
+      },
+      {
+        text: "Burn the envelope",
+        scene: "You light the envelope on fire...",
+        result: "<strong>Ash Ending.</strong><br>The smoke forms words in the air: “Invitation accepted.”",
+        ending: "Ash Ending"
+      },
+      {
+        text: "Keep the photo",
+        scene: "You put the photo in your drawer...",
+        result: "<strong>Photo Ending.</strong><br>An hour later, the drawer opens by itself. The photo now shows you looking into the drawer.",
+        ending: "Photo Ending"
+      },
+      {
+        text: "Throw it away",
+        scene: "You throw the envelope into the trash...",
+        result: "<strong>Trash Ending.</strong><br>At midnight, your trash can tips over. The envelope is back, heavier than before.",
+        ending: "Trash Ending"
+      }
+    ]
+  },
+  {
+    id: "empty-playground",
+    title: "The Empty Playground",
+    cardText: "A swing moves by itself in a playground after midnight.",
+    intro: "You pass an empty playground at night. One swing is moving slowly, even though there is no wind.",
+    scene: "The swing stops when you look at it. Then it starts again when you blink.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Sit on the swing",
+        scene: "You sit down carefully...",
+        result: "<strong>Swing Ending.</strong><br>The swing moves higher by itself. Behind you, a child whispers, “You took my seat.”",
+        ending: "Swing Ending"
+      },
+      {
+        text: "Record a video",
+        scene: "You take out your phone and record...",
+        result: "<strong>Video Ending.</strong><br>The video shows a child pushing the swing. In real life, you still see no one.",
+        ending: "Video Ending"
+      },
+      {
+        text: "Leave quickly",
+        scene: "You walk away from the playground...",
+        result: "<strong>Follow Ending.</strong><br>The sound of chains follows you all the way home.",
+        ending: "Follow Ending"
+      },
+      {
+        text: "Ask who is there",
+        scene: "You call into the playground...",
+        result: "<strong>Answer Ending.</strong><br>A small voice answers from the slide: “You can see me tomorrow.”",
+        ending: "Answer Ending"
+      }
+    ]
+  },
+  {
+    id: "unknown-password",
+    title: "The Unknown Password",
+    cardText: "Your laptop unlocks with a password you never created.",
+    intro: "Your laptop wakes up by itself. On the screen is a password box, already filled with black dots.",
+    scene: "A message appears: “You have one attempt left.” You never set a password.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Press Enter",
+        scene: "You press Enter without typing...",
+        result: "<strong>Access Ending.</strong><br>The laptop unlocks. The desktop background is a live view of you sitting at the desk.",
+        ending: "Access Ending"
+      },
+      {
+        text: "Type your name",
+        scene: "You type your name...",
+        result: "<strong>Name Ending.</strong><br>The screen says: “Correct user. Wrong body.”",
+        ending: "Name Ending"
+      },
+      {
+        text: "Shut the laptop",
+        scene: "You close the laptop...",
+        result: "<strong>Closed Ending.</strong><br>The screen keeps glowing through the lid. The keyboard starts typing by itself.",
+        ending: "Closed Ending"
+      },
+      {
+        text: "Remove the battery",
+        scene: "You unplug everything...",
+        result: "<strong>Power Ending.</strong><br>The laptop turns on again. Now the webcam light is red.",
+        ending: "Power Ending"
+      }
+    ]
+  },
+  {
+    id: "attic-doll",
+    title: "The Doll in the Attic",
+    cardText: "A doll in your attic changes positions every night.",
+    intro: "You find an old doll in the attic. Every morning, it is facing a different direction.",
+    scene: "Tonight, the attic hatch is open. The doll is sitting at the top of the ladder, looking down at you.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Climb into the attic",
+        scene: "You climb the ladder...",
+        result: "<strong>Attic Ending.</strong><br>The attic is filled with identical dolls. All of them have your eyes.",
+        ending: "Attic Ending"
+      },
+      {
+        text: "Move the doll away",
+        scene: "You pick up the doll...",
+        result: "<strong>Doll Ending.</strong><br>It feels warm. Something inside it beats once, like a small heart.",
+        ending: "Doll Ending"
+      },
+      {
+        text: "Close the hatch",
+        scene: "You pull the attic hatch shut...",
+        result: "<strong>Hatch Ending.</strong><br>After a minute, tiny fingers push the hatch open from above.",
+        ending: "Hatch Ending"
+      },
+      {
+        text: "Take a picture",
+        scene: "You photograph the doll...",
+        result: "<strong>Picture Ending.</strong><br>In the picture, the doll is standing beside you at the bottom of the ladder.",
+        ending: "Picture Ending"
+      }
+    ]
+  },
+  {
+    id: "platform-zero",
+    title: "Platform Zero",
+    cardText: "A hidden subway platform appears behind a locked service door.",
+    intro: "You miss your train and notice a service door slightly open. Behind it, stairs lead down to Platform 0.",
+    scene: "There are no passengers. A train waits with its doors open. The sign says: “Boarding only for those already missing.”<br><br>What do you do?",
+    choices: [
+      {
+        text: "Board the train",
+        scene: "You step into the train...",
+        result: "<strong>Missing Ending.</strong><br>Your phone loses signal. On the seat is a missing person poster with your face on it.",
+        ending: "Missing Ending"
+      },
+      {
+        text: "Go back upstairs",
+        scene: "You run back up the stairs...",
+        result: "<strong>Exit Ending.</strong><br>The service door opens into a different station where every ad has your name on it.",
+        ending: "Exit Ending"
+      },
+      {
+        text: "Read the sign",
+        scene: "You step closer to the platform sign...",
+        result: "<strong>Sign Ending.</strong><br>The sign changes: “Next train arrives after you disappear.”",
+        ending: "Sign Ending"
+      },
+      {
+        text: "Call for help",
+        scene: "You shout for someone...",
+        result: "<strong>Echo Ending.</strong><br>Your echo answers from inside the train: “Too late.”",
+        ending: "Echo Ending"
+      }
+    ]
+  },
+  {
+    id: "hotel-phone",
+    title: "The Hotel Phone",
+    cardText: "A hotel room phone rings even though it is unplugged.",
+    intro: "You check into a cheap hotel for one night. At 2:13 AM, the room phone rings. The cord is not connected.",
+    scene: "The phone rings three times, stops, then rings again. The display says: “Room 000.”<br><br>What do you do?",
+    choices: [
+      {
+        text: "Answer the phone",
+        scene: "You lift the receiver...",
+        result: "<strong>Room 000 Ending.</strong><br>A voice says, “This is the front desk. Please do not look in the bathtub.”",
+        ending: "Room 000 Ending"
+      },
+      {
+        text: "Check the bathtub",
+        scene: "You walk into the bathroom...",
+        result: "<strong>Bathroom Ending.</strong><br>The tub is dry, but there are wet footprints leading out of it.",
+        ending: "Bathroom Ending"
+      },
+      {
+        text: "Unplug it again",
+        scene: "You pull the cord out completely...",
+        result: "<strong>Disconnected Ending.</strong><br>The phone keeps ringing. Now the sound is coming from under your pillow.",
+        ending: "Disconnected Ending"
+      },
+      {
+        text: "Call the front desk",
+        scene: "You dial the front desk...",
+        result: "<strong>Desk Ending.</strong><br>The clerk answers and says, “We have no guests on your floor tonight.”",
+        ending: "Desk Ending"
+      }
+    ]
+  },
+  {
+    id: "shadow-in-photo",
+    title: "The Shadow in the Photo",
+    cardText: "Every photo you take includes a shadow standing behind you.",
+    intro: "You take a selfie in your room and notice a shadow behind you. When you turn around, nothing is there.",
+    scene: "You take another photo. The shadow is closer this time, one hand raised near your shoulder.<br><br>What do you do?",
+    choices: [
+      {
+        text: "Take more photos",
+        scene: "You keep taking pictures...",
+        result: "<strong>Closer Ending.</strong><br>In each photo, the shadow moves closer. In the last one, it is holding the phone.",
+        ending: "Closer Ending"
+      },
+      {
+        text: "Turn on all lights",
+        scene: "You turn on every light in the room...",
+        result: "<strong>Light Ending.</strong><br>The room is bright. Your shadow disappears, but the other one remains.",
+        ending: "Light Ending"
+      },
+      {
+        text: "Delete the photos",
+        scene: "You delete every picture...",
+        result: "<strong>Deleted Ending.</strong><br>Your gallery becomes empty. Then a new album appears: “Behind You.”",
+        ending: "Deleted Ending"
+      },
+      {
+        text: "Take a picture of the mirror",
+        scene: "You aim the camera at the mirror...",
+        result: "<strong>Mirror Ending.</strong><br>The mirror photo shows the shadow sitting on your bed, waiting.",
+        ending: "Mirror Ending"
+      }
+    ]
+  },
+  {
+    id: "last-door-left",
+    title: "The Last Door on the Left",
+    cardText: "A hallway gains one extra door every night.",
+    intro: "Your apartment hallway has five doors. Tonight, there are six. The new one is the last door on the left.",
+    scene: "The door has no number, only a small brass plate that says: “Return what you borrowed.”<br><br>What do you do?",
+    choices: [
+      {
+        text: "Open the door",
+        scene: "You open it slowly...",
+        result: "<strong>Borrowed Ending.</strong><br>Inside is your childhood bedroom. On the bed is every lie you have ever told, written on paper.",
+        ending: "Borrowed Ending"
+      },
+      {
+        text: "Knock first",
+        scene: "You knock twice...",
+        result: "<strong>Knock Ending.</strong><br>Someone knocks back from the inside, then whispers, “You still remember the rules.”",
+        ending: "Knock Ending"
+      },
+      {
+        text: "Ignore the door",
+        scene: "You walk past it...",
+        result: "<strong>Ignored Ending.</strong><br>The next morning, the door is outside your bedroom instead.",
+        ending: "Ignored Ending"
+      },
+      {
+        text: "Remove the brass plate",
+        scene: "You pry the plate off...",
+        result: "<strong>Plate Ending.</strong><br>Behind the plate is a keyhole. An eye blinks from inside.",
+        ending: "Plate Ending"
+      }
+    ]
   }
 ];
+
+// trigger deploy 31-40
+
 
 // trigger deploy 21-30
 
