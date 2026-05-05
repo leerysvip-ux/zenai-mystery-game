@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>ZenAI Mystery Games - Short Interactive Suspense Games</title>
-  <meta name="description" content="Play short interactive mystery games online. Make quick choices, unlock strange endings, and test your survival instincts." />
+  <meta name="description" content="Play short interactive mystery games online. Make choices, unlock strange endings, and test your survival instincts." />
+
+  <script src="games.js"></script>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -23,10 +23,7 @@
       color: #ffffff;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .site {
       width: 100%;
@@ -73,9 +70,7 @@
       box-shadow: 0 20px 80px rgba(0, 0, 0, 0.55);
     }
 
-    .hero-card {
-      padding: 34px;
-    }
+    .hero-card { padding: 34px; }
 
     .tag {
       display: inline-block;
@@ -164,7 +159,7 @@
 
     .game-card {
       padding: 22px;
-      min-height: 210px;
+      min-height: 230px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -184,17 +179,12 @@
     .status {
       display: inline-block;
       font-size: 12px;
-      color: #fca5a5;
-      background: rgba(239, 68, 68, 0.14);
+      color: #86efac;
+      background: rgba(34, 197, 94, 0.14);
       padding: 7px 10px;
       border-radius: 999px;
       width: fit-content;
       margin-bottom: 14px;
-    }
-
-    .status.live {
-      color: #86efac;
-      background: rgba(34, 197, 94, 0.14);
     }
 
     .play-area {
@@ -261,9 +251,7 @@
       font-size: 18px;
     }
 
-    .result strong {
-      color: #fca5a5;
-    }
+    .result strong { color: #fca5a5; }
 
     .score {
       margin-top: 18px;
@@ -309,22 +297,10 @@
     }
 
     @media (max-width: 820px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 40px;
-      }
-
-      .games-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .choices {
-        grid-template-columns: 1fr;
-      }
-
+      .hero { grid-template-columns: 1fr; }
+      h1 { font-size: 40px; }
+      .games-grid { grid-template-columns: 1fr; }
+      .choices { grid-template-columns: 1fr; }
       header {
         flex-direction: column;
         align-items: flex-start;
@@ -349,8 +325,8 @@
         <div class="tag">Short Mystery Games Online</div>
         <h1>Make the wrong choice, and the story changes.</h1>
         <p>
-          Play fast interactive suspense games built around strange messages, locked rooms,
-          missing people, and decisions you only have seconds to make.
+          Play fast interactive suspense games built around strange messages,
+          missing rooms, final texts, and decisions you only have seconds to make.
         </p>
         <div class="cta-row">
           <a class="btn" href="#play">Play First Game</a>
@@ -360,12 +336,12 @@
 
       <div class="hero-card stats">
         <div class="stat">
-          <strong>1</strong>
-          <span>Live mystery game</span>
+          <strong id="gameCount">0</strong>
+          <span>Playable mystery games</span>
         </div>
         <div class="stat">
-          <strong>3</strong>
-          <span>Upcoming short suspense games</span>
+          <strong id="endingCount">0</strong>
+          <span>Different endings</span>
         </div>
         <div class="stat">
           <strong>30s</strong>
@@ -376,67 +352,18 @@
 
     <h2 class="section-title" id="games">Mystery Game List</h2>
 
-    <section class="games-grid">
-      <div class="game-card">
-        <div>
-          <span class="status live">Live Now</span>
-          <h3>Do Not Open The Door</h3>
-          <p>
-            You are alone at night. Someone knocks. Your phone says: “Do not open.”
-          </p>
-        </div>
-        <a class="btn" href="#play">Play</a>
-      </div>
-
-      <div class="game-card">
-        <div>
-          <span class="status">Coming Soon</span>
-          <h3>The Missing Room</h3>
-          <p>
-            You wake up in a house with one room missing from the floor plan.
-          </p>
-        </div>
-        <a class="btn secondary" href="#play">Preview</a>
-      </div>
-
-      <div class="game-card">
-        <div>
-          <span class="status">Coming Soon</span>
-          <h3>Last Message</h3>
-          <p>
-            A dead friend sends you one final text. You have three replies.
-          </p>
-        </div>
-        <a class="btn secondary" href="#play">Preview</a>
-      </div>
-    </section>
+    <section class="games-grid" id="gameList"></section>
 
     <section class="game-card play-area" id="play">
       <div class="tag">Interactive Mystery Game</div>
 
-      <h2 class="game-title">Do Not Open The Door</h2>
+      <h2 class="game-title" id="gameTitle">Loading...</h2>
 
-      <div class="game-intro">
-        You are alone at night. Someone knocks three times.
-        Then your phone lights up with one message:
-        <br />
-        <strong>“Do not open the door.”</strong>
-      </div>
+      <div class="game-intro" id="gameIntro"></div>
 
-      <div class="scene" id="scene">
-        It is 2:13 AM. The hallway is silent.
-        A shadow moves under the door.
-        The knocking begins again.
-        <br /><br />
-        What do you do?
-      </div>
+      <div class="scene" id="scene"></div>
 
-      <div class="choices" id="choices">
-        <button onclick="choose('open')">Open the door</button>
-        <button onclick="choose('hide')">Hide in the closet</button>
-        <button onclick="choose('call')">Call the police</button>
-        <button onclick="choose('look')">Look through the peephole</button>
-      </div>
+      <div class="choices" id="choices"></div>
 
       <div class="result" id="result"></div>
       <button class="restart" id="restart" onclick="restartGame()">Play Again</button>
@@ -452,12 +379,12 @@
       <h2>Play Short Mystery Games Online</h2>
       <p>
         ZenAI Mystery Games is a collection of short interactive suspense games.
-        Each game is designed around fast decisions, strange clues, and multiple endings.
-        These games are built for quick online play and are easy to share with friends.
+        Each game is built around fast decisions, strange clues, and multiple endings.
+        These games are designed for quick online play and are easy to share with friends.
       </p>
       <p>
         More mystery games will be added soon, including locked-room puzzles,
-        missing-person stories, phone-message mysteries, and survival choice games.
+        missing-person stories, strange phone calls, and survival choice games.
       </p>
     </section>
 
@@ -467,62 +394,92 @@
   </div>
 
   <script>
-    let bestEnding = localStorage.getItem("bestEnding") || "None";
+    const games = window.MYSTERY_GAMES || [];
+    let currentGame = games[0];
 
-    function updateScore(text) {
-      document.getElementById("score").innerText = "Best result: " + text;
-      localStorage.setItem("bestEnding", text);
+    function renderStats() {
+      document.getElementById("gameCount").innerText = games.length;
+      document.getElementById("endingCount").innerText = games.reduce((total, game) => total + game.choices.length, 0);
     }
 
-    function choose(choice) {
+    function renderGameList() {
+      const list = document.getElementById("gameList");
+      list.innerHTML = "";
+
+      games.forEach((game) => {
+        const card = document.createElement("div");
+        card.className = "game-card";
+        card.innerHTML = `
+          <div>
+            <span class="status">Playable</span>
+            <h3>${game.title}</h3>
+            <p>${game.cardText}</p>
+          </div>
+          <a class="btn" href="#play" onclick="loadGame('${game.id}')">Play</a>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function loadGame(id) {
+      currentGame = games.find(game => game.id === id) || games[0];
+
+      if (!currentGame) {
+        document.getElementById("gameTitle").innerText = "No games found";
+        document.getElementById("gameIntro").innerText = "Please check games.js.";
+        return;
+      }
+
+      document.getElementById("gameTitle").innerText = currentGame.title;
+      document.getElementById("gameIntro").innerText = currentGame.intro;
+      document.getElementById("scene").innerHTML = currentGame.scene;
+
+      const choices = document.getElementById("choices");
+      choices.innerHTML = "";
+      choices.style.display = "grid";
+
+      currentGame.choices.forEach((choice, index) => {
+        const btn = document.createElement("button");
+        btn.innerText = choice.text;
+        btn.onclick = function () {
+          choose(index);
+        };
+        choices.appendChild(btn);
+      });
+
+      document.getElementById("result").style.display = "none";
+      document.getElementById("restart").style.display = "none";
+
+      const saved = localStorage.getItem("bestEnding_" + currentGame.id) || "None";
+      document.getElementById("score").innerText = "Best result: " + saved;
+    }
+
+    function choose(index) {
+      const choice = currentGame.choices[index];
       const scene = document.getElementById("scene");
       const choices = document.getElementById("choices");
       const result = document.getElementById("result");
       const restart = document.getElementById("restart");
 
+      scene.innerHTML = choice.scene;
       choices.style.display = "none";
       result.style.display = "block";
       restart.style.display = "inline-block";
+      result.innerHTML = choice.result;
 
-      if (choice === "open") {
-        scene.innerHTML = "You slowly unlock the door...";
-        result.innerHTML =
-          "<strong>Bad Ending.</strong><br>The hallway is empty. Then you hear breathing behind you.";
-        updateScore("Bad Ending");
-      }
-
-      if (choice === "hide") {
-        scene.innerHTML = "You hide inside the closet and hold your breath...";
-        result.innerHTML =
-          "<strong>Survived.</strong><br>The knocking stops. But your phone receives another message: “I know where you are.”";
-        updateScore("Survived");
-      }
-
-      if (choice === "call") {
-        scene.innerHTML = "You dial emergency services...";
-        result.innerHTML =
-          "<strong>Strange Ending.</strong><br>The operator answers before the call connects: “Do not make a sound.”";
-        updateScore("Strange Ending");
-      }
-
-      if (choice === "look") {
-        scene.innerHTML = "You step closer and look through the peephole...";
-        result.innerHTML =
-          "<strong>True Ending.</strong><br>You see yourself standing outside the door, smiling.";
-        updateScore("True Ending");
-      }
+      localStorage.setItem("bestEnding_" + currentGame.id, choice.ending);
+      document.getElementById("score").innerText = "Best result: " + choice.ending;
     }
 
     function restartGame() {
-      document.getElementById("scene").innerHTML =
-        "It is 2:13 AM. The hallway is silent. A shadow moves under the door. The knocking begins again.<br><br>What do you do?";
-
-      document.getElementById("choices").style.display = "grid";
-      document.getElementById("result").style.display = "none";
-      document.getElementById("restart").style.display = "none";
+      loadGame(currentGame.id);
     }
 
-    document.getElementById("score").innerText = "Best result: " + bestEnding;
+    renderStats();
+    renderGameList();
+    if (games.length > 0) {
+      loadGame(games[0].id);
+    }
   </script>
 </body>
 </html>
