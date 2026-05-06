@@ -17,6 +17,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
@@ -135,6 +139,7 @@
 
     .badge {
       display: inline-flex;
+      width: fit-content;
       padding: 8px 12px;
       border-radius: 999px;
       background: rgba(185,28,28,0.30);
@@ -179,6 +184,12 @@
       cursor: pointer;
       font-weight: 950;
       background: rgba(255,255,255,0.07);
+      transition: transform 0.16s ease, filter 0.16s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.12);
     }
 
     .btn-primary {
@@ -224,6 +235,105 @@
       color: #b9c9df;
       font-size: 13px;
       font-weight: 800;
+    }
+
+    .play-panel {
+      display: none;
+      margin: 0 0 36px;
+      padding: 30px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 90% 8%, rgba(185,28,28,0.22), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
+      border: 1px solid rgba(255,255,255,0.13);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      scroll-margin-top: 20px;
+    }
+
+    .play-panel.active {
+      display: block;
+    }
+
+    .play-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .play-panel h2 {
+      margin: 0;
+      font-size: 42px;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .intro {
+      color: #cfe2ff;
+      line-height: 1.65;
+      margin: 12px 0 0;
+      font-size: 18px;
+      max-width: 820px;
+    }
+
+    .episode-link {
+      color: #a8d4ff;
+      font-size: 13px;
+      font-weight: 850;
+      word-break: break-all;
+      margin-top: 10px;
+    }
+
+    .scene {
+      padding: 22px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-size: 20px;
+      line-height: 1.65;
+      margin: 18px 0;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+    }
+
+    .choice {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: linear-gradient(135deg, rgba(185,28,28,0.88), rgba(24,20,33,0.94));
+      color: white;
+      padding: 17px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 950;
+      font-size: 16px;
+    }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+      padding: 22px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(185,28,28,0.20), rgba(255,255,255,0.045));
+      border: 1px solid rgba(239,68,68,0.28);
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    .result.active {
+      display: block;
+    }
+
+    .fragment {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.30);
+      border-left: 3px solid rgba(239,68,68,0.85);
+      color: #ffd8d8;
     }
 
     .section-head {
@@ -335,83 +445,6 @@
       letter-spacing: -0.035em;
     }
 
-    .play-panel {
-      display: none;
-      margin-top: 34px;
-      padding: 28px;
-      border-radius: 26px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .play-panel.active {
-      display: block;
-    }
-
-    .play-panel h2 {
-      margin: 0;
-      font-size: 36px;
-      letter-spacing: -0.04em;
-    }
-
-    .intro {
-      color: #cfe2ff;
-      line-height: 1.65;
-      margin: 12px 0 18px;
-      font-size: 18px;
-    }
-
-    .scene {
-      padding: 22px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.10);
-      font-size: 20px;
-      line-height: 1.65;
-      margin: 18px 0;
-    }
-
-    .choices {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 13px;
-    }
-
-    .choice {
-      border: 1px solid rgba(255,255,255,0.14);
-      background: linear-gradient(135deg, rgba(185,28,28,0.88), rgba(24,20,33,0.94));
-      color: white;
-      padding: 17px;
-      border-radius: 16px;
-      cursor: pointer;
-      font-weight: 950;
-      font-size: 16px;
-    }
-
-    .result {
-      display: none;
-      margin-top: 20px;
-      padding: 22px;
-      border-radius: 20px;
-      background: linear-gradient(180deg, rgba(185,28,28,0.20), rgba(255,255,255,0.045));
-      border: 1px solid rgba(239,68,68,0.28);
-      font-size: 19px;
-      line-height: 1.65;
-    }
-
-    .result.active {
-      display: block;
-    }
-
-    .fragment {
-      margin-top: 16px;
-      padding: 18px;
-      border-radius: 16px;
-      background: rgba(0,0,0,0.30);
-      border-left: 3px solid rgba(239,68,68,0.85);
-      color: #ffd8d8;
-    }
-
     .about {
       margin-top: 40px;
       padding: 30px;
@@ -461,7 +494,8 @@
         width: min(100% - 24px, 1180px);
       }
 
-      .topbar {
+      .topbar,
+      .play-head {
         flex-direction: column;
         align-items: flex-start;
       }
@@ -476,7 +510,8 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-main {
+      .hero-main,
+      .play-panel {
         padding: 24px;
       }
     }
@@ -486,7 +521,7 @@
 <body>
   <div class="page">
     <header class="topbar">
-      <a class="brand" href="#">
+      <a class="brand" href="/">
         <span class="eye"></span>
         <span class="brand-title">
           <strong>The Red Eye Files</strong>
@@ -496,7 +531,7 @@
 
       <nav class="nav">
         <a href="#episodes">Episodes</a>
-        <a href="#play">Play Now</a>
+        <a href="?episode=1">Play Now</a>
         <a href="#about">About</a>
       </nav>
     </header>
@@ -538,6 +573,35 @@
       </div>
     </section>
 
+    <section class="play-panel" id="play">
+      <div class="play-head">
+        <div>
+          <div class="badge" id="playBadge">EP.01</div>
+          <h2 id="playTitle">Loading...</h2>
+          <div class="intro" id="playIntro"></div>
+          <div class="episode-link" id="episodeLink"></div>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn" href="/">Home</a>
+          <button class="btn" id="copyLink">Copy Episode Link</button>
+        </div>
+      </div>
+
+      <div class="scene" id="scene"></div>
+      <div class="choices" id="choices"></div>
+
+      <div class="result" id="result">
+        <div id="resultText"></div>
+        <div class="fragment" id="fragment"></div>
+        <div class="btn-row" style="margin-top:18px;">
+          <button class="btn btn-primary" id="replay">Replay This Episode</button>
+          <button class="btn" id="nextEp">Next Episode</button>
+          <a class="btn" href="#episodes">Back to Episodes</a>
+        </div>
+      </div>
+    </section>
+
     <section id="episodes">
       <div class="section-head">
         <h2>Series 01: Final Goodbye</h2>
@@ -564,24 +628,6 @@
       <div class="grid" id="gameGrid"></div>
     </section>
 
-    <section class="play-panel" id="play">
-      <div class="badge" id="playBadge">EP.01</div>
-      <h2 id="playTitle">Loading...</h2>
-      <div class="intro" id="playIntro"></div>
-      <div class="scene" id="scene"></div>
-      <div class="choices" id="choices"></div>
-
-      <div class="result" id="result">
-        <div id="resultText"></div>
-        <div class="fragment" id="fragment"></div>
-        <div class="btn-row" style="margin-top:18px;">
-          <button class="btn btn-primary" id="replay">Replay This Episode</button>
-          <button class="btn" id="nextEp">Next Episode</button>
-          <a class="btn" href="#episodes">Back to Episodes</a>
-        </div>
-      </div>
-    </section>
-
     <section class="about" id="about">
       <h2>About The Red Eye Files</h2>
       <p>
@@ -600,7 +646,7 @@
     </footer>
   </div>
 
-  <script src="games.js?v=50"></script>
+  <script src="games.js?v=51"></script>
 
   <script>
     const appGames = Array.isArray(window.games) ? window.games.slice(0, 50) : [];
@@ -665,6 +711,7 @@
     const playBadge = document.getElementById("playBadge");
     const playTitle = document.getElementById("playTitle");
     const playIntro = document.getElementById("playIntro");
+    const episodeLink = document.getElementById("episodeLink");
     const sceneBox = document.getElementById("scene");
     const choicesBox = document.getElementById("choices");
     const resultBox = document.getElementById("result");
@@ -680,8 +727,35 @@
     }
 
     function season(index) {
-      const titles = ["The First Signal", "The Future Is Watching", "Rooms That Should Not Exist", "Objects Remember You", "The Final Goodbye"];
+      const titles = [
+        "The First Signal",
+        "The Future Is Watching",
+        "Rooms That Should Not Exist",
+        "Objects Remember You",
+        "The Final Goodbye"
+      ];
       return titles[Math.min(4, Math.floor(index / 10))];
+    }
+
+    function episodeUrl(index) {
+      return window.location.origin + window.location.pathname + "?episode=" + (index + 1);
+    }
+
+    function goEpisode(index) {
+      window.location.href = episodeUrl(index);
+    }
+
+    function getEpisodeIndexFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const raw = params.get("episode");
+
+      if (!raw) return null;
+
+      const number = Number(raw);
+      if (!Number.isInteger(number)) return null;
+      if (number < 1 || number > appGames.length) return null;
+
+      return number - 1;
     }
 
     function renderGames(list) {
@@ -699,13 +773,13 @@
               <h3>${game.title}</h3>
               <p>${game.cardText}</p>
             </div>
-            <button class="btn btn-primary" onclick="startGame(${index})">Play Episode</button>
+            <button class="btn btn-primary" onclick="goEpisode(${index})">Play Episode</button>
           </article>
         `;
       }).join("");
     }
 
-    function startGame(index) {
+    function startGame(index, shouldScroll = true) {
       currentIndex = index;
       const game = appGames[index];
 
@@ -717,13 +791,18 @@
       playBadge.innerText = ep(index) + " · " + season(index);
       playTitle.innerText = game.title;
       playIntro.innerText = game.intro;
+      episodeLink.innerText = episodeUrl(index);
       sceneBox.innerHTML = game.scene;
 
       choicesBox.innerHTML = game.choices.map((choice, i) => `
         <button class="choice" onclick="chooseEnding(${i})">${choice.text}</button>
       `).join("");
 
-      playPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (shouldScroll) {
+        setTimeout(() => {
+          playPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 80);
+      }
     }
 
     function chooseEnding(choiceIndex) {
@@ -741,16 +820,33 @@
       `;
     }
 
-    document.getElementById("playFirst").onclick = () => startGame(0);
-    document.getElementById("randomTop").onclick = randomGame;
-    document.getElementById("randomBtn").onclick = randomGame;
-    document.getElementById("replay").onclick = () => startGame(currentIndex);
-    document.getElementById("nextEp").onclick = () => startGame((currentIndex + 1) % appGames.length);
-
     function randomGame() {
       if (!appGames.length) return;
-      startGame(Math.floor(Math.random() * appGames.length));
+      const index = Math.floor(Math.random() * appGames.length);
+      goEpisode(index);
     }
+
+    document.getElementById("playFirst").onclick = () => goEpisode(0);
+    document.getElementById("randomTop").onclick = randomGame;
+    document.getElementById("randomBtn").onclick = randomGame;
+    document.getElementById("replay").onclick = () => startGame(currentIndex, true);
+    document.getElementById("nextEp").onclick = () => {
+      const next = (currentIndex + 1) % appGames.length;
+      goEpisode(next);
+    };
+
+    document.getElementById("copyLink").onclick = async () => {
+      const link = episodeUrl(currentIndex);
+      try {
+        await navigator.clipboard.writeText(link);
+        document.getElementById("copyLink").innerText = "Copied";
+        setTimeout(() => {
+          document.getElementById("copyLink").innerText = "Copy Episode Link";
+        }, 1200);
+      } catch (error) {
+        window.prompt("Copy episode link:", link);
+      }
+    };
 
     document.getElementById("clearSearch").onclick = () => {
       searchInput.value = "";
@@ -779,6 +875,11 @@
     };
 
     renderGames(appGames);
+
+    const routeIndex = getEpisodeIndexFromUrl();
+    if (routeIndex !== null) {
+      startGame(routeIndex, true);
+    }
   </script>
 </body>
 </html>
