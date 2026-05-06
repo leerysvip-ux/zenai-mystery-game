@@ -1,6 +1,6 @@
 // The Red Eye Files · Series 01: Final Goodbye
 // games.js full global version
-// 50 episodes + refined emotional final arc
+// 50 episodes + final emotional arc v2
 
 const rawEpisodes = [
   {
@@ -461,14 +461,14 @@ const rawEpisodes = [
   {
     id: "attic-doll",
     title: "The Doll in the Attic",
-    cardText: "A doll in your attic changes positions every night.",
-    intro: "Every morning, the old attic doll faces a different direction.",
-    scene: "Tonight, the attic hatch is open. The doll sits at the top of the ladder looking down.<br><br>What do you do?",
+    cardText: "The doll in your attic is repairing something from your childhood.",
+    intro: "Every morning, the old attic doll faces a different direction. Tonight, it is sewing beside the attic window.",
+    scene: "The attic hatch is open. The doll sits under a beam of moonlight, repairing a torn shirt you ruined as a child.<br><br>The stitches are red.<br><br>What do you do?",
     choices: [
-      ["Climb up", "You climb the ladder...", "Attic Ending", "The attic is filled with identical dolls. All of them have your eyes."],
-      ["Move the doll", "You pick it up...", "Doll Ending", "It feels warm. Something inside beats once."],
-      ["Close the hatch", "You pull it shut...", "Hatch Ending", "Tiny fingers push it open from above."],
-      ["Take a picture", "You photograph it...", "Picture Ending", "The picture shows the doll standing beside you."]
+      ["Climb up", "You climb the ladder slowly...", "Attic Ending", "The doll does not attack. It only keeps sewing. On the shirt tag, your childhood name has been stitched back into place."],
+      ["Take the shirt", "You reach for the repaired shirt...", "Shirt Ending", "The fabric is warm. A memory returns: someone staying up late to mend it before you noticed it was broken."],
+      ["Ask who taught it", "You whisper into the attic...", "Sewing Ending", "The doll lifts one tiny hand and points behind you. There is no one there, but the air smells like rain and old perfume."],
+      ["Close the hatch", "You pull the hatch shut...", "Hatch Ending", "From above, the needle keeps moving. A soft voice says: Not everything broken was thrown away."]
     ]
   },
   {
@@ -515,12 +515,12 @@ const rawEpisodes = [
     title: "The Last Door on the Left",
     cardText: "A hallway gains one extra door every night.",
     intro: "Your apartment hallway has five doors. Tonight, there are six.",
-    scene: "The new door has a brass plate: Return what you borrowed.<br><br>What do you do?",
+    scene: "The new door has a brass plate: Return what you locked away.<br><br>It is not a room behind the door. It is the part of your heart you closed to survive.<br><br>What do you do?",
     choices: [
-      ["Open it", "You open the door...", "Borrowed Ending", "Inside is your childhood bedroom, filled with every lie you ever told."],
-      ["Knock first", "You knock twice...", "Knock Ending", "Someone whispers: You still remember the rules."],
-      ["Ignore it", "You walk away...", "Ignored Ending", "The next morning, the door is outside your bedroom."],
-      ["Remove the plate", "You pry it off...", "Plate Ending", "Behind the plate is a keyhole. An eye blinks from inside."]
+      ["Open it", "You open the door...", "Heart Door Ending", "Inside is not a monster. It is a quiet room full of unsent apologies, folded hospital blankets, and a chair someone once waited in."],
+      ["Knock first", "You knock twice...", "Knock Ending", "A soft voice answers from the other side: You do not have to be brave to come in. You only have to stop running."],
+      ["Ignore it", "You walk away...", "Ignored Ending", "The next morning, the door is outside your bedroom. On the brass plate, new words appear: Pain waits. It does not leave."],
+      ["Remove the plate", "You pry it off...", "Plate Ending", "Behind the plate is a red thread. It wraps around your finger like a promise someone made while you were unconscious."]
     ]
   },
   {
@@ -667,7 +667,7 @@ I only came back because you were still afraid of the dark."`
     id: "night-of-the-accident",
     title: "The Night of the Accident",
     cardText: "The files finally show the night you buried in silence.",
-    intro: "The Red Eye opens a file you never chose. Rain, headlights, broken glass, and a hand pushing you out of danger.",
+    intro: "The Red Eye opens a file you never chose. Rain, headlights, broken glass, and a dashboard clock frozen at 2:13 AM.",
     scene: `FILE 47 OPENED.
 
 Rain falls inside the room.
@@ -677,6 +677,10 @@ The walls become glass.
 Beyond them, you see a road at night.
 
 A car door is crushed open.
+
+The dashboard clock is frozen at 2:13 AM.
+
+Every knock, every call, every warning from the files was a pain echo from this exact minute.
 
 Someone is screaming your name.
 
@@ -720,7 +724,7 @@ Every door opens to the same road.
 
 The Red Eye whispers:
 
-"You survived the accident.
+"You survived 2:13 AM.
 
 But you never left it."`
       ],
@@ -756,7 +760,7 @@ Now you understand.
 
 It was never chasing you.
 
-It was the one who did not make it out.`
+It was the one who did not make it out at 2:13 AM.`
       ]
     ]
   },
@@ -878,6 +882,14 @@ The shadow becomes hair.
 
 The terrible red eye becomes two tired human eyes.
 
+Then the red glow breaks into thousands of red threads.
+
+They wrap around your arms, your chest, your shaking hands.
+
+The same red thread you found inside the lock was never a clue.
+
+It was protection.
+
 And then you see her.
 
 The person you lost.
@@ -896,7 +908,7 @@ What do you do?`,
 
 "I'm sorry."
 
-She smiles through the cracks of fading light.
+She smiles through the red threads and fading light.
 
 "That was never what I needed from you," she says.
 
@@ -912,6 +924,8 @@ She smiles through the cracks of fading light.
 
 "So I wore fear like armor."
 
+The red threads tighten around you as the void reaches forward.
+
 A weak laugh escapes her.
 
 "I became the thing you would run from, so you would keep moving."`
@@ -922,7 +936,7 @@ A weak laugh escapes her.
         "Cannot Save Ending",
         `You try to pull her back.
 
-But your hands pass through light.
+But your hands pass through light and red thread.
 
 She shakes her head gently.
 
@@ -942,7 +956,9 @@ The hallway begins to brighten behind you.`
 
 In every warning.
 
-In every shadow behind you."
+In every shadow behind you.
+
+In every red thread that kept the void from touching you."
 
 Her voice trembles.
 
@@ -964,6 +980,14 @@ The hallway is no longer dark.
 The doors are gone.
 
 The void is burning at the edges, but she is standing in front of it, holding it back with what little light remains.
+
+The red threads around you glow softly.
+
+Not chains.
+
+Not warnings.
+
+A way home.
 
 She smiles at you like she has waited years for this moment.
 
@@ -1045,6 +1069,8 @@ You promise to carry her, not as a wound, but as a light.
 
 She closes her eyes.
 
+The red threads loosen.
+
 The final words arrive like dawn:
 
 "Don’t be afraid of the dark anymore.
@@ -1065,8 +1091,8 @@ window.games = rawEpisodes.slice(0, 50).map((episode) => ({
   }))
 }));
 
-window.redEyeGamesVersion = "full-50-final-arc-v1";
+window.redEyeGamesVersion = "full-50-final-arc-v2";
 
 console.log("The Red Eye Files loaded:", window.games.length, "episodes");
 
-// trigger deploy restore full games data with final arc
+// trigger deploy upgrade final arc v2
