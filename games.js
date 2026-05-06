@@ -1,19 +1,641 @@
-// Refine EP.46 and EP.49 emotional lines
-(function () {
-  if (!Array.isArray(window.games)) return;
+// The Red Eye Files · Series 01: Final Goodbye
+// games.js full global version
+// 50 episodes + refined emotional final arc
 
-  function makeResult(ending, text) {
-    return `<strong>${ending}.</strong><br>${text}`;
-  }
+const rawEpisodes = [
+  {
+    id: "do-not-open-door",
+    title: "Do Not Open The Door",
+    cardText: "Someone knocks at 2:13 AM. Your phone says: Do not open.",
+    intro: "You are alone at night. Three knocks hit the door. Then your phone lights up with a warning.",
+    scene: "It is 2:13 AM. The hallway is silent. A shadow moves under the door. The knocking begins again.<br><br>What do you do?",
+    choices: [
+      ["Open the door", "You slowly unlock the door...", "Door Ending", "The hallway is empty. Then your phone receives another message: I know where you are."],
+      ["Hide in the closet", "You slip into the closet and hold your breath...", "Closet Ending", "The knocking stops. A voice inside the closet whispers: Good choice."],
+      ["Call the police", "You dial emergency services...", "Call Ending", "The operator answers before the call connects: Do not make a sound."],
+      ["Look through the peephole", "You step closer to the peephole...", "True Ending", "You see yourself standing outside the door, smiling."]
+    ]
+  },
+  {
+    id: "missing-room",
+    title: "The Missing Room",
+    cardText: "A floor plan shows a blank space where no room should exist.",
+    intro: "You find an old floor plan of your apartment. It shows one extra room behind your bedroom wall.",
+    scene: "The wall is smooth, but the map says there is a room behind it. At midnight, you hear someone moving inside.<br><br>What do you do?",
+    choices: [
+      ["Knock on the wall", "You knock three times...", "Wall Ending", "Something knocks back from inside, using the same rhythm as your heartbeat."],
+      ["Cut the wallpaper", "You slice through the wallpaper...", "Hidden Ending", "A thin door outline appears. Behind it, someone says: Finally."],
+      ["Ignore the sound", "You turn away and try to sleep...", "Sleep Ending", "You wake up inside the missing room. Your bedroom is now on the other side of the wall."],
+      ["Call the landlord", "You ask about the hidden room...", "Landlord Ending", "The landlord says the room was sealed after the last tenant disappeared."]
+    ]
+  },
+  {
+    id: "last-message",
+    title: "Last Message",
+    cardText: "A dead friend sends one final text from an inactive number.",
+    intro: "Your friend died years ago. Tonight, their old number sends you a message: Are you still there?",
+    scene: "The phone shows one unread message. The number has been disconnected for years. Another text appears: Please answer before midnight.<br><br>What do you do?",
+    choices: [
+      ["Reply yes", "You type: Yes...", "Reply Ending", "The screen flashes: Then why did you leave me there?"],
+      ["Call the number", "You press call...", "Voice Ending", "A familiar voice answers, crying softly from somewhere windy and far away."],
+      ["Block the number", "You block the contact...", "Blocked Ending", "The message reappears from your own number."],
+      ["Ask where they are", "You type: Where are you?...", "Location Ending", "A map opens. The pin is inside your house."]
+    ]
+  },
+  {
+    id: "black-elevator",
+    title: "The Black Elevator",
+    cardText: "Your building has 12 floors. Tonight, the elevator shows 13.",
+    intro: "You enter the elevator after midnight. A new button glows red: 13.",
+    scene: "Your building does not have a thirteenth floor. The elevator doors close before you can step out.<br><br>What do you do?",
+    choices: [
+      ["Press 13", "You press the glowing button...", "Thirteenth Ending", "The elevator opens to a hallway full of doors, each one labeled with your name."],
+      ["Press lobby", "You press the lobby button...", "Lobby Ending", "The elevator keeps going up. The display changes from 13 to 14."],
+      ["Force the door open", "You pull the doors apart...", "Shaft Ending", "Behind the doors is not the shaft. It is your childhood bedroom."],
+      ["Do nothing", "You stand still...", "Still Ending", "The elevator voice says: Thank you for returning."]
+    ]
+  },
+  {
+    id: "wrong-reflection",
+    title: "The Wrong Reflection",
+    cardText: "Your reflection moves half a second after you do.",
+    intro: "You notice your mirror reflection is slightly delayed. Then it smiles before you do.",
+    scene: "The room is quiet. Your reflection lifts one hand while your own hands remain still.<br><br>What do you do?",
+    choices: [
+      ["Touch the mirror", "You place your hand on the glass...", "Glass Ending", "Your reflection places its hand against yours, but its palm is warm."],
+      ["Cover the mirror", "You throw a towel over it...", "Covered Ending", "The towel moves from beneath, as if something is trying to breathe."],
+      ["Break the mirror", "You hit it with a chair...", "Shattered Ending", "Every broken piece shows a different version of you screaming silently."],
+      ["Ask who it is", "You whisper to the reflection...", "Name Ending", "It answers with the name you stopped using years ago."]
+    ]
+  },
+  {
+    id: "unknown-caller",
+    title: "The Unknown Caller",
+    cardText: "A call comes from your own number while your phone is in your hand.",
+    intro: "Your phone rings. The caller ID shows your own number.",
+    scene: "The room is silent except for the ringtone. The call keeps ringing even after you press decline.<br><br>What do you do?",
+    choices: [
+      ["Answer", "You answer the call...", "Answer Ending", "Your own voice whispers: You have ten minutes to leave."],
+      ["Decline again", "You reject the call...", "Decline Ending", "The phone rings louder. This time the caller ID says: Too late."],
+      ["Turn off the phone", "You power it down...", "Offline Ending", "The black screen still shows the incoming call."],
+      ["Put it outside", "You leave the phone in the hallway...", "Hallway Ending", "It rings from inside your pocket."]
+    ]
+  },
+  {
+    id: "room-404",
+    title: "Room 404",
+    cardText: "The hotel says Room 404 does not exist, but your key opens it.",
+    intro: "You check into a hotel. The receptionist gives you a key card for Room 404, then denies doing it.",
+    scene: "The fourth floor hallway jumps from 403 to 405. But between them, your key card beeps green.<br><br>What do you do?",
+    choices: [
+      ["Open Room 404", "You swipe the card...", "404 Ending", "The room is empty except for a suitcase with your clothes inside."],
+      ["Return to reception", "You go back downstairs...", "Reception Ending", "The receptionist is gone. A note says: Guest checked in years ago."],
+      ["Knock first", "You knock on the blank wall...", "Knock Ending", "Someone knocks back from behind it."],
+      ["Leave the hotel", "You run toward the exit...", "Exit Ending", "The front doors open into Room 404."]
+    ]
+  },
+  {
+    id: "locked-phone",
+    title: "The Locked Phone",
+    cardText: "A phone you do not own unlocks with your face.",
+    intro: "You find a black phone on your table. It unlocks when you look at it.",
+    scene: "The gallery contains photos of you sleeping, walking, and reading this exact screen.<br><br>What do you do?",
+    choices: [
+      ["Open the gallery", "You scroll through the photos...", "Gallery Ending", "The last photo shows you picking up the phone one minute from now."],
+      ["Check messages", "You open the messages...", "Message Ending", "Every message says the same thing: He found it."],
+      ["Throw it away", "You throw the phone outside...", "Return Ending", "It lands back on the table, screen brighter than before."],
+      ["Call the only contact", "You call the saved contact...", "Contact Ending", "A voice behind you says: I was waiting for that."]
+    ]
+  },
+  {
+    id: "girl-in-window",
+    title: "The Girl in the Window",
+    cardText: "A girl waves from a window in an abandoned house.",
+    intro: "You pass an abandoned house every night. Tonight, a little girl waves from the second-floor window.",
+    scene: "The house has been empty for twenty years. She presses one hand to the glass and writes: Help me.<br><br>What do you do?",
+    choices: [
+      ["Enter the house", "You push open the front door...", "House Ending", "The second floor is burned black. The window is gone."],
+      ["Wave back", "You raise your hand slowly...", "Wave Ending", "She smiles. The next window lights up, and another child appears."],
+      ["Call for help", "You call emergency services...", "Rescue Ending", "The operator says firefighters already searched that house in 1999."],
+      ["Take a photo", "You take a picture...", "Photo Ending", "The photo shows the girl standing beside you, holding your hand."]
+    ]
+  },
+  {
+    id: "night-train",
+    title: "The Night Train",
+    cardText: "The last train arrives with no driver and one passenger watching you.",
+    intro: "At an empty station, a train arrives after service has ended.",
+    scene: "The doors open. Inside, one passenger sits in the dark, staring directly at you.<br><br>What do you do?",
+    choices: [
+      ["Get on the train", "You step inside...", "Passenger Ending", "The doors close. The staring passenger is you, older and crying."],
+      ["Stay on the platform", "You step back...", "Platform Ending", "The train leaves. Your reflection remains in the window, still sitting inside."],
+      ["Ask the driver", "You walk to the front car...", "Driver Ending", "The driver’s seat is empty. The controls are covered in dust."],
+      ["Wake a passenger", "You shake a sleeping passenger...", "Wake Ending", "The passenger opens their eyes and says: You are not supposed to be awake."]
+    ]
+  },
+  {
+    id: "red-notebook",
+    title: "The Red Notebook",
+    cardText: "A red notebook records tomorrow’s events before they happen.",
+    intro: "You find a red notebook on your desk. The first page describes exactly what you did this morning.",
+    scene: "The next page is dated tomorrow. It says: At 2:13 AM, you will hear someone crying in the kitchen.<br><br>What do you do?",
+    choices: [
+      ["Read ahead", "You turn the page...", "Future Ending", "The page says: You already read too far."],
+      ["Destroy the notebook", "You tear the pages...", "Paper Ending", "Every torn page becomes a new page with your name written on it."],
+      ["Wait until 2:13", "You sit in the kitchen...", "Kitchen Ending", "At 2:13 AM, you realize the crying is coming from you."],
+      ["Write your own ending", "You grab a pen...", "Author Ending", "The ink writes back: You are not the author."]
+    ]
+  },
+  {
+    id: "missing-shadow",
+    title: "The Missing Shadow",
+    cardText: "Your shadow disappears, then starts appearing in places you have never been.",
+    intro: "Under a streetlight, you notice your shadow is gone.",
+    scene: "A photo appears on your phone. It shows your shadow standing in your bedroom.<br><br>What do you do?",
+    choices: [
+      ["Go home", "You rush back home...", "Bedroom Ending", "Your shadow is standing on the wall, facing away from you."],
+      ["Stand under another light", "You step into brighter light...", "Light Ending", "Three shadows appear. Only one belongs to you."],
+      ["Follow the photo clues", "You examine the photo...", "Clue Ending", "The next photo shows the room you are about to enter."],
+      ["Turn off all lights", "You switch everything off...", "Dark Ending", "In the darkness, your shadow finally whispers: Thank you."]
+    ]
+  },
+  {
+    id: "old-answering-machine",
+    title: "The Old Answering Machine",
+    cardText: "An answering machine plays messages from people who never called.",
+    intro: "You find an old answering machine in storage. It has one new message.",
+    scene: "The message is from your mother, but she does not recognize your adult voice.<br><br>What do you do?",
+    choices: [
+      ["Play the next message", "You press play again...", "Next Ending", "The second message is you, begging yourself not to answer the third."],
+      ["Call the number back", "You dial the number...", "Callback Ending", "A younger version of your home phone rings in another room."],
+      ["Delete the message", "You press delete...", "Deleted Ending", "The machine says: Memory removed."],
+      ["Record a reply", "You speak into the machine...", "Reply Ending", "Your reply plays back in a child’s voice."]
+    ]
+  },
+  {
+    id: "white-door",
+    title: "The White Door",
+    cardText: "A white door appears in your hallway after midnight.",
+    intro: "Your hallway has always ended at a wall. Tonight, there is a white door there.",
+    scene: "The door has no handle. On it, red letters say: Knock if you remember.<br><br>What do you do?",
+    choices: [
+      ["Knock once", "You knock once...", "Memory Ending", "A child’s voice asks: Did you forget me again?"],
+      ["Push the door", "You press your shoulder against it...", "Open Ending", "The door opens into a hospital corridor smelling of rain."],
+      ["Paint over it", "You cover the letters...", "Paint Ending", "The letters bleed through: You cannot cover what opened you."],
+      ["Sleep and ignore it", "You go back to bed...", "Dream Ending", "You wake up on the other side of the white door."]
+    ]
+  },
+  {
+    id: "voice-in-the-sink",
+    title: "The Voice in the Sink",
+    cardText: "Your bathroom sink whispers every time water runs.",
+    intro: "Every night, the bathroom sink whispers when you turn on the water.",
+    scene: "Tonight the voice says your name clearly. The drain smells like seawater.<br><br>What do you do?",
+    choices: [
+      ["Run the water longer", "You turn the tap fully...", "Water Ending", "The voice becomes a chorus, all asking to be let out."],
+      ["Look into the drain", "You lean closer...", "Drain Ending", "An eye opens in the darkness below."],
+      ["Turn off the water", "You twist the tap shut...", "Silence Ending", "The whisper continues from your mouth."],
+      ["Answer the voice", "You ask what it wants...", "Answer Ending", "It says: The ring you dropped when you forgot her."]
+    ]
+  },
+  {
+    id: "burned-photo",
+    title: "The Burned Photo",
+    cardText: "A burned photo repairs itself every night.",
+    intro: "You find a half-burned photograph. Every morning, a little more of it is restored.",
+    scene: "Tonight the photo shows you standing beside someone whose face is still missing.<br><br>What do you do?",
+    choices: [
+      ["Wait one more night", "You hide the photo under a book...", "Restored Ending", "In the morning, the missing face is yours."],
+      ["Burn it again", "You light the photo on fire...", "Ash Ending", "The ash forms a new photo of the same scene."],
+      ["Frame it", "You place it on the wall...", "Frame Ending", "The person in the photo turns their head toward you."],
+      ["Search the location", "You recognize the background...", "Location Ending", "The place is a train station that closed before you were born."]
+    ]
+  },
+  {
+    id: "empty-birthday",
+    title: "The Empty Birthday",
+    cardText: "A birthday cake appears with candles already lit.",
+    intro: "You come home to find a birthday cake on the table. It is not your birthday.",
+    scene: "The candles spell your age, but one extra candle is burning at the center.<br><br>What do you do?",
+    choices: [
+      ["Blow out the candles", "You blow them out...", "Wish Ending", "In the smoke, someone says: That was my wish."],
+      ["Cut the cake", "You slice into it...", "Cake Ending", "Inside the cake is an old birthday card addressed to you as a child."],
+      ["Call someone", "You call your family...", "Family Ending", "No one remembers the birthday you are asking about."],
+      ["Leave it untouched", "You step away from the table...", "Midnight Ending", "At midnight, the candles relight themselves one by one."]
+    ]
+  },
+  {
+    id: "street-with-no-end",
+    title: "The Street With No End",
+    cardText: "You walk home, but the street keeps repeating.",
+    intro: "You turn onto your street. Then you pass the same mailbox three times.",
+    scene: "The houses repeat perfectly, except one window gets brighter each time you pass it.<br><br>What do you do?",
+    choices: [
+      ["Enter the bright house", "You open the gate...", "House Ending", "Inside, a family dinner is waiting for someone with your name."],
+      ["Run forward", "You sprint down the street...", "Loop Ending", "You run past yourself, still walking calmly."],
+      ["Turn back", "You turn around...", "Back Ending", "The street behind you has disappeared into fog."],
+      ["Knock on the mailbox", "You tap the repeated mailbox...", "Mail Ending", "A letter slides out. It is dated the day you stopped remembering."]
+    ]
+  },
+  {
+    id: "cold-fireplace",
+    title: "The Cold Fireplace",
+    cardText: "A fireplace burns blue without heat.",
+    intro: "Your fireplace lights itself. The flames are blue and cold.",
+    scene: "Inside the flames, you see a room that is not yours. Someone is sitting by another fireplace, crying.<br><br>What do you do?",
+    choices: [
+      ["Reach into the flame", "You put your hand into the blue fire...", "Cold Ending", "Your hand comes back wet with tears."],
+      ["Throw in a photo", "You feed the fire a photo...", "Photo Ending", "The person in the flames looks up and says: I remember that day."],
+      ["Put the fire out", "You pour water over it...", "Steam Ending", "The steam forms a face you almost recognize."],
+      ["Sit and watch", "You sit by the fire...", "Hearth Ending", "The room in the flames slowly becomes your living room."]
+    ]
+  },
+  {
+    id: "lost-child",
+    title: "The Lost Child",
+    cardText: "A child asks for directions to a house that burned down years ago.",
+    intro: "On an empty street, a child in old clothes asks if you can help them find their way home.",
+    scene: "They hand you a paper with an address. You recognize it. That house burned down before you were born.<br><br>What do you do?",
+    choices: [
+      ["Walk them home", "You take the child’s hand...", "Home Ending", "The burned house appears at the end of the street, lights on, smoke rising from the chimney."],
+      ["Call the police", "You call for help...", "Report Ending", "The officer goes silent after hearing the address, then asks if the child is wearing a red coat."],
+      ["Ask their name", "You ask their name...", "Name Ending", "The child gives your name, then smiles with your childhood teeth."],
+      ["Refuse and leave", "You step away from the child...", "Alone Ending", "The child starts crying. Every streetlight behind you goes out one by one."]
+    ]
+  },
+  {
+    id: "house-without-doors",
+    title: "The House Without Doors",
+    cardText: "You enter a house. When you turn around, every door is gone.",
+    intro: "You step into an old house during a storm. The front door disappears into a smooth wall.",
+    scene: "There are windows, stairs, and rooms, but no doors anywhere. On the wall, someone has written: You came in. Now find how you leave.<br><br>What do you do?",
+    choices: [
+      ["Break a window", "You smash the nearest window...", "Glass Ending", "Outside is not the street. It is the same living room seen from another angle."],
+      ["Search upstairs", "You climb the stairs...", "Upstairs Ending", "Every room contains a photo of you outside the house before entering."],
+      ["Follow the writing", "You touch the words on the wall...", "Wall Ending", "New words appear: Leaving is not the same as surviving."],
+      ["Stay still", "You stop moving and listen...", "Quiet Ending", "The house begins breathing around you. A door appears on your chest."]
+    ]
+  },
+  {
+    id: "whispering-wall",
+    title: "The Whispering Wall",
+    cardText: "A wall in your apartment whispers names while you sleep.",
+    intro: "For a week, whispers have come from the wall beside your bed. Tonight, it says your full name.",
+    scene: "You press your ear against the wall. A voice from inside says: Wrong side.<br><br>What do you do?",
+    choices: [
+      ["Knock on the wall", "You knock three times...", "Knock Ending", "Something knocks back, but the sound comes from directly behind your head."],
+      ["Cut the wall open", "You cut into the wallpaper...", "Inside Ending", "Behind the wall is another layer covered in your handwriting."],
+      ["Record the whisper", "You open your recorder...", "Playback Ending", "The recording says: He is listening too."],
+      ["Sleep elsewhere", "You move to the couch...", "Follow Ending", "At 2:13 AM, the wall behind the couch whispers: Now we can see you."]
+    ]
+  },
+  {
+    id: "old-video-tape",
+    title: "The Old Video Tape",
+    cardText: "A video tape shows your house before you were born.",
+    intro: "You find a VHS tape labeled with your address, dated twenty years before you moved in.",
+    scene: "The video shows your living room. Someone walks past the camera wearing your clothes.<br><br>What do you do?",
+    choices: [
+      ["Keep watching", "You let the tape continue...", "Tape Ending", "The person sits down and mouths your name."],
+      ["Fast forward", "You press fast forward...", "Future Ending", "The tape jumps to tomorrow and shows you hiding the tape again."],
+      ["Destroy the tape", "You pull the tape out...", "Static Ending", "The TV turns to static, and someone begins rewinding inside the noise."],
+      ["Check the room", "You search your living room...", "Camera Ending", "Behind a shelf, you find the same camera still recording."]
+    ]
+  },
+  {
+    id: "locked-hospital-room",
+    title: "The Locked Hospital Room",
+    cardText: "A hospital room is locked from the outside, but someone inside knows you.",
+    intro: "You enter an abandoned hospital. On the third floor, one room has fresh light under the door.",
+    scene: "The room number is scratched off. From inside, a weak voice says: You finally came back.<br><br>What do you do?",
+    choices: [
+      ["Unlock the room", "You turn the rusty key...", "Patient Ending", "The bed is empty. The patient file at the foot of it has your photo."],
+      ["Ask who is inside", "You speak through the door...", "Voice Ending", "The voice says: The part of you they removed."],
+      ["Look through the window", "You wipe the small glass window...", "Window Ending", "You see yourself lying in the hospital bed, eyes open."],
+      ["Leave the hospital", "You run for the stairs...", "Discharge Ending", "Every exit sign now points back to the locked room."]
+    ]
+  },
+  {
+    id: "missing-neighbor",
+    title: "The Missing Neighbor",
+    cardText: "Your neighbor vanished, but their TV keeps turning on.",
+    intro: "Your neighbor disappeared three weeks ago. Their sealed apartment still turns its TV on every night.",
+    scene: "Tonight, the TV is not playing a show. It is whispering your apartment number.<br><br>What do you do?",
+    choices: [
+      ["Call the landlord", "You call the landlord...", "Landlord Ending", "He says the apartment next door has been empty for six years."],
+      ["Knock on the wall", "You knock on the shared wall...", "Neighbor Ending", "The TV goes silent. Then someone knocks from inside your closet."],
+      ["Enter the apartment", "You find the spare key...", "Apartment Ending", "The living room is empty except for a TV showing your bedroom live."],
+      ["Turn up your TV", "You drown out the noise...", "Broadcast Ending", "Your TV turns on by itself. The same whisper now comes from both sides."]
+    ]
+  },
+  {
+    id: "phone-under-bed",
+    title: "The Phone Under The Bed",
+    cardText: "A phone rings under your bed. It is not yours.",
+    intro: "At 2:13 AM, a phone rings under your bed while your own phone charges on the desk.",
+    scene: "The glow under the bed pulses like a heartbeat.<br><br>What do you do?",
+    choices: [
+      ["Reach under the bed", "You slowly reach down...", "Reach Ending", "Your hand touches another hand already holding the phone out to you."],
+      ["Answer the call", "You pull out the phone...", "Call Ending", "A voice under the bed whispers: Do not look down while we talk."],
+      ["Kick it away", "You kick the phone across the room...", "Return Ending", "It slides back under the bed by itself."],
+      ["Check your phone", "You grab your own phone...", "Mirror Call Ending", "Your phone shows one missed call from the number under the bed."]
+    ]
+  },
+  {
+    id: "doorbell-camera",
+    title: "The Doorbell Camera",
+    cardText: "Your camera records someone entering your home while you sleep.",
+    intro: "Your doorbell app reports motion at 2:13 AM. The video shows someone unlocking your door.",
+    scene: "The person has their face covered. They use a key you have never seen.<br><br>What do you do?",
+    choices: [
+      ["Replay the video", "You watch again...", "Replay Ending", "The person stops at the camera and says: Stop watching."],
+      ["Check your locks", "You inspect the front door...", "Lock Ending", "Inside the lock, you find a small piece of red thread."],
+      ["Call the police", "You send the video...", "Evidence Ending", "The officer says the video file is from tomorrow night."],
+      ["Wait tonight", "You sit by the door...", "Waiting Ending", "The notification appears before anything moves: You are at the door."]
+    ]
+  },
+  {
+    id: "staircase-changed",
+    title: "The Staircase That Changed",
+    cardText: "Your apartment staircase has one extra floor tonight.",
+    intro: "Your apartment is on the fourth floor. Tonight, the stairs continue to floor 4.5.",
+    scene: "A red light flickers above the strange landing.<br><br>What do you do?",
+    choices: [
+      ["Climb to 4.5", "You step onto the landing...", "Half Floor Ending", "The hallway is too short. Every door is half your height."],
+      ["Go back down", "You descend...", "Down Ending", "The stairs lead down for ten minutes. The ground floor sign says -4."],
+      ["Open the fire door", "You push it open...", "Fire Door Ending", "Behind it is your apartment, but all furniture is covered in dust."],
+      ["Call the elevator", "You press the button...", "Elevator Ending", "The elevator arrives from floor 4.5, with your name written on every wall."]
+    ]
+  },
+  {
+    id: "woman-in-rain",
+    title: "The Woman in the Rain",
+    cardText: "A woman stands outside your window every rainy night.",
+    intro: "Every night this week, a woman in a dark coat has stood across the street looking up at your window.",
+    scene: "Tonight she is closer. Her sign says: You let me in once.<br><br>What do you do?",
+    choices: [
+      ["Close the blinds", "You pull them shut...", "Blind Ending", "Her shadow appears on the blinds from inside the room."],
+      ["Take a picture", "You photograph her...", "Photo Ending", "The picture shows her standing behind you, dry and smiling."],
+      ["Go outside", "You walk into the rain...", "Rain Ending", "She is gone. A key to your apartment lies where she stood."],
+      ["Ask what she wants", "You open the window...", "Window Ending", "She whispers: I want back the years I spent in your walls."]
+    ]
+  },
+  {
+    id: "last-bus-stop",
+    title: "The Last Bus Stop",
+    cardText: "A bus arrives at a stop that was removed years ago.",
+    intro: "You see an old bus stop sign on a street that no longer has buses.",
+    scene: "A bus pulls up with no driver. The destination reads: LAST STOP.<br><br>What do you do?",
+    choices: [
+      ["Get on the bus", "You step aboard...", "Passenger Ending", "On the seat beside you is a ticket with your death date printed on it."],
+      ["Ask where it goes", "You speak to the empty driver seat...", "Route Ending", "The speaker crackles: You have taken this route before."],
+      ["Walk away", "You leave the stop...", "Return Ending", "Every street corner now has the same bus stop sign waiting for you."],
+      ["Read the timetable", "You check the schedule...", "Schedule Ending", "The only listed departure time is the exact minute you were born."]
+    ]
+  },
+  {
+    id: "mirror-at-the-end",
+    title: "The Mirror at the End",
+    cardText: "A mirror appears at the end of a hallway that was never there.",
+    intro: "You wake up to a new hallway outside your bedroom. A tall mirror waits at the end.",
+    scene: "In the mirror, your reflection is already walking toward you.<br><br>What do you do?",
+    choices: [
+      ["Walk toward it", "You step into the hallway...", "Reflection Ending", "Your reflection reaches the mirror first and touches the glass from the other side."],
+      ["Turn off the lights", "You switch them off...", "Dark Mirror Ending", "The mirror still shines, showing someone under your bed."],
+      ["Cover the mirror", "You throw a blanket over it...", "Covered Ending", "The blanket breathes. Then it whispers your name."],
+      ["Break the mirror", "You hit it hard...", "Shattered Ending", "Every shard shows a different choice you could have made."]
+    ]
+  },
+  {
+    id: "letter-from-basement",
+    title: "The Letter From The Basement",
+    cardText: "A sealed letter slides out from under a locked basement door.",
+    intro: "Your basement has been locked since you moved in. Tonight, a damp letter slides out.",
+    scene: "The envelope says: Open before you go downstairs.<br><br>What do you do?",
+    choices: [
+      ["Open the letter", "You tear it open...", "Warning Ending", "It says: Whatever calls your name below already knows your voice."],
+      ["Unlock the door", "You put the key into the lock...", "Stair Ending", "At the bottom, someone reads the same letter aloud."],
+      ["Slide it back", "You push it under the door...", "Return Ending", "A hand pushes it back immediately, now covered in fresh fingerprints."],
+      ["Call the landlord", "You ask about the basement...", "Landlord Ending", "He says your house does not have a basement."]
+    ]
+  },
+  {
+    id: "black-envelope",
+    title: "The Black Envelope",
+    cardText: "A black envelope appears in your mailbox with no stamp.",
+    intro: "There is no stamp, no sender, only your name written in silver ink.",
+    scene: "Inside is a photo of your front door taken from inside your house. On the back: Tonight.<br><br>What do you do?",
+    choices: [
+      ["Check the door", "You walk to the front door...", "Door Ending", "The peephole shows someone standing inside your hallway."],
+      ["Burn the envelope", "You light it on fire...", "Ash Ending", "The smoke forms the words: Invitation accepted."],
+      ["Keep the photo", "You put it away...", "Photo Ending", "The drawer opens by itself. The photo now shows you looking into it."],
+      ["Throw it away", "You toss it out...", "Trash Ending", "At midnight, the envelope is back, heavier than before."]
+    ]
+  },
+  {
+    id: "empty-playground",
+    title: "The Empty Playground",
+    cardText: "A swing moves by itself in a playground after midnight.",
+    intro: "You pass an empty playground. One swing moves slowly with no wind.",
+    scene: "It stops when you look at it and starts again when you blink.<br><br>What do you do?",
+    choices: [
+      ["Sit on the swing", "You sit down...", "Swing Ending", "The swing rises by itself. A child whispers: You took my seat."],
+      ["Record a video", "You film the swing...", "Video Ending", "The video shows a child pushing it. In real life, no one is there."],
+      ["Leave quickly", "You walk away...", "Follow Ending", "The sound of chains follows you all the way home."],
+      ["Ask who is there", "You call out...", "Answer Ending", "A small voice answers from the slide: You can see me tomorrow."]
+    ]
+  },
+  {
+    id: "unknown-password",
+    title: "The Unknown Password",
+    cardText: "Your laptop unlocks with a password you never created.",
+    intro: "Your laptop wakes up by itself. A password box is already filled with black dots.",
+    scene: "A message appears: You have one attempt left.<br><br>What do you do?",
+    choices: [
+      ["Press Enter", "You press Enter...", "Access Ending", "The desktop background is a live view of you sitting at the desk."],
+      ["Type your name", "You type your name...", "Name Ending", "The screen says: Correct user. Wrong body."],
+      ["Shut the laptop", "You close it...", "Closed Ending", "The screen glows through the lid while keys type by themselves."],
+      ["Unplug it", "You remove every cable...", "Power Ending", "The laptop turns on again. The webcam light is red."]
+    ]
+  },
+  {
+    id: "attic-doll",
+    title: "The Doll in the Attic",
+    cardText: "A doll in your attic changes positions every night.",
+    intro: "Every morning, the old attic doll faces a different direction.",
+    scene: "Tonight, the attic hatch is open. The doll sits at the top of the ladder looking down.<br><br>What do you do?",
+    choices: [
+      ["Climb up", "You climb the ladder...", "Attic Ending", "The attic is filled with identical dolls. All of them have your eyes."],
+      ["Move the doll", "You pick it up...", "Doll Ending", "It feels warm. Something inside beats once."],
+      ["Close the hatch", "You pull it shut...", "Hatch Ending", "Tiny fingers push it open from above."],
+      ["Take a picture", "You photograph it...", "Picture Ending", "The picture shows the doll standing beside you."]
+    ]
+  },
+  {
+    id: "platform-zero",
+    title: "Platform Zero",
+    cardText: "A hidden subway platform appears behind a locked service door.",
+    intro: "You miss your train and notice a service door open to a platform marked 0.",
+    scene: "A train waits with doors open. The sign says: Boarding only for those already missing.<br><br>What do you do?",
+    choices: [
+      ["Board the train", "You step inside...", "Missing Ending", "On the seat is a missing person poster with your face."],
+      ["Go upstairs", "You run back...", "Exit Ending", "The service door opens into a station where every ad has your name."],
+      ["Read the sign", "You step closer...", "Sign Ending", "The sign changes: Next train arrives after you disappear."],
+      ["Call for help", "You shout...", "Echo Ending", "Your echo answers from inside the train: Too late."]
+    ]
+  },
+  {
+    id: "hotel-phone",
+    title: "The Hotel Phone",
+    cardText: "A hotel room phone rings even though it is unplugged.",
+    intro: "At 2:13 AM, your hotel phone rings. Its cord is not connected.",
+    scene: "The display says: Room 000.<br><br>What do you do?",
+    choices: [
+      ["Answer", "You lift the receiver...", "Room 000 Ending", "The front desk says: Please do not look in the bathtub."],
+      ["Check the bathtub", "You enter the bathroom...", "Bathroom Ending", "The tub is dry, but wet footprints lead out of it."],
+      ["Unplug it again", "You remove the cord...", "Disconnected Ending", "The phone keeps ringing from under your pillow."],
+      ["Call the front desk", "You dial reception...", "Desk Ending", "The clerk says there are no guests on your floor tonight."]
+    ]
+  },
+  {
+    id: "shadow-in-photo",
+    title: "The Shadow in the Photo",
+    cardText: "Every photo you take includes a shadow standing behind you.",
+    intro: "You take a selfie and see a shadow behind you. When you turn around, nothing is there.",
+    scene: "A second photo shows the shadow closer, one hand raised near your shoulder.<br><br>What do you do?",
+    choices: [
+      ["Take more photos", "You keep taking pictures...", "Closer Ending", "In the last photo, the shadow is holding the phone."],
+      ["Turn on lights", "You switch on every light...", "Light Ending", "Your shadow disappears, but the other one remains."],
+      ["Delete the photos", "You delete them all...", "Deleted Ending", "A new album appears: Behind You."],
+      ["Photo the mirror", "You aim at the mirror...", "Mirror Ending", "The mirror photo shows the shadow sitting on your bed."]
+    ]
+  },
+  {
+    id: "last-door-left",
+    title: "The Last Door on the Left",
+    cardText: "A hallway gains one extra door every night.",
+    intro: "Your apartment hallway has five doors. Tonight, there are six.",
+    scene: "The new door has a brass plate: Return what you borrowed.<br><br>What do you do?",
+    choices: [
+      ["Open it", "You open the door...", "Borrowed Ending", "Inside is your childhood bedroom, filled with every lie you ever told."],
+      ["Knock first", "You knock twice...", "Knock Ending", "Someone whispers: You still remember the rules."],
+      ["Ignore it", "You walk away...", "Ignored Ending", "The next morning, the door is outside your bedroom."],
+      ["Remove the plate", "You pry it off...", "Plate Ending", "Behind the plate is a keyhole. An eye blinks from inside."]
+    ]
+  },
+  {
+    id: "black-lake-reflection",
+    title: "The Black Lake Reflection",
+    cardText: "A lake reflects someone standing behind you, but the shore is empty.",
+    intro: "You walk past a black lake after midnight. Your reflection is not alone.",
+    scene: "In the lake, someone stands behind you with one hand on your shoulder. You feel nothing.<br><br>What do you do?",
+    choices: [
+      ["Turn around", "You turn from the lake...", "Shore Ending", "No one is there. Your reflection is still facing the opposite direction."],
+      ["Touch the water", "You kneel and touch it...", "Ripple Ending", "A hand beneath the surface presses against your palm."],
+      ["Walk away", "You step back...", "Follow Ending", "Wet footprints appear in front of you before you take each step."],
+      ["Throw a stone", "You throw it into the reflection...", "Stone Ending", "The stone sinks upward. A voice whispers: You missed."]
+    ]
+  },
+  {
+    id: "elevator-b13",
+    title: "Elevator B13",
+    cardText: "Your office elevator shows a basement level that should not exist.",
+    intro: "Your building has twelve floors and no basement. Tonight, the elevator shows B13.",
+    scene: "The B13 button glows red. The doors are already open.<br><br>What do you do?",
+    choices: [
+      ["Press B13", "You press the button...", "Basement Ending", "The elevator drops too long and opens to your childhood home."],
+      ["Press lobby", "You press lobby instead...", "Lobby Ending", "The elevator says going down. Every floor changes to B13."],
+      ["Step out", "You leave quickly...", "Door Ending", "The doors close. The display says you are still inside."],
+      ["Hold the door", "You press door-open...", "Hold Ending", "A hand reaches from the wall and presses close."]
+    ]
+  },
+  {
+    id: "room-that-breathes",
+    title: "The Room That Breathes",
+    cardText: "A locked room in your house expands and contracts like lungs.",
+    intro: "There is one locked room you never use. Tonight, the door moves in and out.",
+    scene: "The wood creaks like breathing. Warm air leaks from the keyhole.<br><br>What do you do?",
+    choices: [
+      ["Look through keyhole", "You lower your eye...", "Keyhole Ending", "Something on the other side is looking back through another keyhole."],
+      ["Unlock it", "You turn the key...", "Breath Ending", "The room inhales and pulls you inward."],
+      ["Seal the door", "You tape the edges...", "Sealed Ending", "The breathing stops. Every window in the house fogs from inside."],
+      ["Call a friend", "You call someone over...", "Witness Ending", "Your friend says it was never locked, steps inside, and vanishes."]
+    ]
+  },
+  {
+    id: "number-station",
+    title: "The Number Station",
+    cardText: "Your radio picks up numbers that match your life.",
+    intro: "An old radio turns on by itself. A calm voice begins reading numbers.",
+    scene: "The numbers are your birthday, apartment, and tomorrow’s wake-up time. Then the voice says: Next sequence begins now.<br><br>What do you do?",
+    choices: [
+      ["Keep listening", "You listen...", "Sequence Ending", "The next numbers match your heartbeat. With each one, your pulse slows."],
+      ["Turn it off", "You switch it off...", "Static Ending", "The numbers continue from inside your walls."],
+      ["Write them down", "You write quickly...", "Code Ending", "The numbers form coordinates pointing to your bedroom."],
+      ["Answer back", "You speak into the radio...", "Broadcast Ending", "The voice repeats your sentence in a room full of other voices."]
+    ]
+  },
+  {
+    id: "forgotten-app",
+    title: "The Forgotten App",
+    cardText: "An app you never installed appears on your phone.",
+    intro: "A black icon appears on your phone. It has no name, only a red eye.",
+    scene: "When opened, it shows a live map of your apartment. One red dot is moving behind you.<br><br>What do you do?",
+    choices: [
+      ["Delete the app", "You delete it...", "Deleted Ending", "A message appears: You cannot uninstall what installed you."],
+      ["Follow the dot", "You watch it move...", "Map Ending", "The dot reaches your bedroom. The door opens by itself."],
+      ["Turn phone off", "You power it down...", "Offline Ending", "The red dot remains visible in the black glass reflection."],
+      ["Tap the dot", "You tap it...", "Contact Ending", "Your phone vibrates. Something behind you taps your shoulder."]
+    ]
+  },
+  {
+    id: "letters-from-her",
+    title: "Letters From Her",
+    cardText: "The Red Eye stops hunting you. It starts leaving letters.",
+    intro: "After forty-five files, the Red Eye no longer feels like a monster. Tonight, it leaves a letter under your door.",
+    scene: `FILE 46 OPENED.
 
-  // EP.46 · Letters From Her · Name Ending
-  if (window.games[45] && Array.isArray(window.games[45].choices)) {
-    const ep46NameChoice = window.games[45].choices.find(
-      (choice) => choice.ending === "Name Ending"
-    );
+The envelope is warm.
 
-    if (ep46NameChoice) {
-      ep46NameChoice.result = makeResult(
+There is no name on it, only a small red mark shaped like an eye.
+
+Inside, the handwriting feels painfully familiar.
+
+The first line says:
+
+"If the fear brought you this far, then maybe you are finally ready to remember me."
+
+What do you do?`,
+    choices: [
+      [
+        "Read the letter",
+        "You unfold the page with shaking hands...",
+        "Letter Ending",
+        `The letter says the Red Eye never wanted to hurt you.
+
+It only appeared as something terrifying because fear was the only language strong enough to reach you.
+
+At the bottom, one sentence is underlined:
+
+"I scared you because I could not bear to lose you again."`
+      ],
+      [
+        "Search the handwriting",
+        "You compare the handwriting with old birthday cards...",
+        "Recognition Ending",
+        `The same handwriting appears on a card from years ago.
+
+You had forgotten the card.
+
+You had forgotten the name.
+
+But your hands remember before your mind does.
+
+The Red Eye flickers softly, almost like it is crying.`
+      ],
+      [
+        "Ask who wrote it",
+        "You whisper the question into the darkness...",
         "Name Ending",
         `The room becomes silent.
 
@@ -26,18 +648,249 @@ Not a warning.
 A name.
 
 The name of someone you loved so deeply that your mind had to delete them just to keep your heart beating.`
-      );
-    }
-  }
+      ],
+      [
+        "Burn the letter",
+        "You hold the letter over the flame...",
+        "Ash Ending",
+        `The paper burns, but the words do not disappear.
 
-  // EP.49 · The Red Eye Revealed · Forgiveness Ending
-  if (window.games[48] && Array.isArray(window.games[48].choices)) {
-    const ep49ForgivenessChoice = window.games[48].choices.find(
-      (choice) => choice.ending === "Forgiveness Ending"
-    );
+They rise in the smoke and form one sentence above you:
 
-    if (ep49ForgivenessChoice) {
-      ep49ForgivenessChoice.result = makeResult(
+"I do not blame you for forgetting.
+
+I only came back because you were still afraid of the dark."`
+      ]
+    ]
+  },
+  {
+    id: "night-of-the-accident",
+    title: "The Night of the Accident",
+    cardText: "The files finally show the night you buried in silence.",
+    intro: "The Red Eye opens a file you never chose. Rain, headlights, broken glass, and a hand pushing you out of danger.",
+    scene: `FILE 47 OPENED.
+
+Rain falls inside the room.
+
+The walls become glass.
+
+Beyond them, you see a road at night.
+
+A car door is crushed open.
+
+Someone is screaming your name.
+
+Then you see it:
+
+A hand pushing you away from the impact.
+
+A hand that stayed behind.
+
+What do you do?`,
+    choices: [
+      [
+        "Reach for the hand",
+        "You reach into the memory...",
+        "Memory Ending",
+        `For one second, you feel that hand again.
+
+Warm.
+
+Weak.
+
+Still trying to push you toward safety.
+
+You hear her voice through the rain:
+
+"Don't come back for me.
+
+Just live."
+
+The Red Eye turns dim, like it is ashamed of showing you the truth.`
+      ],
+      [
+        "Look away",
+        "You turn your face from the memory...",
+        "Avoidance Ending",
+        `The memory follows you.
+
+The rain appears in every room.
+
+Every door opens to the same road.
+
+The Red Eye whispers:
+
+"You survived the accident.
+
+But you never left it."`
+      ],
+      [
+        "Say her name",
+        "You say the name you had forgotten...",
+        "Name Remembered Ending",
+        `The rain stops.
+
+For the first time, the Red Eye does not glow red.
+
+It becomes soft, almost human.
+
+A voice answers:
+
+"I waited so long to hear you say it again."`
+      ],
+      [
+        "Ask why she stayed",
+        "You ask the one question that has haunted the silence...",
+        "Sacrifice Ending",
+        `The file plays the final recording.
+
+Her voice is weak, but steady:
+
+"Because you still had mornings left.
+
+Because someone had to make sure you got home."
+
+The Red Eye trembles.
+
+Now you understand.
+
+It was never chasing you.
+
+It was the one who did not make it out.`
+      ]
+    ]
+  },
+  {
+    id: "the-void-outside",
+    title: "The Void Outside",
+    cardText: "The real enemy was never the Red Eye. It was what waited outside the rooms.",
+    intro: "The rooms begin collapsing. Beyond them is not darkness, but something worse — a void that eats memories.",
+    scene: `FILE 48 OPENED.
+
+The walls split open.
+
+Behind them is not another room.
+
+It is nothing.
+
+A white, silent void.
+
+Every photo you ever saw begins fading.
+
+Every voice you ever heard becomes static.
+
+The Red Eye stands between you and the void.
+
+For the first time, it looks wounded.
+
+What do you do?`,
+    choices: [
+      [
+        "Run toward the Red Eye",
+        "You run toward the thing you feared most...",
+        "Protected Ending",
+        `The Red Eye spreads its broken arms between you and the void.
+
+Its body is covered in cracks of light.
+
+It growls like a monster, but the sound is full of pain.
+
+Behind the red glow, you hear her voice:
+
+"Do not look at it.
+
+It eats what you love first."`
+      ],
+      [
+        "Look into the void",
+        "You stare into the white emptiness...",
+        "Erased Ending",
+        `For a moment, you forget your own name.
+
+Then her voice cuts through the silence.
+
+She screams your name with such pain that the memory returns.
+
+The Red Eye throws itself in front of you.
+
+A piece of it burns away.`
+      ],
+      [
+        "Ask what the void is",
+        "You ask the Red Eye what waits outside...",
+        "Truth Ending",
+        `Words appear across the collapsing wall:
+
+"The void is what happens when grief wins.
+
+It takes faces first.
+
+Then voices.
+
+Then the reason you kept going."
+
+The Red Eye turns toward you.
+
+It has been fighting this thing alone for years.`
+      ],
+      [
+        "Hold the Red Eye back",
+        "You grab the Red Eye before it charges forward...",
+        "Touch Ending",
+        `Your hand touches something beneath the monster's skin.
+
+Not claws.
+
+Not bone.
+
+A human hand.
+
+Small.
+
+Familiar.
+
+Shaking.
+
+The Red Eye freezes.
+
+For one heartbeat, it remembers how to be touched.`
+      ]
+    ]
+  },
+  {
+    id: "red-eye-revealed",
+    title: "The Red Eye Revealed",
+    cardText: "The monster finally shows the face it was hiding.",
+    intro: "The Red Eye is losing the fight. Its terrifying shape begins to break, and something human appears beneath it.",
+    scene: `FILE 49 OPENED.
+
+The void presses closer.
+
+The Red Eye kneels.
+
+The red glow cracks like glass.
+
+The monster shape breaks apart piece by piece.
+
+Claws become fingers.
+
+The shadow becomes hair.
+
+The terrible red eye becomes two tired human eyes.
+
+And then you see her.
+
+The person you lost.
+
+The person who stayed.
+
+The person who became terrifying just to keep you alive.
+
+What do you do?`,
+    choices: [
+      [
+        "Say you are sorry",
+        "You fall to your knees...",
         "Forgiveness Ending",
         `You say it over and over.
 
@@ -48,9 +901,172 @@ She smiles through the cracks of fading light.
 "That was never what I needed from you," she says.
 
 "I only needed you to stop drowning in a memory I tried so hard to save you from."`
-      );
-    }
-  }
-})();
+      ],
+      [
+        "Ask why she looked like a monster",
+        "Your voice breaks as you ask the question...",
+        "Monster Ending",
+        `She looks down at her fading hands.
 
-// trigger deploy refined final emotional lines
+"The void fears love," she says.
+
+"So I wore fear like armor."
+
+A weak laugh escapes her.
+
+"I became the thing you would run from, so you would keep moving."`
+      ],
+      [
+        "Try to save her",
+        "You reach for her before she fades...",
+        "Cannot Save Ending",
+        `You try to pull her back.
+
+But your hands pass through light.
+
+She shakes her head gently.
+
+"You already saved me once," she whispers.
+
+"By living."
+
+The hallway begins to brighten behind you.`
+      ],
+      [
+        "Ask if she was always there",
+        "You ask the question you are afraid to hear...",
+        "Always Ending",
+        `She nods.
+
+"In every locked room.
+
+In every warning.
+
+In every shadow behind you."
+
+Her voice trembles.
+
+"I was the red eye in the dark.
+
+Watching until you were strong enough to go home."`
+      ]
+    ]
+  },
+  {
+    id: "final-goodbye",
+    title: "Final Goodbye",
+    cardText: "The Red Eye offers one last choice: stay with the memory, or go home with the truth.",
+    intro: "The final file unlocks. The Red Eye is gone. Only she remains, standing in the first light after years of darkness.",
+    scene: `FINAL FILE OPENED.
+
+The hallway is no longer dark.
+
+The doors are gone.
+
+The void is burning at the edges, but she is standing in front of it, holding it back with what little light remains.
+
+She smiles at you like she has waited years for this moment.
+
+"I did not come back to keep you here," she says.
+
+"I came back to help you leave."
+
+Her hands are fading.
+
+The way home is opening behind you.
+
+What do you do?`,
+    choices: [
+      [
+        "Stay with her",
+        "You step toward her instead of the way home...",
+        "Stay Ending",
+        `For one perfect second, the world stops hurting.
+
+She holds you like she never left.
+
+But the light behind you begins to close.
+
+Her smile breaks.
+
+"No," she whispers.
+
+"Not after everything I burned for you."
+
+She pushes you back toward the doorway with the last of her strength.`
+      ],
+      [
+        "Leave and remember",
+        "You step backward through tears...",
+        "True Goodbye Ending",
+        `You choose the pain of remembering.
+
+You choose the life she protected.
+
+As the doorway opens, she looks almost peaceful.
+
+The red light fades from her eyes.
+
+For the first time, she looks exactly as you remembered her before the accident.
+
+Soft.
+
+Tired.
+
+Free.`
+      ],
+      [
+        "Ask for one more minute",
+        "You ask for just one more minute...",
+        "One More Minute Ending",
+        `She gives you sixty seconds.
+
+You spend none of them asking why.
+
+You spend none of them begging.
+
+You only say thank you.
+
+Again and again.
+
+When the final second ends, she touches your face and smiles.
+
+"That was enough."`
+      ],
+      [
+        "Promise to live",
+        "You make the only promise she waited to hear...",
+        "Promise Ending",
+        `You promise to stop sleeping with the lights on.
+
+You promise to stop blaming yourself for surviving.
+
+You promise to carry her, not as a wound, but as a light.
+
+She closes her eyes.
+
+The final words arrive like dawn:
+
+"Don’t be afraid of the dark anymore.
+
+I burned my soul to light your way home."`
+      ]
+    ]
+  }
+];
+
+window.games = rawEpisodes.slice(0, 50).map((episode) => ({
+  ...episode,
+  choices: episode.choices.map(([text, scene, ending, result]) => ({
+    text,
+    scene,
+    ending,
+    result: `<strong>${ending}.</strong><br>${result}`
+  }))
+}));
+
+window.redEyeGamesVersion = "full-50-final-arc-v1";
+
+console.log("The Red Eye Files loaded:", window.games.length, "episodes");
+
+// trigger deploy restore full games data with final arc
