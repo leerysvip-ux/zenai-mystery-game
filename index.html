@@ -603,7 +603,7 @@
   <script src="games.js?v=50"></script>
 
   <script>
-    const appGames = Array.isArray(window.games) ? window.games : [];
+    const appGames = Array.isArray(window.games) ? window.games.slice(0, 50) : [];
 
     const fragments = [
       "The first message was not sent to scare you. It was sent to see if you would listen.",
