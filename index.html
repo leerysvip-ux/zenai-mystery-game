@@ -7,6 +7,9 @@
   <title>The Red Eye Files - Interactive Emotional Mystery Series</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
+  <link rel="preload" as="image" href="red-eye-dark.png" />
+  <link rel="preload" as="image" href="red-eye-light.png" />
+
   <meta
     name="description"
     content="The Red Eye Files is a 50-episode interactive emotional mystery escape series. Make choices, unlock endings, collect Red Eye fragments, and discover the truth behind the final goodbye."
@@ -561,9 +564,65 @@
       transition: background 4.8s ease, border-color 4.8s ease;
     }
 
+    .red-eye-asset {
+      position: absolute;
+      inset: -8%;
+      width: 116%;
+      height: 116%;
+      object-fit: cover;
+      opacity: 0.18;
+      filter: contrast(1.12) saturate(1.22) brightness(0.82);
+      mix-blend-mode: screen;
+      transform: scale(1.08) rotate(-1deg);
+      animation: redEyeBreathe 9s ease-in-out infinite;
+      transition:
+        opacity 4.8s ease,
+        filter 4.8s ease,
+        transform 4.8s ease,
+        mix-blend-mode 4.8s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    body.final-arc-mode:not(.final-goodbye-complete) .red-eye-asset {
+      opacity: 0.12;
+      filter: contrast(1.02) saturate(0.95) brightness(0.78);
+      transform: scale(1.04) rotate(0deg);
+    }
+
+    body.final-goodbye-complete .red-eye-asset {
+      opacity: 0.62;
+      filter: saturate(0.98) brightness(1.06) contrast(0.96);
+      mix-blend-mode: multiply;
+      transform: scale(1) rotate(0deg);
+      animation: redEyeRelease 12s ease-in-out infinite;
+    }
+
+    @keyframes redEyeBreathe {
+      0%, 100% {
+        transform: scale(1.08) rotate(-1deg);
+        opacity: 0.16;
+      }
+      50% {
+        transform: scale(1.15) rotate(1.2deg);
+        opacity: 0.24;
+      }
+    }
+
+    @keyframes redEyeRelease {
+      0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.52;
+      }
+      50% {
+        transform: scale(1.035) rotate(0.8deg);
+        opacity: 0.68;
+      }
+    }
+
     body.final-goodbye-complete .visual {
       background:
-        radial-gradient(circle at 50% 44%, rgba(166, 64, 42, 0.20), transparent 20%),
+        radial-gradient(circle at 50% 44%, rgba(166, 64, 42, 0.10), transparent 20%),
         radial-gradient(circle at 50% 65%, rgba(255, 245, 220, 0.62), transparent 36%),
         linear-gradient(180deg, rgba(255, 248, 232, 0.76), rgba(248, 216, 174, 0.72));
       border-color: rgba(120, 78, 52, 0.22);
@@ -583,14 +642,16 @@
         0 0 28px rgba(239,68,68,0.55),
         inset 0 0 28px rgba(239,68,68,0.35);
       animation: eyeOpen 3.2s infinite ease-in-out;
-      transition: border-color 4.8s ease, box-shadow 4.8s ease;
+      transition: border-color 4.8s ease, box-shadow 4.8s ease, opacity 4.8s ease;
+      z-index: 2;
     }
 
     body.final-goodbye-complete .visual::before {
-      border-color: rgba(166, 64, 42, 0.28);
+      opacity: 0.12;
+      border-color: rgba(166, 64, 42, 0.16);
       box-shadow:
-        0 0 30px rgba(166,64,42,0.18),
-        inset 0 0 24px rgba(255,255,255,0.55);
+        0 0 30px rgba(166,64,42,0.12),
+        inset 0 0 24px rgba(255,255,255,0.38);
     }
 
     .visual::after {
@@ -607,12 +668,13 @@
       box-shadow: 0 0 24px rgba(239,68,68,0.9);
       animation: pupil 2.7s infinite ease-in-out;
       transition: opacity 4.8s ease, border-color 4.8s ease, box-shadow 4.8s ease;
+      z-index: 3;
     }
 
     body.final-goodbye-complete .visual::after {
-      opacity: 0.30;
+      opacity: 0.10;
       border-color: #a6402a;
-      box-shadow: 0 0 18px rgba(166,64,42,0.20);
+      box-shadow: 0 0 18px rgba(166,64,42,0.12);
     }
 
     @keyframes eyeOpen {
@@ -638,7 +700,7 @@
 
     .visual-meta {
       position: relative;
-      z-index: 3;
+      z-index: 5;
       width: 100%;
       padding: 14px;
       border-radius: 16px;
@@ -836,6 +898,25 @@
     .final-archive > * {
       position: relative;
       z-index: 2;
+    }
+
+    .final-eye-card {
+      width: min(520px, 100%);
+      margin: 0 auto 18px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(166,64,42,0.18);
+      background: rgba(255,255,255,0.30);
+      box-shadow:
+        0 18px 42px rgba(120,78,52,0.14),
+        inset 0 1px 0 rgba(255,255,255,0.55);
+    }
+
+    .final-eye-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      opacity: 0.92;
     }
 
     .defrag {
@@ -1107,7 +1188,7 @@
       }
 
       .visual {
-        min-height: 230px;
+        min-height: 250px;
       }
     }
 
@@ -1247,6 +1328,7 @@
 
       <div class="cinema">
         <div class="visual">
+          <img id="redEyeAsset" class="red-eye-asset" src="red-eye-dark.png" alt="" />
           <div class="visual-meta">
             <strong id="visualSeason">Red Eye File</strong>
             <span id="visualText">The file is opening. Every choice leaves a trace.</span>
@@ -1409,6 +1491,7 @@
     const episodeLink = document.getElementById("episodeLink");
     const visualSeason = document.getElementById("visualSeason");
     const visualText = document.getElementById("visualText");
+    const redEyeAsset = document.getElementById("redEyeAsset");
     const sceneBox = document.getElementById("scene");
     const choicesBox = document.getElementById("choices");
     const resultBox = document.getElementById("result");
@@ -1605,6 +1688,16 @@
       });
     }
 
+    function updateRedEyeAsset(mode) {
+      if (!redEyeAsset) return;
+
+      if (mode === "light") {
+        redEyeAsset.src = "red-eye-light.png";
+      } else {
+        redEyeAsset.src = "red-eye-dark.png";
+      }
+    }
+
     function renderGames(list) {
       if (!appGames.length) {
         gameGrid.innerHTML = `
@@ -1656,6 +1749,9 @@
 
       document.body.classList.add("episode-mode");
       document.body.classList.remove("final-goodbye-complete");
+      document.body.classList.toggle("final-arc-mode", currentIndex >= 45);
+
+      updateRedEyeAsset("dark");
 
       playPanel.classList.add("active");
       playPanel.classList.remove("season-0", "season-1", "season-2", "season-3", "season-4");
@@ -1772,6 +1868,7 @@
       unlockLine.innerHTML = "";
 
       setTimeout(() => {
+        updateRedEyeAsset("light");
         document.body.classList.add("final-goodbye-complete");
         soundDawn();
         runFinalArchiveAnimation(endingName, fragment);
@@ -1810,6 +1907,10 @@
     function renderFinalMemoryCard(endingName, fragment) {
       fragmentBox.innerHTML = `
         <div class="final-archive">
+          <div class="final-eye-card">
+            <img src="red-eye-light.png" alt="" />
+          </div>
+
           <div class="defrag">50 / 50 [DEFRAGMENTED]</div>
           <strong>Final File Completed · Fragment 50 / 50</strong>
           <p>${fragment}</p>
@@ -1835,6 +1936,8 @@
     }
 
     function copyFinalQuote() {
+      soundUnlock();
+
       const text = `Don’t be afraid of the dark anymore.\nI burned my soul to light your way home.\n\nThe Red Eye Files · Final Goodbye`;
       navigator.clipboard.writeText(text).then(() => {
         const btn = document.getElementById("copyFinalQuoteBtn");
@@ -1918,7 +2021,7 @@
       ctx.arcTo(x + w, y, x + w, y + h, r);
       ctx.arcTo(x + w, y + h, x, y + h, r);
       ctx.arcTo(x, y + h, x, y, r);
-      ctx.arcTo(x, y, x + w, y, r);
+      ctx.arcTo(x, y, x + r, y, r);
       ctx.closePath();
     }
 
