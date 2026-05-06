@@ -1,720 +1,784 @@
-// The Red Eye Files · Series 01: Final Goodbye
-// Full global data version for index.html
-// Keep this file as games.js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-const episodes = [
-  {
-    id: `do-not-open-door`,
-    title: `Do Not Open The Door`,
-    cardText: `Someone knocks at 2:13 AM. Your phone says: Do not open.`,
-    intro: `You are alone at night. Three knocks hit the door. Then your phone lights up with a warning.`,
-    scene: `It is 2:13 AM. The hallway is silent. A shadow moves under the door. The knocking begins again.<br><br>What do you do?`,
-    choices: [
-      [`Open the door`, `You slowly unlock the door...`, `Door Ending`, `The hallway is empty. Then your phone receives another message: I know where you are.`],
-      [`Hide in the closet`, `You slip into the closet and hold your breath...`, `Closet Ending`, `The knocking stops. A voice inside the closet whispers: Good choice.`],
-      [`Call the police`, `You dial emergency services...`, `Call Ending`, `The operator answers before the call connects: Do not make a sound.`],
-      [`Look through the peephole`, `You step closer to the peephole...`, `True Ending`, `You see yourself standing outside the door, smiling.`]
-    ]
-  },
-  {
-    id: `missing-room`,
-    title: `The Missing Room`,
-    cardText: `A floor plan shows a blank space where no room should exist.`,
-    intro: `You find an old floor plan of your apartment. It shows one extra room behind your bedroom wall.`,
-    scene: `The wall is smooth, but the map says there is a room behind it. At midnight, you hear someone moving inside.<br><br>What do you do?`,
-    choices: [
-      [`Knock on the wall`, `You knock three times...`, `Wall Ending`, `Something knocks back from inside, using the same rhythm as your heartbeat.`],
-      [`Cut the wallpaper`, `You slice through the wallpaper...`, `Hidden Ending`, `A thin door outline appears. Behind it, someone says: Finally.`],
-      [`Ignore the sound`, `You turn away and try to sleep...`, `Sleep Ending`, `You wake up inside the missing room. Your bedroom is now on the other side of the wall.`],
-      [`Call the landlord`, `You ask about the hidden room...`, `Landlord Ending`, `The landlord says the room was sealed after the last tenant disappeared.`]
-    ]
-  },
-  {
-    id: `last-message`,
-    title: `Last Message`,
-    cardText: `A dead friend sends one final text from an inactive number.`,
-    intro: `Your friend died years ago. Tonight, their old number sends you a message: Are you still there?`,
-    scene: `The phone shows one unread message. The number has been disconnected for years. Another text appears: Please answer before midnight.<br><br>What do you do?`,
-    choices: [
-      [`Reply yes`, `You type: Yes...`, `Reply Ending`, `The screen flashes: Then why did you leave me there?`],
-      [`Call the number`, `You press call...`, `Voice Ending`, `A familiar voice answers, crying softly from somewhere windy and far away.`],
-      [`Block the number`, `You block the contact...`, `Blocked Ending`, `The message reappears from your own number.`],
-      [`Ask where they are`, `You type: Where are you?...`, `Location Ending`, `A map opens. The pin is inside your house.`]
-    ]
-  },
-  {
-    id: `black-elevator`,
-    title: `The Black Elevator`,
-    cardText: `Your building has 12 floors. Tonight, the elevator shows 13.`,
-    intro: `You enter the elevator after midnight. A new button glows red: 13.`,
-    scene: `Your building does not have a thirteenth floor. The elevator doors close before you can step out.<br><br>What do you do?`,
-    choices: [
-      [`Press 13`, `You press the glowing button...`, `Thirteenth Ending`, `The elevator opens to a hallway full of doors, each one labeled with your name.`],
-      [`Press lobby`, `You press the lobby button...`, `Lobby Ending`, `The elevator keeps going up. The display changes from 13 to 14.`],
-      [`Force the door open`, `You pull the doors apart...`, `Shaft Ending`, `Behind the doors is not the shaft. It is your childhood bedroom.`],
-      [`Do nothing`, `You stand still...`, `Still Ending`, `The elevator voice says: Thank you for returning.`]
-    ]
-  },
-  {
-    id: `wrong-reflection`,
-    title: `The Wrong Reflection`,
-    cardText: `Your reflection moves half a second after you do.`,
-    intro: `You notice your mirror reflection is slightly delayed. Then it smiles before you do.`,
-    scene: `The room is quiet. Your reflection lifts one hand while your own hands remain still.<br><br>What do you do?`,
-    choices: [
-      [`Touch the mirror`, `You place your hand on the glass...`, `Glass Ending`, `Your reflection places its hand against yours, but its palm is warm.`],
-      [`Cover the mirror`, `You throw a towel over it...`, `Covered Ending`, `The towel moves from beneath, as if something is trying to breathe.`],
-      [`Break the mirror`, `You hit it with a chair...`, `Shattered Ending`, `Every broken piece shows a different version of you screaming silently.`],
-      [`Ask who it is`, `You whisper to the reflection...`, `Name Ending`, `It answers with the name you stopped using years ago.`]
-    ]
-  },
-  {
-    id: `unknown-caller`,
-    title: `The Unknown Caller`,
-    cardText: `A call comes from your own number while your phone is in your hand.`,
-    intro: `Your phone rings. The caller ID shows your own number.`,
-    scene: `The room is silent except for the ringtone. The call keeps ringing even after you press decline.<br><br>What do you do?`,
-    choices: [
-      [`Answer`, `You answer the call...`, `Answer Ending`, `Your own voice whispers: You have ten minutes to leave.`],
-      [`Decline again`, `You reject the call...`, `Decline Ending`, `The phone rings louder. This time the caller ID says: Too late.`],
-      [`Turn off the phone`, `You power it down...`, `Offline Ending`, `The black screen still shows the incoming call.`],
-      [`Put it outside`, `You leave the phone in the hallway...`, `Hallway Ending`, `It rings from inside your pocket.`]
-    ]
-  },
-  {
-    id: `room-404`,
-    title: `Room 404`,
-    cardText: `The hotel says Room 404 does not exist, but your key opens it.`,
-    intro: `You check into a hotel. The receptionist gives you a key card for Room 404, then denies doing it.`,
-    scene: `The fourth floor hallway jumps from 403 to 405. But between them, your key card beeps green.<br><br>What do you do?`,
-    choices: [
-      [`Open Room 404`, `You swipe the card...`, `404 Ending`, `The room is empty except for a suitcase with your clothes inside.`],
-      [`Return to reception`, `You go back downstairs...`, `Reception Ending`, `The receptionist is gone. A note says: Guest checked in years ago.`],
-      [`Knock first`, `You knock on the blank wall...`, `Knock Ending`, `Someone knocks back from behind it.`],
-      [`Leave the hotel`, `You run toward the exit...`, `Exit Ending`, `The front doors open into Room 404.`]
-    ]
-  },
-  {
-    id: `locked-phone`,
-    title: `The Locked Phone`,
-    cardText: `A phone you do not own unlocks with your face.`,
-    intro: `You find a black phone on your table. It unlocks when you look at it.`,
-    scene: `The gallery contains photos of you sleeping, walking, and reading this exact screen.<br><br>What do you do?`,
-    choices: [
-      [`Open the gallery`, `You scroll through the photos...`, `Gallery Ending`, `The last photo shows you picking up the phone one minute from now.`],
-      [`Check messages`, `You open the messages...`, `Message Ending`, `Every message says the same thing: He found it.`],
-      [`Throw it away`, `You throw the phone outside...`, `Return Ending`, `It lands back on the table, screen brighter than before.`],
-      [`Call the only contact`, `You call the saved contact...`, `Contact Ending`, `A voice behind you says: I was waiting for that.`]
-    ]
-  },
-  {
-    id: `girl-in-window`,
-    title: `The Girl in the Window`,
-    cardText: `A girl waves from a window in an abandoned house.`,
-    intro: `You pass an abandoned house every night. Tonight, a little girl waves from the second-floor window.`,
-    scene: `The house has been empty for twenty years. She presses one hand to the glass and writes: Help me.<br><br>What do you do?`,
-    choices: [
-      [`Enter the house`, `You push open the front door...`, `House Ending`, `The second floor is burned black. The window is gone.`],
-      [`Wave back`, `You raise your hand slowly...`, `Wave Ending`, `She smiles. The next window lights up, and another child appears.`],
-      [`Call for help`, `You call emergency services...`, `Rescue Ending`, `The operator says firefighters already searched that house in 1999.`],
-      [`Take a photo`, `You take a picture...`, `Photo Ending`, `The photo shows the girl standing beside you, holding your hand.`]
-    ]
-  },
-  {
-    id: `night-train`,
-    title: `The Night Train`,
-    cardText: `The last train arrives with no driver and one passenger watching you.`,
-    intro: `At an empty station, a train arrives after service has ended.`,
-    scene: `The doors open. Inside, one passenger sits in the dark, staring directly at you.<br><br>What do you do?`,
-    choices: [
-      [`Get on the train`, `You step inside...`, `Passenger Ending`, `The doors close. The staring passenger is you, older and crying.`],
-      [`Stay on the platform`, `You step back...`, `Platform Ending`, `The train leaves. Your reflection remains in the window, still sitting inside.`],
-      [`Ask the driver`, `You walk to the front car...`, `Driver Ending`, `The driver’s seat is empty. The controls are covered in dust.`],
-      [`Wake a passenger`, `You shake a sleeping passenger...`, `Wake Ending`, `The passenger opens their eyes and says: You are not supposed to be awake.`]
-    ]
-  },
-  {
-    id: `red-notebook`,
-    title: `The Red Notebook`,
-    cardText: `A red notebook records tomorrow’s events before they happen.`,
-    intro: `You find a red notebook on your desk. The first page describes exactly what you did this morning.`,
-    scene: `The next page is dated tomorrow. It says: At 2:13 AM, you will hear someone crying in the kitchen.<br><br>What do you do?`,
-    choices: [
-      [`Read ahead`, `You turn the page...`, `Future Ending`, `The page says: You already read too far.`],
-      [`Destroy the notebook`, `You tear the pages...`, `Paper Ending`, `Every torn page becomes a new page with your name written on it.`],
-      [`Wait until 2:13`, `You sit in the kitchen...`, `Kitchen Ending`, `At 2:13 AM, you realize the crying is coming from you.`],
-      [`Write your own ending`, `You grab a pen...`, `Author Ending`, `The ink writes back: You are not the author.`]
-    ]
-  },
-  {
-    id: `missing-shadow`,
-    title: `The Missing Shadow`,
-    cardText: `Your shadow disappears, then starts appearing in places you have never been.`,
-    intro: `Under a streetlight, you notice your shadow is gone.`,
-    scene: `A photo appears on your phone. It shows your shadow standing in your bedroom.<br><br>What do you do?`,
-    choices: [
-      [`Go home`, `You rush back home...`, `Bedroom Ending`, `Your shadow is standing on the wall, facing away from you.`],
-      [`Stand under another light`, `You step into brighter light...`, `Light Ending`, `Three shadows appear. Only one belongs to you.`],
-      [`Follow the photo clues`, `You examine the photo...`, `Clue Ending`, `The next photo shows the room you are about to enter.`],
-      [`Turn off all lights`, `You switch everything off...`, `Dark Ending`, `In the darkness, your shadow finally whispers: Thank you.`]
-    ]
-  },
-  {
-    id: `old-answering-machine`,
-    title: `The Old Answering Machine`,
-    cardText: `An answering machine plays messages from people who never called.`,
-    intro: `You find an old answering machine in storage. It has one new message.`,
-    scene: `The message is from your mother, but she does not recognize your adult voice.<br><br>What do you do?`,
-    choices: [
-      [`Play the next message`, `You press play again...`, `Next Ending`, `The second message is you, begging yourself not to answer the third.`],
-      [`Call the number back`, `You dial the number...`, `Callback Ending`, `A younger version of your home phone rings in another room.`],
-      [`Delete the message`, `You press delete...`, `Deleted Ending`, `The machine says: Memory removed.`],
-      [`Record a reply`, `You speak into the machine...`, `Reply Ending`, `Your reply plays back in a child’s voice.`]
-    ]
-  },
-  {
-    id: `white-door`,
-    title: `The White Door`,
-    cardText: `A white door appears in your hallway after midnight.`,
-    intro: `Your hallway has always ended at a wall. Tonight, there is a white door there.`,
-    scene: `The door has no handle. On it, red letters say: Knock if you remember.<br><br>What do you do?`,
-    choices: [
-      [`Knock once`, `You knock once...`, `Memory Ending`, `A child’s voice asks: Did you forget me again?`],
-      [`Push the door`, `You press your shoulder against it...`, `Open Ending`, `The door opens into a hospital corridor smelling of rain.`],
-      [`Paint over it`, `You cover the letters...`, `Paint Ending`, `The letters bleed through: You cannot cover what opened you.`],
-      [`Sleep and ignore it`, `You go back to bed...`, `Dream Ending`, `You wake up on the other side of the white door.`]
-    ]
-  },
-  {
-    id: `voice-in-the-sink`,
-    title: `The Voice in the Sink`,
-    cardText: `Your bathroom sink whispers every time water runs.`,
-    intro: `Every night, the bathroom sink whispers when you turn on the water.`,
-    scene: `Tonight the voice says your name clearly. The drain smells like seawater.<br><br>What do you do?`,
-    choices: [
-      [`Run the water longer`, `You turn the tap fully...`, `Water Ending`, `The voice becomes a chorus, all asking to be let out.`],
-      [`Look into the drain`, `You lean closer...`, `Drain Ending`, `An eye opens in the darkness below.`],
-      [`Turn off the water`, `You twist the tap shut...`, `Silence Ending`, `The whisper continues from your mouth.`],
-      [`Answer the voice`, `You ask what it wants...`, `Answer Ending`, `It says: The ring you dropped when you forgot her.`]
-    ]
-  },
-  {
-    id: `burned-photo`,
-    title: `The Burned Photo`,
-    cardText: `A burned photo repairs itself every night.`,
-    intro: `You find a half-burned photograph. Every morning, a little more of it is restored.`,
-    scene: `Tonight the photo shows you standing beside someone whose face is still missing.<br><br>What do you do?`,
-    choices: [
-      [`Wait one more night`, `You hide the photo under a book...`, `Restored Ending`, `In the morning, the missing face is yours.`],
-      [`Burn it again`, `You light the photo on fire...`, `Ash Ending`, `The ash forms a new photo of the same scene.`],
-      [`Frame it`, `You place it on the wall...`, `Frame Ending`, `The person in the photo turns their head toward you.`],
-      [`Search the location`, `You recognize the background...`, `Location Ending`, `The place is a train station that closed before you were born.`]
-    ]
-  },
-  {
-    id: `empty-birthday`,
-    title: `The Empty Birthday`,
-    cardText: `A birthday cake appears with candles already lit.`,
-    intro: `You come home to find a birthday cake on the table. It is not your birthday.`,
-    scene: `The candles spell your age, but one extra candle is burning at the center.<br><br>What do you do?`,
-    choices: [
-      [`Blow out the candles`, `You blow them out...`, `Wish Ending`, `In the smoke, someone says: That was my wish.`],
-      [`Cut the cake`, `You slice into it...`, `Cake Ending`, `Inside the cake is an old birthday card addressed to you as a child.`],
-      [`Call someone`, `You call your family...`, `Family Ending`, `No one remembers the birthday you are asking about.`],
-      [`Leave it untouched`, `You step away from the table...`, `Midnight Ending`, `At midnight, the candles relight themselves one by one.`]
-    ]
-  },
-  {
-    id: `street-with-no-end`,
-    title: `The Street With No End`,
-    cardText: `You walk home, but the street keeps repeating.`,
-    intro: `You turn onto your street. Then you pass the same mailbox three times.`,
-    scene: `The houses repeat perfectly, except one window gets brighter each time you pass it.<br><br>What do you do?`,
-    choices: [
-      [`Enter the bright house`, `You open the gate...`, `House Ending`, `Inside, a family dinner is waiting for someone with your name.`],
-      [`Run forward`, `You sprint down the street...`, `Loop Ending`, `You run past yourself, still walking calmly.`],
-      [`Turn back`, `You turn around...`, `Back Ending`, `The street behind you has disappeared into fog.`],
-      [`Knock on the mailbox`, `You tap the repeated mailbox...`, `Mail Ending`, `A letter slides out. It is dated the day you stopped remembering.`]
-    ]
-  },
-  {
-    id: `cold-fireplace`,
-    title: `The Cold Fireplace`,
-    cardText: `A fireplace burns blue without heat.`,
-    intro: `Your fireplace lights itself. The flames are blue and cold.`,
-    scene: `Inside the flames, you see a room that is not yours. Someone is sitting by another fireplace, crying.<br><br>What do you do?`,
-    choices: [
-      [`Reach into the flame`, `You put your hand into the blue fire...`, `Cold Ending`, `Your hand comes back wet with tears.`],
-      [`Throw in a photo`, `You feed the fire a photo...`, `Photo Ending`, `The person in the flames looks up and says: I remember that day.`],
-      [`Put the fire out`, `You pour water over it...`, `Steam Ending`, `The steam forms a face you almost recognize.`],
-      [`Sit and watch`, `You sit by the fire...`, `Hearth Ending`, `The room in the flames slowly becomes your living room.`]
-    ]
-  },
-  {
-    id: `lost-child`,
-    title: `The Lost Child`,
-    cardText: `A child asks for directions to a house that burned down years ago.`,
-    intro: `On an empty street, a child in old clothes asks if you can help them find their way home.`,
-    scene: `They hand you a paper with an address. You recognize it. That house burned down before you were born.<br><br>What do you do?`,
-    choices: [
-      [`Walk them home`, `You take the child’s hand...`, `Home Ending`, `The burned house appears at the end of the street, lights on, smoke rising from the chimney.`],
-      [`Call the police`, `You call for help...`, `Report Ending`, `The officer goes silent after hearing the address, then asks if the child is wearing a red coat.`],
-      [`Ask their name`, `You ask their name...`, `Name Ending`, `The child gives your name, then smiles with your childhood teeth.`],
-      [`Refuse and leave`, `You step away from the child...`, `Alone Ending`, `The child starts crying. Every streetlight behind you goes out one by one.`]
-    ]
-  },
-  {
-    id: `house-without-doors`,
-    title: `The House Without Doors`,
-    cardText: `You enter a house. When you turn around, every door is gone.`,
-    intro: `You step into an old house during a storm. The front door disappears into a smooth wall.`,
-    scene: `There are windows, stairs, and rooms, but no doors anywhere. On the wall, someone has written: You came in. Now find how you leave.<br><br>What do you do?`,
-    choices: [
-      [`Break a window`, `You smash the nearest window...`, `Glass Ending`, `Outside is not the street. It is the same living room seen from another angle.`],
-      [`Search upstairs`, `You climb the stairs...`, `Upstairs Ending`, `Every room contains a photo of you outside the house before entering.`],
-      [`Follow the writing`, `You touch the words on the wall...`, `Wall Ending`, `New words appear: Leaving is not the same as surviving.`],
-      [`Stay still`, `You stop moving and listen...`, `Quiet Ending`, `The house begins breathing around you. A door appears on your chest.`]
-    ]
-  },
-  {
-    id: `whispering-wall`,
-    title: `The Whispering Wall`,
-    cardText: `A wall in your apartment whispers names while you sleep.`,
-    intro: `For a week, whispers have come from the wall beside your bed. Tonight, it says your full name.`,
-    scene: `You press your ear against the wall. A voice from inside says: Wrong side.<br><br>What do you do?`,
-    choices: [
-      [`Knock on the wall`, `You knock three times...`, `Knock Ending`, `Something knocks back, but the sound comes from directly behind your head.`],
-      [`Cut the wall open`, `You cut into the wallpaper...`, `Inside Ending`, `Behind the wall is another layer covered in your handwriting.`],
-      [`Record the whisper`, `You open your recorder...`, `Playback Ending`, `The recording says: He is listening too.`],
-      [`Sleep elsewhere`, `You move to the couch...`, `Follow Ending`, `At 2:13 AM, the wall behind the couch whispers: Now we can see you.`]
-    ]
-  },
-  {
-    id: `old-video-tape`,
-    title: `The Old Video Tape`,
-    cardText: `A video tape shows your house before you were born.`,
-    intro: `You find a VHS tape labeled with your address, dated twenty years before you moved in.`,
-    scene: `The video shows your living room. Someone walks past the camera wearing your clothes.<br><br>What do you do?`,
-    choices: [
-      [`Keep watching`, `You let the tape continue...`, `Tape Ending`, `The person sits down and mouths your name.`],
-      [`Fast forward`, `You press fast forward...`, `Future Ending`, `The tape jumps to tomorrow and shows you hiding the tape again.`],
-      [`Destroy the tape`, `You pull the tape out...`, `Static Ending`, `The TV turns to static, and someone begins rewinding inside the noise.`],
-      [`Check the room`, `You search your living room...`, `Camera Ending`, `Behind a shelf, you find the same camera still recording.`]
-    ]
-  },
-  {
-    id: `locked-hospital-room`,
-    title: `The Locked Hospital Room`,
-    cardText: `A hospital room is locked from the outside, but someone inside knows you.`,
-    intro: `You enter an abandoned hospital. On the third floor, one room has fresh light under the door.`,
-    scene: `The room number is scratched off. From inside, a weak voice says: You finally came back.<br><br>What do you do?`,
-    choices: [
-      [`Unlock the room`, `You turn the rusty key...`, `Patient Ending`, `The bed is empty. The patient file at the foot of it has your photo.`],
-      [`Ask who is inside`, `You speak through the door...`, `Voice Ending`, `The voice says: The part of you they removed.`],
-      [`Look through the window`, `You wipe the small glass window...`, `Window Ending`, `You see yourself lying in the hospital bed, eyes open.`],
-      [`Leave the hospital`, `You run for the stairs...`, `Discharge Ending`, `Every exit sign now points back to the locked room.`]
-    ]
-  },
-  {
-    id: `missing-neighbor`,
-    title: `The Missing Neighbor`,
-    cardText: `Your neighbor vanished, but their TV keeps turning on.`,
-    intro: `Your neighbor disappeared three weeks ago. Their sealed apartment still turns its TV on every night.`,
-    scene: `Tonight, the TV is not playing a show. It is whispering your apartment number.<br><br>What do you do?`,
-    choices: [
-      [`Call the landlord`, `You call the landlord...`, `Landlord Ending`, `He says the apartment next door has been empty for six years.`],
-      [`Knock on the wall`, `You knock on the shared wall...`, `Neighbor Ending`, `The TV goes silent. Then someone knocks from inside your closet.`],
-      [`Enter the apartment`, `You find the spare key...`, `Apartment Ending`, `The living room is empty except for a TV showing your bedroom live.`],
-      [`Turn up your TV`, `You drown out the noise...`, `Broadcast Ending`, `Your TV turns on by itself. The same whisper now comes from both sides.`]
-    ]
-  },
-  {
-    id: `phone-under-bed`,
-    title: `The Phone Under The Bed`,
-    cardText: `A phone rings under your bed. It is not yours.`,
-    intro: `At 2:13 AM, a phone rings under your bed while your own phone charges on the desk.`,
-    scene: `The glow under the bed pulses like a heartbeat.<br><br>What do you do?`,
-    choices: [
-      [`Reach under the bed`, `You slowly reach down...`, `Reach Ending`, `Your hand touches another hand already holding the phone out to you.`],
-      [`Answer the call`, `You pull out the phone...`, `Call Ending`, `A voice under the bed whispers: Do not look down while we talk.`],
-      [`Kick it away`, `You kick the phone across the room...`, `Return Ending`, `It slides back under the bed by itself.`],
-      [`Check your phone`, `You grab your own phone...`, `Mirror Call Ending`, `Your phone shows one missed call from the number under the bed.`]
-    ]
-  },
-  {
-    id: `doorbell-camera`,
-    title: `The Doorbell Camera`,
-    cardText: `Your camera records someone entering your home while you sleep.`,
-    intro: `Your doorbell app reports motion at 2:13 AM. The video shows someone unlocking your door.`,
-    scene: `The person has their face covered. They use a key you have never seen.<br><br>What do you do?`,
-    choices: [
-      [`Replay the video`, `You watch again...`, `Replay Ending`, `The person stops at the camera and says: Stop watching.`],
-      [`Check your locks`, `You inspect the front door...`, `Lock Ending`, `Inside the lock, you find a small piece of red thread.`],
-      [`Call the police`, `You send the video...`, `Evidence Ending`, `The officer says the video file is from tomorrow night.`],
-      [`Wait tonight`, `You sit by the door...`, `Waiting Ending`, `The notification appears before anything moves: You are at the door.`]
-    ]
-  },
-  {
-    id: `staircase-changed`,
-    title: `The Staircase That Changed`,
-    cardText: `Your apartment staircase has one extra floor tonight.`,
-    intro: `Your apartment is on the fourth floor. Tonight, the stairs continue to floor 4.5.`,
-    scene: `A red light flickers above the strange landing.<br><br>What do you do?`,
-    choices: [
-      [`Climb to 4.5`, `You step onto the landing...`, `Half Floor Ending`, `The hallway is too short. Every door is half your height.`],
-      [`Go back down`, `You descend...`, `Down Ending`, `The stairs lead down for ten minutes. The ground floor sign says -4.`],
-      [`Open the fire door`, `You push it open...`, `Fire Door Ending`, `Behind it is your apartment, but all furniture is covered in dust.`],
-      [`Call the elevator`, `You press the button...`, `Elevator Ending`, `The elevator arrives from floor 4.5, with your name written on every wall.`]
-    ]
-  },
-  {
-    id: `woman-in-rain`,
-    title: `The Woman in the Rain`,
-    cardText: `A woman stands outside your window every rainy night.`,
-    intro: `Every night this week, a woman in a dark coat has stood across the street looking up at your window.`,
-    scene: `Tonight she is closer. Her sign says: You let me in once.<br><br>What do you do?`,
-    choices: [
-      [`Close the blinds`, `You pull them shut...`, `Blind Ending`, `Her shadow appears on the blinds from inside the room.`],
-      [`Take a picture`, `You photograph her...`, `Photo Ending`, `The picture shows her standing behind you, dry and smiling.`],
-      [`Go outside`, `You walk into the rain...`, `Rain Ending`, `She is gone. A key to your apartment lies where she stood.`],
-      [`Ask what she wants`, `You open the window...`, `Window Ending`, `She whispers: I want back the years I spent in your walls.`]
-    ]
-  },
-  {
-    id: `last-bus-stop`,
-    title: `The Last Bus Stop`,
-    cardText: `A bus arrives at a stop that was removed years ago.`,
-    intro: `You see an old bus stop sign on a street that no longer has buses.`,
-    scene: `A bus pulls up with no driver. The destination reads: LAST STOP.<br><br>What do you do?`,
-    choices: [
-      [`Get on the bus`, `You step aboard...`, `Passenger Ending`, `On the seat beside you is a ticket with your death date printed on it.`],
-      [`Ask where it goes`, `You speak to the empty driver seat...`, `Route Ending`, `The speaker crackles: You have taken this route before.`],
-      [`Walk away`, `You leave the stop...`, `Return Ending`, `Every street corner now has the same bus stop sign waiting for you.`],
-      [`Read the timetable`, `You check the schedule...`, `Schedule Ending`, `The only listed departure time is the exact minute you were born.`]
-    ]
-  },
-  {
-    id: `mirror-at-the-end`,
-    title: `The Mirror at the End`,
-    cardText: `A mirror appears at the end of a hallway that was never there.`,
-    intro: `You wake up to a new hallway outside your bedroom. A tall mirror waits at the end.`,
-    scene: `In the mirror, your reflection is already walking toward you.<br><br>What do you do?`,
-    choices: [
-      [`Walk toward it`, `You step into the hallway...`, `Reflection Ending`, `Your reflection reaches the mirror first and touches the glass from the other side.`],
-      [`Turn off the lights`, `You switch them off...`, `Dark Mirror Ending`, `The mirror still shines, showing someone under your bed.`],
-      [`Cover the mirror`, `You throw a blanket over it...`, `Covered Ending`, `The blanket breathes. Then it whispers your name.`],
-      [`Break the mirror`, `You hit it hard...`, `Shattered Ending`, `Every shard shows a different choice you could have made.`]
-    ]
-  },
-  {
-    id: `letter-from-basement`,
-    title: `The Letter From The Basement`,
-    cardText: `A sealed letter slides out from under a locked basement door.`,
-    intro: `Your basement has been locked since you moved in. Tonight, a damp letter slides out.`,
-    scene: `The envelope says: Open before you go downstairs.<br><br>What do you do?`,
-    choices: [
-      [`Open the letter`, `You tear it open...`, `Warning Ending`, `It says: Whatever calls your name below already knows your voice.`],
-      [`Unlock the door`, `You put the key into the lock...`, `Stair Ending`, `At the bottom, someone reads the same letter aloud.`],
-      [`Slide it back`, `You push it under the door...`, `Return Ending`, `A hand pushes it back immediately, now covered in fresh fingerprints.`],
-      [`Call the landlord`, `You ask about the basement...`, `Landlord Ending`, `He says your house does not have a basement.`]
-    ]
-  },
-  {
-    id: `black-envelope`,
-    title: `The Black Envelope`,
-    cardText: `A black envelope appears in your mailbox with no stamp.`,
-    intro: `There is no stamp, no sender, only your name written in silver ink.`,
-    scene: `Inside is a photo of your front door taken from inside your house. On the back: Tonight.<br><br>What do you do?`,
-    choices: [
-      [`Check the door`, `You walk to the front door...`, `Door Ending`, `The peephole shows someone standing inside your hallway.`],
-      [`Burn the envelope`, `You light it on fire...`, `Ash Ending`, `The smoke forms the words: Invitation accepted.`],
-      [`Keep the photo`, `You put it away...`, `Photo Ending`, `The drawer opens by itself. The photo now shows you looking into it.`],
-      [`Throw it away`, `You toss it out...`, `Trash Ending`, `At midnight, the envelope is back, heavier than before.`]
-    ]
-  },
-  {
-    id: `empty-playground`,
-    title: `The Empty Playground`,
-    cardText: `A swing moves by itself in a playground after midnight.`,
-    intro: `You pass an empty playground. One swing moves slowly with no wind.`,
-    scene: `It stops when you look at it and starts again when you blink.<br><br>What do you do?`,
-    choices: [
-      [`Sit on the swing`, `You sit down...`, `Swing Ending`, `The swing rises by itself. A child whispers: You took my seat.`],
-      [`Record a video`, `You film the swing...`, `Video Ending`, `The video shows a child pushing it. In real life, no one is there.`],
-      [`Leave quickly`, `You walk away...`, `Follow Ending`, `The sound of chains follows you all the way home.`],
-      [`Ask who is there`, `You call out...`, `Answer Ending`, `A small voice answers from the slide: You can see me tomorrow.`]
-    ]
-  },
-  {
-    id: `unknown-password`,
-    title: `The Unknown Password`,
-    cardText: `Your laptop unlocks with a password you never created.`,
-    intro: `Your laptop wakes up by itself. A password box is already filled with black dots.`,
-    scene: `A message appears: You have one attempt left.<br><br>What do you do?`,
-    choices: [
-      [`Press Enter`, `You press Enter...`, `Access Ending`, `The desktop background is a live view of you sitting at the desk.`],
-      [`Type your name`, `You type your name...`, `Name Ending`, `The screen says: Correct user. Wrong body.`],
-      [`Shut the laptop`, `You close it...`, `Closed Ending`, `The screen glows through the lid while keys type by themselves.`],
-      [`Unplug it`, `You remove every cable...`, `Power Ending`, `The laptop turns on again. The webcam light is red.`]
-    ]
-  },
-  {
-    id: `attic-doll`,
-    title: `The Doll in the Attic`,
-    cardText: `A doll in your attic changes positions every night.`,
-    intro: `Every morning, the old attic doll faces a different direction.`,
-    scene: `Tonight, the attic hatch is open. The doll sits at the top of the ladder looking down.<br><br>What do you do?`,
-    choices: [
-      [`Climb up`, `You climb the ladder...`, `Attic Ending`, `The attic is filled with identical dolls. All of them have your eyes.`],
-      [`Move the doll`, `You pick it up...`, `Doll Ending`, `It feels warm. Something inside beats once.`],
-      [`Close the hatch`, `You pull it shut...`, `Hatch Ending`, `Tiny fingers push it open from above.`],
-      [`Take a picture`, `You photograph it...`, `Picture Ending`, `The picture shows the doll standing beside you.`]
-    ]
-  },
-  {
-    id: `platform-zero`,
-    title: `Platform Zero`,
-    cardText: `A hidden subway platform appears behind a locked service door.`,
-    intro: `You miss your train and notice a service door open to a platform marked 0.`,
-    scene: `A train waits with doors open. The sign says: Boarding only for those already missing.<br><br>What do you do?`,
-    choices: [
-      [`Board the train`, `You step inside...`, `Missing Ending`, `On the seat is a missing person poster with your face.`],
-      [`Go upstairs`, `You run back...`, `Exit Ending`, `The service door opens into a station where every ad has your name.`],
-      [`Read the sign`, `You step closer...`, `Sign Ending`, `The sign changes: Next train arrives after you disappear.`],
-      [`Call for help`, `You shout...`, `Echo Ending`, `Your echo answers from inside the train: Too late.`]
-    ]
-  },
-  {
-    id: `hotel-phone`,
-    title: `The Hotel Phone`,
-    cardText: `A hotel room phone rings even though it is unplugged.`,
-    intro: `At 2:13 AM, your hotel phone rings. Its cord is not connected.`,
-    scene: `The display says: Room 000.<br><br>What do you do?`,
-    choices: [
-      [`Answer`, `You lift the receiver...`, `Room 000 Ending`, `The front desk says: Please do not look in the bathtub.`],
-      [`Check the bathtub`, `You enter the bathroom...`, `Bathroom Ending`, `The tub is dry, but wet footprints lead out of it.`],
-      [`Unplug it again`, `You remove the cord...`, `Disconnected Ending`, `The phone keeps ringing from under your pillow.`],
-      [`Call the front desk`, `You dial reception...`, `Desk Ending`, `The clerk says there are no guests on your floor tonight.`]
-    ]
-  },
-  {
-    id: `shadow-in-photo`,
-    title: `The Shadow in the Photo`,
-    cardText: `Every photo you take includes a shadow standing behind you.`,
-    intro: `You take a selfie and see a shadow behind you. When you turn around, nothing is there.`,
-    scene: `A second photo shows the shadow closer, one hand raised near your shoulder.<br><br>What do you do?`,
-    choices: [
-      [`Take more photos`, `You keep taking pictures...`, `Closer Ending`, `In the last photo, the shadow is holding the phone.`],
-      [`Turn on lights`, `You switch on every light...`, `Light Ending`, `Your shadow disappears, but the other one remains.`],
-      [`Delete the photos`, `You delete them all...`, `Deleted Ending`, `A new album appears: Behind You.`],
-      [`Photo the mirror`, `You aim at the mirror...`, `Mirror Ending`, `The mirror photo shows the shadow sitting on your bed.`]
-    ]
-  },
-  {
-    id: `last-door-left`,
-    title: `The Last Door on the Left`,
-    cardText: `A hallway gains one extra door every night.`,
-    intro: `Your apartment hallway has five doors. Tonight, there are six.`,
-    scene: `The new door has a brass plate: Return what you borrowed.<br><br>What do you do?`,
-    choices: [
-      [`Open it`, `You open the door...`, `Borrowed Ending`, `Inside is your childhood bedroom, filled with every lie you ever told.`],
-      [`Knock first`, `You knock twice...`, `Knock Ending`, `Someone whispers: You still remember the rules.`],
-      [`Ignore it`, `You walk away...`, `Ignored Ending`, `The next morning, the door is outside your bedroom.`],
-      [`Remove the plate`, `You pry it off...`, `Plate Ending`, `Behind the plate is a keyhole. An eye blinks from inside.`]
-    ]
-  },
-  {
-    id: `black-lake-reflection`,
-    title: `The Black Lake Reflection`,
-    cardText: `A lake reflects someone standing behind you, but the shore is empty.`,
-    intro: `You walk past a black lake after midnight. Your reflection is not alone.`,
-    scene: `In the lake, someone stands behind you with one hand on your shoulder. You feel nothing.<br><br>What do you do?`,
-    choices: [
-      [`Turn around`, `You turn from the lake...`, `Shore Ending`, `No one is there. Your reflection is still facing the opposite direction.`],
-      [`Touch the water`, `You kneel and touch it...`, `Ripple Ending`, `A hand beneath the surface presses against your palm.`],
-      [`Walk away`, `You step back...`, `Follow Ending`, `Wet footprints appear in front of you before you take each step.`],
-      [`Throw a stone`, `You throw it into the reflection...`, `Stone Ending`, `The stone sinks upward. A voice whispers: You missed.`]
-    ]
-  },
-  {
-    id: `elevator-b13`,
-    title: `Elevator B13`,
-    cardText: `Your office elevator shows a basement level that should not exist.`,
-    intro: `Your building has twelve floors and no basement. Tonight, the elevator shows B13.`,
-    scene: `The B13 button glows red. The doors are already open.<br><br>What do you do?`,
-    choices: [
-      [`Press B13`, `You press the button...`, `Basement Ending`, `The elevator drops too long and opens to your childhood home.`],
-      [`Press lobby`, `You press lobby instead...`, `Lobby Ending`, `The elevator says going down. Every floor changes to B13.`],
-      [`Step out`, `You leave quickly...`, `Door Ending`, `The doors close. The display says you are still inside.`],
-      [`Hold the door`, `You press door-open...`, `Hold Ending`, `A hand reaches from the wall and presses close.`]
-    ]
-  },
-  {
-    id: `room-that-breathes`,
-    title: `The Room That Breathes`,
-    cardText: `A locked room in your house expands and contracts like lungs.`,
-    intro: `There is one locked room you never use. Tonight, the door moves in and out.`,
-    scene: `The wood creaks like breathing. Warm air leaks from the keyhole.<br><br>What do you do?`,
-    choices: [
-      [`Look through keyhole`, `You lower your eye...`, `Keyhole Ending`, `Something on the other side is looking back through another keyhole.`],
-      [`Unlock it`, `You turn the key...`, `Breath Ending`, `The room inhales and pulls you inward.`],
-      [`Seal the door`, `You tape the edges...`, `Sealed Ending`, `The breathing stops. Every window in the house fogs from inside.`],
-      [`Call a friend`, `You call someone over...`, `Witness Ending`, `Your friend says it was never locked, steps inside, and vanishes.`]
-    ]
-  },
-  {
-    id: `number-station`,
-    title: `The Number Station`,
-    cardText: `Your radio picks up numbers that match your life.`,
-    intro: `An old radio turns on by itself. A calm voice begins reading numbers.`,
-    scene: `The numbers are your birthday, apartment, and tomorrow’s wake-up time. Then the voice says: Next sequence begins now.<br><br>What do you do?`,
-    choices: [
-      [`Keep listening`, `You listen...`, `Sequence Ending`, `The next numbers match your heartbeat. With each one, your pulse slows.`],
-      [`Turn it off`, `You switch it off...`, `Static Ending`, `The numbers continue from inside your walls.`],
-      [`Write them down`, `You write quickly...`, `Code Ending`, `The numbers form coordinates pointing to your bedroom.`],
-      [`Answer back`, `You speak into the radio...`, `Broadcast Ending`, `The voice repeats your sentence in a room full of other voices.`]
-    ]
-  },
-  {
-    id: `forgotten-app`,
-    title: `The Forgotten App`,
-    cardText: `An app you never installed appears on your phone.`,
-    intro: `A black icon appears on your phone. It has no name, only a red eye.`,
-    scene: `When opened, it shows a live map of your apartment. One red dot is moving behind you.<br><br>What do you do?`,
-    choices: [
-      [`Delete the app`, `You delete it...`, `Deleted Ending`, `A message appears: You cannot uninstall what installed you.`],
-      [`Follow the dot`, `You watch it move...`, `Map Ending`, `The dot reaches your bedroom. The door opens by itself.`],
-      [`Turn phone off`, `You power it down...`, `Offline Ending`, `The red dot remains visible in the black glass reflection.`],
-      [`Tap the dot`, `You tap it...`, `Contact Ending`, `Your phone vibrates. Something behind you taps your shoulder.`]
-    ]
-  },
-  {
-    id: `train-window-face`,
-    title: `The Face in the Train Window`,
-    cardText: `A face appears in the train window inside a tunnel.`,
-    intro: `You take the last train home. In the tunnel, the window becomes a mirror.`,
-    scene: `In the reflection, a pale face sits beside you. The seat beside you is empty.<br><br>What do you do?`,
-    choices: [
-      [`Look at the seat`, `You turn to the empty seat...`, `Seat Ending`, `It is empty but warm. The reflection smiles.`],
-      [`Stare at window`, `You keep watching...`, `Window Ending`, `The face leans closer until it touches the glass from your side.`],
-      [`Move cars`, `You enter the next car...`, `Car Ending`, `Every passenger has the same pale face turned toward you.`],
-      [`Get off early`, `You step off...`, `Station Ending`, `In every train window, the face is still beside where you sat.`]
-    ]
-  },
-  {
-    id: `red-umbrella`,
-    title: `The Red Umbrella`,
-    cardText: `A red umbrella waits outside your door every rainy night.`,
-    intro: `For three rainy nights, a red umbrella appears outside your door. It is always dry.`,
-    scene: `Tonight, a note on the handle says: Take it before the rain remembers you.<br><br>What do you do?`,
-    choices: [
-      [`Take it`, `You pick it up...`, `Umbrella Ending`, `When opened, the rain stops everywhere except directly above you.`],
-      [`Leave it outside`, `You close the door...`, `Doorstep Ending`, `Water drips from your ceiling in the shape of footprints.`],
-      [`Read the note`, `You turn the note over...`, `Note Ending`, `The back says: Too late. It already remembers.`],
-      [`Throw it away`, `You toss it into trash...`, `Return Ending`, `The trash can fills with rainwater. The umbrella floats back up.`]
-    ]
-  },
-  {
-    id: `locked-inbox`,
-    title: `The Locked Inbox`,
-    cardText: `Your inbox receives messages from yourself one year later.`,
-    intro: `You find a new email folder called LOCKED. The messages are from your own address.`,
-    scene: `The newest message is dated one year from now. Subject: Do not reply this time.<br><br>What do you do?`,
-    choices: [
-      [`Open it`, `You open the email...`, `Email Ending`, `It says: If you are reading this, the first loop failed.`],
-      [`Reply`, `You type a reply...`, `Reply Ending`, `A new message appears: That is exactly what I did.`],
-      [`Delete folder`, `You delete LOCKED...`, `Deleted Ending`, `The folder returns, now titled OPENED.`],
-      [`Check sent mail`, `You open sent mail...`, `Sent Ending`, `Hundreds of warnings you never wrote are waiting there.`]
-    ]
-  },
-  {
-    id: `corridor-camera`,
-    title: `The Corridor Camera`,
-    cardText: `A camera records you in a corridor you never entered.`,
-    intro: `Your building sends a security alert. The video shows you in a service corridor at 2:13 AM.`,
-    scene: `In the footage, you face the camera and mouth two words: Help me.<br><br>What do you do?`,
-    choices: [
-      [`Find the corridor`, `You search the building...`, `Corridor Ending`, `You find it behind Storage. The camera is already pointed at you.`],
-      [`Call security`, `You call the desk...`, `Security Ending`, `The guard says the camera was removed last month, then asks why you are on it.`],
-      [`Replay video`, `You watch again...`, `Replay Ending`, `This time, the video-you mouths: Behind you.`],
-      [`Delete alert`, `You delete it...`, `Alert Ending`, `A new alert appears: Motion detected inside your apartment.`]
-    ]
-  },
-  {
-    id: `birthday-call`,
-    title: `The Birthday Call`,
-    cardText: `Every year on your birthday, someone calls and counts down.`,
-    intro: `At midnight on your birthday, an unknown number calls like it has every year since you were ten.`,
-    scene: `This year, the voice does not say happy birthday. It counts backward from ten.<br><br>What do you do?`,
-    choices: [
-      [`Listen`, `You stay silent...`, `Countdown Ending`, `At zero, someone knocks on your door exactly once.`],
-      [`Hang up`, `You end the call...`, `Hang Up Ending`, `The phone rings again from inside your closed drawer.`],
-      [`Ask who it is`, `You interrupt...`, `Caller Ending`, `The voice says your name, then adds: Not yet, but soon.`],
-      [`Block number`, `You block it...`, `Blocked Ending`, `Your screen shows one blocked contact: Future You.`]
-    ]
-  },
-  {
-    id: `letters-from-her`,
-    title: `Letters From Her`,
-    cardText: `The Red Eye shows letters from someone you forgot you loved.`,
-    intro: `The red eye icon opens by itself. Inside are letters signed only with one initial.`,
-    scene: `The first letter says: If you are reading this, the fear worked. Now you are ready for the truth.<br><br>What do you do?`,
-    choices: [
-      [`Read the first letter`, `You open it carefully...`, `Letter Ending`, `She writes that every strange room was built from a memory you refused to face.`],
-      [`Search the initial`, `You search old contacts...`, `Initial Ending`, `One deleted contact returns: the person who saved you once and disappeared.`],
-      [`Close the app`, `You close the Red Eye...`, `Closed Ending`, `A notification appears: I waited until you were strong enough.`],
-      [`Ask who she was`, `You type the question...`, `Truth Ending`, `The app answers: The one you promised you would never forget.`]
-    ]
-  },
-  {
-    id: `the-night-of-the-accident`,
-    title: `The Night of the Accident`,
-    cardText: `The final files begin showing the night everything changed.`,
-    intro: `The Red Eye replays a rainy road, broken glass, and a hand pushing you away from danger.`,
-    scene: `You finally remember there was someone beside you that night. Someone who did not get out.<br><br>What do you do?`,
-    choices: [
-      [`Reach for the memory`, `You reach into the replay...`, `Memory Ending`, `You feel her hand again, letting go only after making sure you were safe.`],
-      [`Look away`, `You turn from the scene...`, `Avoid Ending`, `The rain follows you into every room until you stop running.`],
-      [`Say her name`, `You whisper the name...`, `Name Ending`, `The Red Eye turns warm for the first time.`],
-      [`Ask why she stayed`, `You ask the file...`, `Answer Ending`, `A recording plays: Because you still had a life to live.`]
-    ]
-  },
-  {
-    id: `the-room-of-goodbyes`,
-    title: `The Room of Goodbyes`,
-    cardText: `A room opens with every goodbye you never said.`,
-    intro: `One final door appears. Behind it are chairs, letters, and empty places saved for people you lost.`,
-    scene: `At the center is a chair with her coat on it. The Red Eye says: Sit only if you are ready to listen.<br><br>What do you do?`,
-    choices: [
-      [`Sit down`, `You sit in the chair...`, `Listening Ending`, `Her voice fills the room, not blaming you, only asking you to stop punishing yourself.`],
-      [`Pick up the coat`, `You hold the coat...`, `Coat Ending`, `It still smells like rain and the hospital hallway where you said nothing.`],
-      [`Read every letter`, `You open the letters...`, `Letters Ending`, `Every letter ends the same way: I forgive you before you ask.`],
-      [`Leave the room`, `You step back...`, `Unready Ending`, `The door remains open behind you, waiting without anger.`]
-    ]
-  },
-  {
-    id: `final-goodbye`,
-    title: `Final Goodbye`,
-    cardText: `The Red Eye offers one last choice: stay in the loop, or leave with the truth.`,
-    intro: `All fifty files unlock. The Red Eye is no longer red. It looks like a sunrise through rain.`,
-    scene: `She stands at the end of the hallway, smiling like she has waited years to say one sentence. She says: I did not come back to keep you here. I came back to help you leave.<br><br>What do you do?`,
-    choices: [
-      [`Stay with her`, `You step toward her...`, `Stay Ending`, `For one perfect moment, the world stops hurting. But the hallway begins closing, and she cries because she knows you chose pain over life.`],
-      [`Leave and remember`, `You step back with tears in your eyes...`, `True Goodbye Ending`, `She smiles through the rain. The Red Eye closes. You wake up remembering her, and finally breathing.`],
-      [`Ask for one more minute`, `You ask for just one more minute...`, `One More Minute Ending`, `She gives you sixty seconds. You spend all of them saying thank you.`],
-      [`Promise to live`, `You make the promise she waited to hear...`, `Promise Ending`, `The final file unlocks: She was never trying to trap you in the loop. She was trying to help you leave it.`]
-    ]
-  }
-];
+  <title>The Red Eye Files - Interactive Emotional Mystery Series</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-window.games = episodes.map((episode) => ({
-  ...episode,
-  choices: episode.choices.map(([text, scene, ending, result]) => ({
-    text,
-    scene,
-    ending,
-    result: `<strong>${ending}.</strong><br>${result}`
-  }))
-}));
+  <meta
+    name="description"
+    content="The Red Eye Files is a 50-episode interactive emotional mystery escape series. Make choices, unlock endings, collect fragments, and discover the truth behind the final goodbye."
+  />
 
-// trigger deploy full global 50
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(150, 20, 20, 0.42), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(100, 20, 40, 0.22), transparent 30%),
+        linear-gradient(180deg, #070102 0%, #030405 45%, #060913 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 28px 0 70px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 34px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+    }
+
+    .eye {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: radial-gradient(circle, #ff2a2a 0%, #5c070b 45%, #070707 72%);
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: 0 0 26px rgba(255, 30, 30, 0.45);
+      display: grid;
+      place-items: center;
+    }
+
+    .eye::before {
+      content: "";
+      width: 20px;
+      height: 10px;
+      border: 2px solid rgba(255,255,255,0.86);
+      border-radius: 50%;
+      display: block;
+    }
+
+    .brand-title strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .brand-title span {
+      display: block;
+      margin-top: 5px;
+      font-size: 12px;
+      color: #b9c9df;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      margin-bottom: 36px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 26px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    }
+
+    .hero-main {
+      padding: 34px;
+      min-height: 430px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      right: -120px;
+      top: -120px;
+      background: radial-gradient(circle, rgba(239,68,68,0.32), transparent 65%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(185,28,28,0.30);
+      color: #ffb7b7;
+      border: 1px solid rgba(239,68,68,0.25);
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 5vw, 72px);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+    }
+
+    h1 span {
+      color: #ffd1d1;
+      text-shadow: 0 0 20px rgba(239,68,68,0.35);
+    }
+
+    .hero-main p {
+      color: #dceaff;
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 720px;
+      margin: 24px 0 28px;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #fff;
+      padding: 15px 22px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 950;
+      background: rgba(255,255,255,0.07);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #b91c1c, #221827);
+      box-shadow: 0 0 24px rgba(185, 28, 28, 0.22);
+    }
+
+    .quote {
+      margin-top: 26px;
+      padding: 18px;
+      border-left: 3px solid rgba(239,68,68,0.85);
+      background: rgba(0,0,0,0.28);
+      border-radius: 16px;
+      color: #ffdede;
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .stats {
+      padding: 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .stat {
+      min-height: 116px;
+      padding: 22px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.09);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .stat strong {
+      color: #a8d4ff;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .stat span {
+      color: #b9c9df;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .section-head {
+      margin: 34px 0 16px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 780px;
+      color: #cfe2ff;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    .season-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin: 18px 0 28px;
+    }
+
+    .season {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .season small {
+      color: #ffb0b0;
+      font-weight: 900;
+    }
+
+    .season h3 {
+      margin: 9px 0;
+      font-size: 21px;
+      line-height: 1.1;
+    }
+
+    .season p {
+      margin: 0;
+      color: #cfe2ff;
+      line-height: 1.45;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .search {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.13);
+      color: #fff;
+      outline: none;
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .game-card {
+      padding: 18px;
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025));
+      border: 1px solid rgba(255,255,255,0.11);
+      border-radius: 24px;
+    }
+
+    .ep {
+      display: inline-flex;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(185,28,28,0.28);
+      color: #ffb4b4;
+      font-size: 12px;
+      font-weight: 950;
+      margin-bottom: 13px;
+    }
+
+    .game-card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .game-card p {
+      margin: 0 0 22px;
+      color: #dbeaff;
+      font-size: 22px;
+      line-height: 1.43;
+      letter-spacing: -0.035em;
+    }
+
+    .play-panel {
+      display: none;
+      margin-top: 34px;
+      padding: 28px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .play-panel.active {
+      display: block;
+    }
+
+    .play-panel h2 {
+      margin: 0;
+      font-size: 36px;
+      letter-spacing: -0.04em;
+    }
+
+    .intro {
+      color: #cfe2ff;
+      line-height: 1.65;
+      margin: 12px 0 18px;
+      font-size: 18px;
+    }
+
+    .scene {
+      padding: 22px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.10);
+      font-size: 20px;
+      line-height: 1.65;
+      margin: 18px 0;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+    }
+
+    .choice {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: linear-gradient(135deg, rgba(185,28,28,0.88), rgba(24,20,33,0.94));
+      color: white;
+      padding: 17px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 950;
+      font-size: 16px;
+    }
+
+    .result {
+      display: none;
+      margin-top: 20px;
+      padding: 22px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(185,28,28,0.20), rgba(255,255,255,0.045));
+      border: 1px solid rgba(239,68,68,0.28);
+      font-size: 19px;
+      line-height: 1.65;
+    }
+
+    .result.active {
+      display: block;
+    }
+
+    .fragment {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.30);
+      border-left: 3px solid rgba(239,68,68,0.85);
+      color: #ffd8d8;
+    }
+
+    .about {
+      margin-top: 40px;
+      padding: 30px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .about h2 {
+      margin: 0 0 14px;
+      font-size: 34px;
+    }
+
+    .about p {
+      color: #dceaff;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    footer {
+      text-align: center;
+      color: rgba(220,235,255,0.58);
+      margin-top: 34px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .season-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tools {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .grid,
+      .season-grid,
+      .choices {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="#">
+        <span class="eye"></span>
+        <span class="brand-title">
+          <strong>The Red Eye Files</strong>
+          <span>Interactive Emotional Mystery</span>
+        </span>
+      </a>
+
+      <nav class="nav">
+        <a href="#episodes">Episodes</a>
+        <a href="#play">Play Now</a>
+        <a href="#about">About</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card hero-main">
+        <div class="badge">Series 01 · Final Goodbye</div>
+        <h1>Every door hides a memory. <span>Every ending brings you closer.</span></h1>
+        <p>
+          Play a 50-episode interactive mystery escape series. Make choices,
+          unlock endings, collect Red Eye fragments, and discover the truth
+          behind the final goodbye.
+        </p>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" id="playFirst">Play Episode 01</button>
+          <button class="btn" id="randomTop">Random Episode</button>
+          <a class="btn" href="#episodes">View All Episodes</a>
+        </div>
+
+        <div class="quote">
+          Not just a mystery game. A journey through fear, memory, loss, and the final choice to let go.
+        </div>
+      </div>
+
+      <div class="card stats">
+        <div class="stat">
+          <strong id="gameCount">0</strong>
+          <span>Interactive episodes</span>
+        </div>
+        <div class="stat">
+          <strong id="endingCount">0</strong>
+          <span>Different endings</span>
+        </div>
+        <div class="stat">
+          <strong>5</strong>
+          <span>Seasons of Red Eye files</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="episodes">
+      <div class="section-head">
+        <h2>Series 01: Final Goodbye</h2>
+        <p>
+          A connected 50-episode emotional mystery series. The first episodes pull you in with fear.
+          The final episodes reveal the truth you were not ready to remember.
+        </p>
+      </div>
+
+      <div class="season-grid">
+        <div class="season"><small>Season 1 · EP.01 - EP.10</small><h3>The First Signal</h3><p>The first message, the first door, and the first sign that reality is watching.</p></div>
+        <div class="season"><small>Season 2 · EP.11 - EP.20</small><h3>The Future Is Watching</h3><p>Photos, notebooks, voices, and shadows begin predicting what you will do next.</p></div>
+        <div class="season"><small>Season 3 · EP.21 - EP.30</small><h3>Rooms That Should Not Exist</h3><p>Basements, hospitals, staircases, and streets turn into emotional escape rooms.</p></div>
+        <div class="season"><small>Season 4 · EP.31 - EP.40</small><h3>Objects Remember You</h3><p>Mirrors, letters, dolls, laptops, and cameras start remembering your buried past.</p></div>
+        <div class="season"><small>Season 5 · EP.41 - EP.50</small><h3>The Final Goodbye</h3><p>The Red Eye stops being a curse and becomes the last message someone left behind.</p></div>
+      </div>
+
+      <div class="tools">
+        <input class="search" id="search" placeholder="Search episodes: door, phone, mirror, train..." />
+        <button class="btn" id="clearSearch">Clear</button>
+        <button class="btn btn-primary" id="randomBtn">Random</button>
+      </div>
+
+      <div class="grid" id="gameGrid"></div>
+    </section>
+
+    <section class="play-panel" id="play">
+      <div class="badge" id="playBadge">EP.01</div>
+      <h2 id="playTitle">Loading...</h2>
+      <div class="intro" id="playIntro"></div>
+      <div class="scene" id="scene"></div>
+      <div class="choices" id="choices"></div>
+
+      <div class="result" id="result">
+        <div id="resultText"></div>
+        <div class="fragment" id="fragment"></div>
+        <div class="btn-row" style="margin-top:18px;">
+          <button class="btn btn-primary" id="replay">Replay This Episode</button>
+          <button class="btn" id="nextEp">Next Episode</button>
+          <a class="btn" href="#episodes">Back to Episodes</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About The Red Eye Files</h2>
+      <p>
+        The Red Eye Files is an interactive emotional mystery universe. Each story begins with a strange event,
+        a locked room, a missing message, or a door that should not exist. But the deeper you go, the less it is
+        about fear — and the more it becomes about memory, loss, and goodbye.
+      </p>
+      <p>
+        Series 01: Final Goodbye is the first 50-episode chapter. Every choice unlocks a different ending.
+        Every ending leaves behind a fragment. And every fragment brings you closer to the truth.
+      </p>
+    </section>
+
+    <footer>
+      The Red Eye Files · Series 01: Final Goodbye · Interactive Emotional Mystery Stories
+    </footer>
+  </div>
+
+  <script src="games.js?v=50"></script>
+
+  <script>
+    const appGames = Array.isArray(window.games) ? window.games : [];
+
+    const fragments = [
+      "The first message was not sent to scare you. It was sent to see if you would listen.",
+      "Some doors do not open into rooms. They open into memories you tried to bury.",
+      "Every wrong choice leaves a trace. Every trace becomes part of the file.",
+      "The Red Eye is not watching your fear. It is measuring what you still care about.",
+      "A missing room is rarely empty. It usually holds the moment someone could not say goodbye.",
+      "When the phone rings from nowhere, it is not always a warning. Sometimes it is a wish.",
+      "The reflection moved first because part of you already knew the truth.",
+      "The locked place was never meant to trap you. It was meant to keep the memory safe.",
+      "The one who knocks is not always outside. Sometimes grief knocks from within.",
+      "You survived the first signal. But survival is not the same as healing.",
+      "Tomorrow left a note because yesterday was too painful to speak.",
+      "The red notebook did not predict the future. It recorded the choices you kept repeating.",
+      "Some passengers never leave the train because they are still waiting for forgiveness.",
+      "The voice on the tape was not a ghost. It was a memory learning how to speak.",
+      "The child in the street knew your name because you once knew theirs.",
+      "The house without doors did not want you dead. It wanted you still.",
+      "A whisper in the wall is what remains when someone was never heard.",
+      "The hospital room was locked from the outside because the truth was afraid of you.",
+      "The missing neighbor was never next door. They were one regret away.",
+      "The phone under the bed rang from the place you refused to look.",
+      "Some houses breathe because someone inside them is still waiting.",
+      "The camera recorded you before you arrived because the loop had already begun.",
+      "Rain remembers the people who stood in it too long.",
+      "The last bus stop appears only for people who are ready to return.",
+      "The basement letter was written before you were brave enough to read it.",
+      "The attic doll kept your childhood safe until you were ready to see it again.",
+      "Platform Zero takes the missing, but sometimes it gives back the truth.",
+      "The hotel phone rang because silence was no longer strong enough.",
+      "The shadow in the photo was not following you. It was protecting the part you lost.",
+      "The last door on the left opens only after you admit what you borrowed from the past.",
+      "The mirror at the end did not show a monster. It showed the version of you that stayed.",
+      "The letter from the basement was damp because someone cried before sealing it.",
+      "The black envelope arrived without a stamp because grief does not need an address.",
+      "The empty playground was not empty. It was full of promises adults forgot.",
+      "The unknown password was the name you stopped saying.",
+      "The doll in the attic remembered the nights when someone kept you safe.",
+      "Platform Zero was never a station. It was the place between leaving and letting go.",
+      "Room 000 was not in the hotel. It was in the part of you that never checked out.",
+      "The shadow behind you was not trying to catch you. It was trying to return what you lost.",
+      "The last door on the left waited because some goodbyes need a handle.",
+      "The lake reflected someone behind you because memory walks closer when you stop running.",
+      "B13 is not below the building. It is below the life you built to forget.",
+      "The room breathed because it carried the words no one said that night.",
+      "The number station counted the moments you still owed yourself.",
+      "The forgotten app appeared because the Red Eye file was finally open.",
+      "The face in the train window had been waiting for you to look back without fear.",
+      "The red umbrella was left by someone who once stood in the rain for you.",
+      "The locked inbox held every warning you sent to yourself and never believed.",
+      "The corridor camera caught the truth walking ahead of you.",
+      "She was never trying to trap you in the loop. She was trying to help you leave it."
+    ];
+
+    let currentIndex = 0;
+
+    const gameGrid = document.getElementById("gameGrid");
+    const playPanel = document.getElementById("play");
+    const playBadge = document.getElementById("playBadge");
+    const playTitle = document.getElementById("playTitle");
+    const playIntro = document.getElementById("playIntro");
+    const sceneBox = document.getElementById("scene");
+    const choicesBox = document.getElementById("choices");
+    const resultBox = document.getElementById("result");
+    const resultText = document.getElementById("resultText");
+    const fragmentBox = document.getElementById("fragment");
+    const searchInput = document.getElementById("search");
+
+    document.getElementById("gameCount").innerText = appGames.length;
+    document.getElementById("endingCount").innerText = appGames.length * 4;
+
+    function ep(index) {
+      return "EP." + String(index + 1).padStart(2, "0");
+    }
+
+    function season(index) {
+      const titles = ["The First Signal", "The Future Is Watching", "Rooms That Should Not Exist", "Objects Remember You", "The Final Goodbye"];
+      return titles[Math.min(4, Math.floor(index / 10))];
+    }
+
+    function renderGames(list) {
+      if (!list.length) {
+        gameGrid.innerHTML = "<div class='game-card'><span class='ep'>No results</span><h3>No episodes found</h3><p>Try another keyword.</p></div>";
+        return;
+      }
+
+      gameGrid.innerHTML = list.map((game) => {
+        const index = appGames.indexOf(game);
+        return `
+          <article class="game-card">
+            <div>
+              <span class="ep">${ep(index)} · Playable</span>
+              <h3>${game.title}</h3>
+              <p>${game.cardText}</p>
+            </div>
+            <button class="btn btn-primary" onclick="startGame(${index})">Play Episode</button>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function startGame(index) {
+      currentIndex = index;
+      const game = appGames[index];
+
+      if (!game) return;
+
+      playPanel.classList.add("active");
+      resultBox.classList.remove("active");
+
+      playBadge.innerText = ep(index) + " · " + season(index);
+      playTitle.innerText = game.title;
+      playIntro.innerText = game.intro;
+      sceneBox.innerHTML = game.scene;
+
+      choicesBox.innerHTML = game.choices.map((choice, i) => `
+        <button class="choice" onclick="chooseEnding(${i})">${choice.text}</button>
+      `).join("");
+
+      playPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function chooseEnding(choiceIndex) {
+      const game = appGames[currentIndex];
+      const choice = game.choices[choiceIndex];
+
+      sceneBox.innerHTML = choice.scene;
+      choicesBox.innerHTML = "";
+      resultBox.classList.add("active");
+      resultText.innerHTML = choice.result;
+
+      fragmentBox.innerHTML = `
+        <strong>Red Eye File Unlocked · Fragment ${String(currentIndex + 1).padStart(2, "0")} / ${appGames.length}</strong>
+        <br>${fragments[currentIndex] || "Another Red Eye fragment has been unlocked."}
+      `;
+    }
+
+    document.getElementById("playFirst").onclick = () => startGame(0);
+    document.getElementById("randomTop").onclick = randomGame;
+    document.getElementById("randomBtn").onclick = randomGame;
+    document.getElementById("replay").onclick = () => startGame(currentIndex);
+    document.getElementById("nextEp").onclick = () => startGame((currentIndex + 1) % appGames.length);
+
+    function randomGame() {
+      if (!appGames.length) return;
+      startGame(Math.floor(Math.random() * appGames.length));
+    }
+
+    document.getElementById("clearSearch").onclick = () => {
+      searchInput.value = "";
+      renderGames(appGames);
+    };
+
+    searchInput.oninput = () => {
+      const q = searchInput.value.trim().toLowerCase();
+
+      if (!q) {
+        renderGames(appGames);
+        return;
+      }
+
+      const filtered = appGames.filter((game, index) => {
+        return [
+          ep(index),
+          game.title,
+          game.cardText,
+          game.intro,
+          season(index)
+        ].join(" ").toLowerCase().includes(q);
+      });
+
+      renderGames(filtered);
+    };
+
+    renderGames(appGames);
+  </script>
+</body>
+</html>
