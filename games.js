@@ -715,5 +715,497 @@ window.games = rawEpisodes.map((episode) => ({
     result: `<strong>${ending}.</strong><br>${result}`
   }))
 }));
+// Rewrite EP.46 - EP.50 · Final Goodbye emotional ending arc
+(function () {
+  if (!Array.isArray(window.games)) {
+    window.games = [];
+  }
 
+  function makeChoice(text, scene, ending, result) {
+    return {
+      text,
+      scene,
+      ending,
+      result: `<strong>${ending}.</strong><br>${result}`
+    };
+  }
+
+  const finalFiveEpisodes = [
+    {
+      id: "letters-from-her",
+      title: "Letters From Her",
+      cardText: "The Red Eye stops hunting you. It starts leaving letters.",
+      intro: "After forty-five files, the Red Eye no longer feels like a monster. Tonight, it leaves a letter under your door.",
+      scene: `FILE 46 OPENED.
+
+The envelope is warm.
+
+There is no name on it, only a small red mark shaped like an eye.
+
+Inside, the handwriting feels painfully familiar.
+
+The first line says:
+
+"If the fear brought you this far, then maybe you are finally ready to remember me."
+
+What do you do?`,
+      choices: [
+        makeChoice(
+          "Read the letter",
+          "You unfold the page with shaking hands...",
+          "Letter Ending",
+          `The letter says the Red Eye never wanted to hurt you.
+
+It only appeared as something terrifying because fear was the only language strong enough to reach you.
+
+At the bottom, one sentence is underlined:
+
+"I scared you because I could not bear to lose you again."`
+        ),
+        makeChoice(
+          "Search the handwriting",
+          "You compare the handwriting with old birthday cards...",
+          "Recognition Ending",
+          `The same handwriting appears on a card from years ago.
+
+You had forgotten the card.
+
+You had forgotten the name.
+
+But your hands remember before your mind does.
+
+The Red Eye flickers softly, almost like it is crying.`
+        ),
+        makeChoice(
+          "Ask who wrote it",
+          "You whisper the question into the darkness...",
+          "Name Ending",
+          `The room becomes silent.
+
+Then the Red Eye writes one word across the wall.
+
+Not a threat.
+
+Not a warning.
+
+A name.
+
+The name of someone you loved so deeply that your mind buried them to survive.`
+        ),
+        makeChoice(
+          "Burn the letter",
+          "You hold the letter over the flame...",
+          "Ash Ending",
+          `The paper burns, but the words do not disappear.
+
+They rise in the smoke and form one sentence above you:
+
+"I do not blame you for forgetting.
+
+I only came back because you were still afraid of the dark."`
+        )
+      ]
+    },
+
+    {
+      id: "night-of-the-accident",
+      title: "The Night of the Accident",
+      cardText: "The files finally show the night you buried in silence.",
+      intro: "The Red Eye opens a file you never chose. Rain, headlights, broken glass, and a hand pushing you out of danger.",
+      scene: `FILE 47 OPENED.
+
+Rain falls inside the room.
+
+The walls become glass.
+
+Beyond them, you see a road at night.
+
+A car door is crushed open.
+
+Someone is screaming your name.
+
+Then you see it:
+
+A hand pushing you away from the impact.
+
+A hand that stayed behind.
+
+What do you do?`,
+      choices: [
+        makeChoice(
+          "Reach for the hand",
+          "You reach into the memory...",
+          "Memory Ending",
+          `For one second, you feel that hand again.
+
+Warm.
+
+Weak.
+
+Still trying to push you toward safety.
+
+You hear her voice through the rain:
+
+"Don't come back for me.
+
+Just live."
+
+The Red Eye turns dim, like it is ashamed of showing you the truth.`
+        ),
+        makeChoice(
+          "Look away",
+          "You turn your face from the memory...",
+          "Avoidance Ending",
+          `The memory follows you.
+
+The rain appears in every room.
+
+Every door opens to the same road.
+
+The Red Eye whispers:
+
+"You survived the accident.
+
+But you never left it."`
+        ),
+        makeChoice(
+          "Say her name",
+          "You say the name you had forgotten...",
+          "Name Remembered Ending",
+          `The rain stops.
+
+For the first time, the Red Eye does not glow red.
+
+It becomes soft, almost human.
+
+A voice answers:
+
+"I waited so long to hear you say it again."`
+        ),
+        makeChoice(
+          "Ask why she stayed",
+          "You ask the one question that has haunted the silence...",
+          "Sacrifice Ending",
+          `The file plays the final recording.
+
+Her voice is weak, but steady:
+
+"Because you still had mornings left.
+
+Because someone had to make sure you got home."
+
+The Red Eye trembles.
+
+Now you understand.
+
+It was never chasing you.
+
+It was the one who did not make it out.`
+        )
+      ]
+    },
+
+    {
+      id: "the-void-outside",
+      title: "The Void Outside",
+      cardText: "The real enemy was never the Red Eye. It was what waited outside the rooms.",
+      intro: "The rooms begin collapsing. Beyond them is not darkness, but something worse — a void that eats memories.",
+      scene: `FILE 48 OPENED.
+
+The walls split open.
+
+Behind them is not another room.
+
+It is nothing.
+
+A white, silent void.
+
+Every photo you ever saw begins fading.
+
+Every voice you ever heard becomes static.
+
+The Red Eye stands between you and the void.
+
+For the first time, it looks wounded.
+
+What do you do?`,
+      choices: [
+        makeChoice(
+          "Run toward the Red Eye",
+          "You run toward the thing you feared most...",
+          "Protected Ending",
+          `The Red Eye spreads its broken arms between you and the void.
+
+Its body is covered in cracks of light.
+
+It growls like a monster, but the sound is full of pain.
+
+Behind the red glow, you hear her voice:
+
+"Do not look at it.
+
+It eats what you love first."`
+        ),
+        makeChoice(
+          "Look into the void",
+          "You stare into the white emptiness...",
+          "Erased Ending",
+          `For a moment, you forget your own name.
+
+Then her voice cuts through the silence.
+
+She screams your name with such pain that the memory returns.
+
+The Red Eye throws itself in front of you.
+
+A piece of it burns away.`
+        ),
+        makeChoice(
+          "Ask what the void is",
+          "You ask the Red Eye what waits outside...",
+          "Truth Ending",
+          `Words appear across the collapsing wall:
+
+"The void is what happens when grief wins.
+
+It takes faces first.
+
+Then voices.
+
+Then the reason you kept going."
+
+The Red Eye turns toward you.
+
+It has been fighting this thing alone for years.`
+        ),
+        makeChoice(
+          "Hold the Red Eye back",
+          "You grab the Red Eye before it charges forward...",
+          "Touch Ending",
+          `Your hand touches something beneath the monster's skin.
+
+Not claws.
+
+Not bone.
+
+A human hand.
+
+Small.
+
+Familiar.
+
+Shaking.
+
+The Red Eye freezes.
+
+For one heartbeat, it remembers how to be touched.`
+        )
+      ]
+    },
+
+    {
+      id: "red-eye-revealed",
+      title: "The Red Eye Revealed",
+      cardText: "The monster finally shows the face it was hiding.",
+      intro: "The Red Eye is losing the fight. Its terrifying shape begins to break, and something human appears beneath it.",
+      scene: `FILE 49 OPENED.
+
+The void presses closer.
+
+The Red Eye kneels.
+
+The red glow cracks like glass.
+
+The monster shape breaks apart piece by piece.
+
+Claws become fingers.
+
+The shadow becomes hair.
+
+The terrible red eye becomes two tired human eyes.
+
+And then you see her.
+
+The person you lost.
+
+The person who stayed.
+
+The person who became terrifying just to keep you alive.
+
+What do you do?`,
+      choices: [
+        makeChoice(
+          "Say you are sorry",
+          "You fall to your knees...",
+          "Forgiveness Ending",
+          `You say it over and over.
+
+"I'm sorry."
+
+She smiles through the cracks of fading light.
+
+"That was never what I needed from you," she says.
+
+"I only needed you to stop dying with me."`
+        ),
+        makeChoice(
+          "Ask why she looked like a monster",
+          "Your voice breaks as you ask the question...",
+          "Monster Ending",
+          `She looks down at her fading hands.
+
+"The void fears love," she says.
+
+"So I wore fear like armor."
+
+A weak laugh escapes her.
+
+"I became the thing you would run from, so you would keep moving."`
+        ),
+        makeChoice(
+          "Try to save her",
+          "You reach for her before she fades...",
+          "Cannot Save Ending",
+          `You try to pull her back.
+
+But your hands pass through light.
+
+She shakes her head gently.
+
+"You already saved me once," she whispers.
+
+"By living."
+
+The hallway begins to brighten behind you.`
+        ),
+        makeChoice(
+          "Ask if she was always there",
+          "You ask the question you are afraid to hear...",
+          "Always Ending",
+          `She nods.
+
+"In every locked room.
+
+In every warning.
+
+In every shadow behind you."
+
+Her voice trembles.
+
+"I was the red eye in the dark.
+
+Watching until you were strong enough to go home."`
+        )
+      ]
+    },
+
+    {
+      id: "final-goodbye",
+      title: "Final Goodbye",
+      cardText: "The Red Eye offers one last choice: stay with the memory, or go home with the truth.",
+      intro: "The final file unlocks. The Red Eye is gone. Only she remains, standing in the first light after years of darkness.",
+      scene: `FINAL FILE OPENED.
+
+The hallway is no longer dark.
+
+The doors are gone.
+
+The void is burning at the edges, but she is standing in front of it, holding it back with what little light remains.
+
+She smiles at you like she has waited years for this moment.
+
+"I did not come back to keep you here," she says.
+
+"I came back to help you leave."
+
+Her hands are fading.
+
+The way home is opening behind you.
+
+What do you do?`,
+      choices: [
+        makeChoice(
+          "Stay with her",
+          "You step toward her instead of the way home...",
+          "Stay Ending",
+          `For one perfect second, the world stops hurting.
+
+She holds you like she never left.
+
+But the light behind you begins to close.
+
+Her smile breaks.
+
+"No," she whispers.
+
+"Not after everything I burned for you."
+
+She pushes you back toward the doorway with the last of her strength.`
+        ),
+        makeChoice(
+          "Leave and remember",
+          "You step backward through tears...",
+          "True Goodbye Ending",
+          `You choose the pain of remembering.
+
+You choose the life she protected.
+
+As the doorway opens, she looks almost peaceful.
+
+The red light fades from her eyes.
+
+For the first time, she looks exactly as you remembered her before the accident.
+
+Soft.
+
+Tired.
+
+Free.`
+        ),
+        makeChoice(
+          "Ask for one more minute",
+          "You ask for just one more minute...",
+          "One More Minute Ending",
+          `She gives you sixty seconds.
+
+You spend none of them asking why.
+
+You spend none of them begging.
+
+You only say thank you.
+
+Again and again.
+
+When the final second ends, she touches your face and smiles.
+
+"That was enough."`
+        ),
+        makeChoice(
+          "Promise to live",
+          "You make the only promise she waited to hear...",
+          "Promise Ending",
+          `You promise to stop sleeping with the lights on.
+
+You promise to stop blaming yourself for surviving.
+
+You promise to carry her, not as a wound, but as a light.
+
+She closes her eyes.
+
+The final words arrive like dawn:
+
+"Don’t be afraid of the dark anymore.
+
+I burned my soul to light your way home."`
+        )
+      ]
+    }
+  ];
+
+  finalFiveEpisodes.forEach(function (episode, index) {
+    window.games[45 + index] = episode;
+  });
+})();
+
+// trigger deploy final emotional episodes 46-50
 // trigger deploy games full global version
