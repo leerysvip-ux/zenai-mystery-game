@@ -566,57 +566,62 @@
 
     .red-eye-asset {
       position: absolute;
-      inset: -8%;
-      width: 116%;
-      height: 116%;
-      object-fit: cover;
-      opacity: 0.18;
-      filter: contrast(1.12) saturate(1.22) brightness(0.82);
+      inset: 8%;
+      width: 84%;
+      height: 84%;
+      object-fit: contain;
+      opacity: 0.14;
+      filter: contrast(1.08) saturate(1.12) brightness(0.78);
       mix-blend-mode: screen;
-      transform: scale(1.08) rotate(-1deg);
-      animation: redEyeBreathe 9s ease-in-out infinite;
+      transform: scale(1.02) rotate(-1deg);
+      animation: redEyeBreathe 11s ease-in-out infinite;
       transition:
         opacity 4.8s ease,
         filter 4.8s ease,
         transform 4.8s ease,
-        mix-blend-mode 4.8s ease;
+        mix-blend-mode 4.8s ease,
+        inset 4.8s ease;
       z-index: 1;
       pointer-events: none;
     }
 
     body.final-arc-mode:not(.final-goodbye-complete) .red-eye-asset {
-      opacity: 0.12;
-      filter: contrast(1.02) saturate(0.95) brightness(0.78);
-      transform: scale(1.04) rotate(0deg);
+      opacity: 0.10;
+      filter: contrast(1.0) saturate(0.88) brightness(0.72);
+      transform: scale(0.98) rotate(0deg);
     }
 
     body.final-goodbye-complete .red-eye-asset {
-      opacity: 0.62;
-      filter: saturate(0.98) brightness(1.06) contrast(0.96);
+      inset: 14%;
+      width: 72%;
+      height: 72%;
+      object-fit: contain;
+      opacity: 0.32;
+      filter: saturate(0.92) brightness(1.04) contrast(0.92);
       mix-blend-mode: multiply;
-      transform: scale(1) rotate(0deg);
-      animation: redEyeRelease 12s ease-in-out infinite;
+      transform: scale(0.96) rotate(0deg);
+      animation: redEyeRelease 14s ease-in-out infinite;
     }
 
     @keyframes redEyeBreathe {
       0%, 100% {
-        transform: scale(1.08) rotate(-1deg);
-        opacity: 0.16;
+        transform: scale(1.02) rotate(-0.8deg);
+        opacity: 0.12;
       }
       50% {
-        transform: scale(1.15) rotate(1.2deg);
-        opacity: 0.24;
+        transform: scale(1.08) rotate(0.8deg);
+        opacity: 0.18;
       }
     }
 
     @keyframes redEyeRelease {
       0%, 100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 0.52;
+        transform: scale(0.96) rotate(0deg);
+        opacity: 0.28;
       }
       50% {
-        transform: scale(1.035) rotate(0.8deg);
-        opacity: 0.68;
+        transform: scale(1.01) rotate(0.5deg);
+        opacity: 0.36;
       }
     }
 
@@ -647,7 +652,7 @@
     }
 
     body.final-goodbye-complete .visual::before {
-      opacity: 0.12;
+      opacity: 0.10;
       border-color: rgba(166, 64, 42, 0.16);
       box-shadow:
         0 0 30px rgba(166,64,42,0.12),
@@ -672,7 +677,7 @@
     }
 
     body.final-goodbye-complete .visual::after {
-      opacity: 0.10;
+      opacity: 0.08;
       border-color: #a6402a;
       box-shadow: 0 0 18px rgba(166,64,42,0.12);
     }
@@ -901,22 +906,23 @@
     }
 
     .final-eye-card {
-      width: min(520px, 100%);
+      width: min(420px, 92%);
       margin: 0 auto 18px;
       border-radius: 22px;
       overflow: hidden;
-      border: 1px solid rgba(166,64,42,0.18);
-      background: rgba(255,255,255,0.30);
+      border: 1px solid rgba(166,64,42,0.16);
+      background: rgba(255,255,255,0.26);
       box-shadow:
-        0 18px 42px rgba(120,78,52,0.14),
-        inset 0 1px 0 rgba(255,255,255,0.55);
+        0 14px 34px rgba(120,78,52,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.50);
     }
 
     .final-eye-card img {
       display: block;
       width: 100%;
       height: auto;
-      opacity: 0.92;
+      opacity: 0.84;
+      filter: saturate(0.92) brightness(1.03) contrast(0.95);
     }
 
     .defrag {
