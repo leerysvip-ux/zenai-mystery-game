@@ -3,11 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>The Last Timeline | ZenAI Mystery Universe</title>
   <meta
     name="description"
-    content="The Last Timeline is Series 02 of ZenAI Mystery Universe — an emotional time travel story about sacrifice, love, and letting go."
+    content="The Last Timeline is Series 02 of ZenAI Mystery Universe — an emotional time travel story about sacrifice, love, memory, and letting go."
   />
+  <meta name="keywords" content="The Last Timeline, ZenAI Mystery Universe, interactive story game, time travel story, emotional game, sacrifice, love, letting go" />
+  <meta name="author" content="ZenAI Soul" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="The Last Timeline | ZenAI Mystery Universe" />
+  <meta
+    property="og:description"
+    content="You spent 49 timelines trying to save Eli. In the 50th, you discover Eli was saving you too."
+  />
+  <meta property="og:url" content="https://www.zenaisoul.com/timeline.html" />
+  <meta property="og:site_name" content="ZenAI Mystery Universe" />
+  <meta property="og:image" content="https://www.zenaisoul.com/red-eye-light.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Last Timeline | ZenAI Mystery Universe" />
+  <meta
+    name="twitter:description"
+    content="A time travel love story about sacrifice, memory, and learning to let go."
+  />
+  <meta name="twitter:image" content="https://www.zenaisoul.com/red-eye-light.png" />
 
   <style>
     :root {
@@ -116,13 +137,23 @@
     }
 
     @keyframes bodyShake {
-      from { transform: translateX(-1px); filter: saturate(1.25); }
-      to { transform: translateX(1px); filter: saturate(1.55) contrast(1.15); }
+      from {
+        transform: translateX(-1px);
+        filter: saturate(1.25);
+      }
+      to {
+        transform: translateX(1px);
+        filter: saturate(1.55) contrast(1.15);
+      }
     }
 
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
     }
 
     .page {
@@ -412,8 +443,14 @@
     }
 
     @keyframes breathe {
-      0%, 100% { transform: translateY(0); box-shadow: 0 16px 60px rgba(255, 193, 106, 0.25); }
-      50% { transform: translateY(-2px); box-shadow: 0 24px 80px rgba(255, 193, 106, 0.5); }
+      0%, 100% {
+        transform: translateY(0);
+        box-shadow: 0 16px 60px rgba(255, 193, 106, 0.25);
+      }
+      50% {
+        transform: translateY(-2px);
+        box-shadow: 0 24px 80px rgba(255, 193, 106, 0.5);
+      }
     }
 
     .clock-panel {
@@ -446,6 +483,7 @@
     .clock {
       position: relative;
       z-index: 1;
+      display: inline-block;
       margin: 36px 0 16px;
       font-variant-numeric: tabular-nums;
       font-size: clamp(54px, 8vw, 96px);
@@ -461,8 +499,42 @@
 
     .clock.warning {
       color: #ffd0d6;
-      text-shadow: 0 0 36px rgba(255, 93, 115, 0.7);
+      text-shadow:
+        0 0 16px rgba(255, 93, 115, 0.9),
+        0 0 44px rgba(255, 93, 115, 0.55),
+        2px 0 rgba(106, 167, 255, 0.55),
+        -2px 0 rgba(255, 193, 106, 0.42);
       animation: warningShake 0.11s infinite alternate;
+    }
+
+    .clock.warning::before,
+    .clock.collapse::before {
+      content: "11:11 PM";
+      position: absolute;
+      inset: 0;
+      color: rgba(255, 93, 115, 0.42);
+      transform: translate(2px, -1px);
+      clip-path: inset(0 0 55% 0);
+      animation: redNoise 0.18s infinite alternate;
+      pointer-events: none;
+    }
+
+    .clock.warning::after,
+    .clock.collapse::after {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 93, 115, 0.00) 0px,
+          rgba(255, 93, 115, 0.00) 3px,
+          rgba(255, 93, 115, 0.18) 4px
+        );
+      mix-blend-mode: screen;
+      opacity: 0.28;
+      pointer-events: none;
+      animation: noiseScan 0.32s linear infinite;
     }
 
     .clock.frozen {
@@ -472,7 +544,10 @@
 
     .clock.collapse {
       color: #ff5d73;
-      text-shadow: 3px 0 #6aa7ff, -3px 0 #ffc16a, 0 0 50px rgba(255, 93, 115, 0.8);
+      text-shadow:
+        3px 0 #6aa7ff,
+        -3px 0 #ffc16a,
+        0 0 50px rgba(255, 93, 115, 0.8);
       animation: glitchClock 0.2s infinite;
     }
 
@@ -482,20 +557,60 @@
     }
 
     @keyframes faintPulse {
-      0%, 100% { opacity: 0.62; }
-      50% { opacity: 1; }
+      0%, 100% {
+        opacity: 0.62;
+      }
+      50% {
+        opacity: 1;
+      }
     }
 
     @keyframes warningShake {
-      from { transform: translateX(-2px) rotate(-0.2deg); }
-      to { transform: translateX(2px) rotate(0.2deg); }
+      from {
+        transform: translateX(-2px) rotate(-0.2deg);
+      }
+      to {
+        transform: translateX(2px) rotate(0.2deg);
+      }
+    }
+
+    @keyframes redNoise {
+      0% {
+        transform: translate(1px, -1px);
+        opacity: 0.25;
+      }
+      100% {
+        transform: translate(-2px, 1px);
+        opacity: 0.62;
+      }
+    }
+
+    @keyframes noiseScan {
+      from {
+        transform: translateY(-8px);
+      }
+      to {
+        transform: translateY(8px);
+      }
     }
 
     @keyframes glitchClock {
-      0% { transform: translate(0, 0); filter: hue-rotate(0deg); }
-      30% { transform: translate(2px, -1px); filter: hue-rotate(30deg); }
-      60% { transform: translate(-2px, 1px); filter: hue-rotate(-25deg); }
-      100% { transform: translate(0, 0); filter: hue-rotate(0deg); }
+      0% {
+        transform: translate(0, 0);
+        filter: hue-rotate(0deg);
+      }
+      30% {
+        transform: translate(2px, -1px);
+        filter: hue-rotate(30deg);
+      }
+      60% {
+        transform: translate(-2px, 1px);
+        filter: hue-rotate(-25deg);
+      }
+      100% {
+        transform: translate(0, 0);
+        filter: hue-rotate(0deg);
+      }
     }
 
     .clock-desc {
@@ -595,6 +710,19 @@
       border-color: rgba(106,167,255,0.45);
       background: rgba(106,167,255,0.15);
       color: var(--text);
+    }
+
+    .episode-item.warning-dot strong::after,
+    .episode-item.collapse-dot strong::after {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-left: 8px;
+      background: var(--red);
+      box-shadow: 0 0 14px rgba(255, 93, 115, 0.8);
+      vertical-align: middle;
     }
 
     body.mode-white .episode-item {
@@ -910,14 +1038,207 @@
     }
 
     @keyframes textGlitch {
-      from { text-shadow: 2px 0 #6aa7ff; transform: skewX(-1deg); }
-      to { text-shadow: -2px 0 #ffc16a; transform: skewX(1deg); }
+      from {
+        text-shadow: 2px 0 #6aa7ff;
+        transform: skewX(-1deg);
+      }
+      to {
+        text-shadow: -2px 0 #ffc16a;
+        transform: skewX(1deg);
+      }
     }
 
     .empty-state {
       padding: 30px;
       text-align: center;
       color: var(--muted);
+    }
+
+    .time-flash {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,1), rgba(255,255,255,0.82) 28%, rgba(255,255,255,0) 66%),
+        linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,255,255,0));
+      opacity: 0;
+      transform: scale(1.04);
+    }
+
+    .time-flash.active {
+      animation: timeFlash 0.72s ease-out forwards;
+    }
+
+    @keyframes timeFlash {
+      0% {
+        opacity: 0;
+        transform: scale(1);
+        filter: blur(0px);
+      }
+      16% {
+        opacity: 1;
+        transform: scale(1.02);
+        filter: blur(2px);
+      }
+      48% {
+        opacity: 0.78;
+        transform: scale(1.05);
+        filter: blur(5px);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.08);
+        filter: blur(9px);
+      }
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0,0,0,0.62);
+      backdrop-filter: blur(18px);
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .modal {
+      width: min(920px, 100%);
+      max-height: min(760px, calc(100vh - 36px));
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(106,167,255,0.16), transparent 30%),
+        linear-gradient(135deg, rgba(14,18,32,0.96), rgba(5,7,14,0.96));
+      box-shadow: 0 40px 120px rgba(0,0,0,0.65);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-head {
+      padding: 22px 22px 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .modal-head h3 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.055em;
+    }
+
+    .modal-head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .modal-close {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow: auto;
+    }
+
+    .fragment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .fragment-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 16px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.09), transparent 38%),
+        rgba(255,255,255,0.045);
+      min-height: 138px;
+    }
+
+    .fragment-card small {
+      display: block;
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 11px;
+      margin-bottom: 9px;
+    }
+
+    .fragment-card strong {
+      display: block;
+      font-size: 17px;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .fragment-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .fragment-card .fragment-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .fragment-card .fragment-meta span {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.055);
+      color: rgba(255,255,255,0.62);
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 11px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%) translateY(20px);
+      z-index: 1000;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(8, 10, 18, 0.82);
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 999px;
+      box-shadow: 0 18px 70px rgba(0,0,0,0.45);
+      backdrop-filter: blur(18px);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.22s ease;
+      font-size: 14px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
     footer {
@@ -961,6 +1282,10 @@
       .chips {
         justify-content: flex-start;
         min-width: 0;
+      }
+
+      .fragment-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1010,11 +1335,37 @@
       .btn {
         width: 100%;
       }
+
+      .modal-head {
+        padding: 18px;
+      }
+
+      .modal-body {
+        padding: 16px;
+      }
     }
   </style>
 </head>
 
 <body class="mode-blue">
+  <div class="time-flash" id="timeFlash"></div>
+  <div class="toast" id="toast">Fragment saved.</div>
+
+  <div class="modal-backdrop" id="fragmentModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="fragmentModalTitle">
+      <div class="modal-head">
+        <div>
+          <h3 id="fragmentModalTitle">Fragment Archive</h3>
+          <p>Collected memory fragments from The Last Timeline. Every watch, message, photo, and goodbye belongs somewhere.</p>
+        </div>
+        <button class="modal-close" type="button" id="closeFragmentModal" aria-label="Close Fragment Archive">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="fragment-grid" id="fragmentGrid"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="page">
     <header class="topbar">
       <a class="brand" href="index.html" aria-label="Back to ZenAI Mystery Universe home">
@@ -1029,6 +1380,7 @@
         <a href="index.html">Universe Home</a>
         <a href="red-eye.html">Red Eye Files</a>
         <a href="archive.html">Archive Room</a>
+        <button type="button" id="openFragmentsBtn">Fragments</button>
         <button type="button" id="resetTimelineBtn">Reset Timeline</button>
       </nav>
     </header>
@@ -1104,9 +1456,9 @@
       const episodes = window.timelineEpisodes || [];
       const meta = window.timelineMeta || {};
       const clockModes = window.timelineClockModes || {};
-      const finalLogic = window.timelineFinalLogic || {};
 
       let currentId = getInitialEpisodeId();
+      let toastTimer = null;
 
       const body = document.body;
       const storyContent = document.getElementById("storyContent");
@@ -1116,10 +1468,16 @@
       const progressText = document.getElementById("progressText");
       const progressPercent = document.getElementById("progressPercent");
       const progressFill = document.getElementById("progressFill");
+      const timeFlash = document.getElementById("timeFlash");
+      const toast = document.getElementById("toast");
 
       const startBtn = document.getElementById("startBtn");
       const jumpFinalBtn = document.getElementById("jumpFinalBtn");
       const resetTimelineBtn = document.getElementById("resetTimelineBtn");
+      const openFragmentsBtn = document.getElementById("openFragmentsBtn");
+      const fragmentModal = document.getElementById("fragmentModal");
+      const closeFragmentModal = document.getElementById("closeFragmentModal");
+      const fragmentGrid = document.getElementById("fragmentGrid");
 
       if (!episodes.length) {
         storyContent.innerHTML = `
@@ -1138,7 +1496,7 @@
       });
 
       jumpFinalBtn.addEventListener("click", function () {
-        goToEpisode(50);
+        goToEpisodeWithTransition(50);
         document.getElementById("game").scrollIntoView({ behavior: "smooth", block: "start" });
       });
 
@@ -1151,7 +1509,24 @@
         localStorage.removeItem(STORAGE_HOLD);
         localStorage.removeItem(STORAGE_COMPLETE);
 
-        goToEpisode(1);
+        showTransition(function () {
+          goToEpisode(1);
+        });
+      });
+
+      openFragmentsBtn.addEventListener("click", openFragmentArchive);
+      closeFragmentModal.addEventListener("click", closeFragmentArchive);
+
+      fragmentModal.addEventListener("click", function (event) {
+        if (event.target === fragmentModal) {
+          closeFragmentArchive();
+        }
+      });
+
+      window.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeFragmentArchive();
+        }
       });
 
       function getInitialEpisodeId() {
@@ -1202,10 +1577,16 @@
 
       function renderEpisodeList() {
         episodeList.innerHTML = episodes.map((episode) => {
+          const dangerClass = episode.clockMode === "warning"
+            ? "warning-dot"
+            : episode.clockMode === "collapse"
+              ? "collapse-dot"
+              : "";
+
           return `
             <button
               type="button"
-              class="episode-item ${Number(episode.id) === Number(currentId) ? "active" : ""}"
+              class="episode-item ${dangerClass} ${Number(episode.id) === Number(currentId) ? "active" : ""}"
               data-ep="${episode.id}"
             >
               <strong>EP.${String(episode.id).padStart(2, "0")} · ${escapeHtml(episode.title)}</strong>
@@ -1216,8 +1597,15 @@
 
         episodeList.querySelectorAll(".episode-item").forEach((button) => {
           button.addEventListener("click", function () {
-            goToEpisode(Number(button.dataset.ep));
+            goToEpisodeWithTransition(Number(button.dataset.ep));
           });
+        });
+      }
+
+      function goToEpisodeWithTransition(id) {
+        const nextId = clampEpisode(id);
+        showTransition(function () {
+          goToEpisode(nextId);
         });
       }
 
@@ -1233,12 +1621,27 @@
         renderEpisode(currentId);
       }
 
+      function showTransition(callback) {
+        timeFlash.classList.remove("active");
+        void timeFlash.offsetWidth;
+        timeFlash.classList.add("active");
+
+        window.setTimeout(function () {
+          callback();
+        }, 210);
+
+        window.setTimeout(function () {
+          timeFlash.classList.remove("active");
+        }, 780);
+      }
+
       function renderEpisode(id) {
         const episode = getEpisode(id);
         saveArchiveEpisode(episode);
         applyVisualMode(episode);
         renderClock(episode);
         renderProgress(episode);
+        updatePageMeta(episode);
 
         const paragraphs = Array.isArray(episode.mainText)
           ? episode.mainText.map((line) => `<p>${formatInlineText(line)}</p>`).join("")
@@ -1279,6 +1682,7 @@
             <div class="control-left">
               <button class="btn secondary" type="button" id="prevBtn">Previous</button>
               <button class="btn secondary" type="button" id="saveFragmentBtn">Save Fragment</button>
+              <button class="btn secondary" type="button" id="openEpisodeFragmentsBtn">Fragment Archive</button>
             </div>
 
             <div class="control-right">
@@ -1293,24 +1697,28 @@
         const prevBtn = document.getElementById("prevBtn");
         const nextBtn = document.getElementById("nextBtn");
         const saveFragmentBtn = document.getElementById("saveFragmentBtn");
+        const openEpisodeFragmentsBtn = document.getElementById("openEpisodeFragmentsBtn");
 
         prevBtn.addEventListener("click", function () {
-          goToEpisode(Math.max(1, currentId - 1));
+          goToEpisodeWithTransition(Math.max(1, currentId - 1));
         });
 
         if (nextBtn) {
           nextBtn.addEventListener("click", function () {
-            goToEpisode(Math.min(episodes.length, currentId + 1));
+            goToEpisodeWithTransition(Math.min(episodes.length, currentId + 1));
           });
         }
 
         saveFragmentBtn.addEventListener("click", function () {
           saveArchiveEpisode(episode);
+          showToast("Fragment saved to Archive.");
           saveFragmentBtn.textContent = "Fragment Saved";
           setTimeout(() => {
             saveFragmentBtn.textContent = "Save Fragment";
           }, 1300);
         });
+
+        openEpisodeFragmentsBtn.addEventListener("click", openFragmentArchive);
 
         if (episode.specialMode === "finalChoice") {
           bindFinalChoice(episode);
@@ -1368,6 +1776,8 @@
           holdMessage.classList.add("show");
           holdMessage.innerHTML = escapeHtml(line);
 
+          showTransition(function () {});
+
           if (count >= 3) {
             holdMessage.classList.add("glitch");
             body.classList.add("final-collapse");
@@ -1381,38 +1791,85 @@
         });
 
         letGoBtn.addEventListener("click", function () {
-          body.classList.remove("final-collapse");
-          body.className = "mode-white";
-          timelineClock.className = "clock frozen";
-          clockDesc.textContent = "The clock freezes, but this time, it does not hurt.";
+          showTransition(function () {
+            body.classList.remove("final-collapse");
+            body.className = "mode-white";
+            timelineClock.className = "clock frozen";
+            clockDesc.textContent = "The clock freezes, but this time, it does not hurt.";
 
-          localStorage.setItem(STORAGE_COMPLETE, "true");
+            localStorage.setItem(STORAGE_COMPLETE, "true");
 
-          const letGo = episode.finalChoices?.letGo || {};
-          const lines = Array.isArray(letGo.lines) ? letGo.lines : [];
-          const renderedLines = lines.map((line) => `<p>${formatInlineText(line)}</p>`).join("");
+            const letGo = episode.finalChoices?.letGo || {};
+            const lines = Array.isArray(letGo.lines) ? letGo.lines : [];
+            const renderedLines = lines.map((line) => `<p>${formatInlineText(line)}</p>`).join("");
 
-          letGoResult.classList.add("show");
-          letGoResult.innerHTML = `
-            <h3>${escapeHtml(letGo.successTitle || "Final Goodbye")}</h3>
-            ${renderedLines}
+            letGoResult.classList.add("show");
+            letGoResult.innerHTML = `
+              <h3>${escapeHtml(letGo.successTitle || "Final Goodbye")}</h3>
+              ${renderedLines}
 
-            <div class="memory-card">
-              <small>Save This Timeline</small>
-              <strong>${escapeHtml(letGo.quote || "In every timeline, I chose the one where you lived.")}</strong>
-              <span>${escapeHtml(letGo.finalLine || "Now live the life I kept giving back to you.")}</span>
-            </div>
-          `;
+              <div class="memory-card">
+                <small>Save This Timeline</small>
+                <strong>${escapeHtml(letGo.quote || "In every timeline, I chose the one where you lived.")}</strong>
+                <span>${escapeHtml(letGo.finalLine || "Now live the life I kept giving back to you.")}</span>
+              </div>
+            `;
 
-          saveArchiveEpisode({
-            id: 50,
-            title: "Final Memory",
-            quote: letGo.quote || "In every timeline, I chose the one where you lived.",
-            prop: "Two Coffees",
-            traveler: "You",
-            fragmentType: "final"
+            saveArchiveEpisode({
+              id: 50,
+              title: "Final Memory",
+              quote: letGo.quote || "In every timeline, I chose the one where you lived.",
+              prop: "Two Coffees",
+              traveler: "You",
+              fragmentType: "final"
+            });
+
+            showToast("Final Memory saved.");
           });
         });
+      }
+
+      function openFragmentArchive() {
+        renderFragmentArchive();
+        fragmentModal.classList.add("show");
+        fragmentModal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeFragmentArchive() {
+        fragmentModal.classList.remove("show");
+        fragmentModal.setAttribute("aria-hidden", "true");
+      }
+
+      function renderFragmentArchive() {
+        const saved = getSavedArchive();
+
+        if (!saved.length) {
+          fragmentGrid.innerHTML = `
+            <div class="fragment-card">
+              <small>No fragments yet</small>
+              <strong>The archive is empty.</strong>
+              <p>Save a fragment from any episode to begin building Eli’s memory trail.</p>
+            </div>
+          `;
+          return;
+        }
+
+        fragmentGrid.innerHTML = saved
+          .sort((a, b) => Number(a.id) - Number(b.id))
+          .map((item) => {
+            return `
+              <article class="fragment-card">
+                <small>EP.${String(item.id).padStart(2, "0")} · ${escapeHtml(item.fragmentType || "memory")}</small>
+                <strong>${escapeHtml(item.title || "Untitled Fragment")}</strong>
+                <p>“${escapeHtml(item.quote || "A missing memory waits here.")}”</p>
+                <div class="fragment-meta">
+                  <span>${escapeHtml(item.traveler || "You")}</span>
+                  <span>${escapeHtml(item.prop || "Unknown Prop")}</span>
+                </div>
+              </article>
+            `;
+          })
+          .join("");
       }
 
       function applyVisualMode(episode) {
@@ -1457,6 +1914,23 @@
         progressText.textContent = `EP.${String(current).padStart(2, "0")} / ${total}`;
         progressPercent.textContent = `${percent}%`;
         progressFill.style.width = `${percent}%`;
+      }
+
+      function updatePageMeta(episode) {
+        document.title = `EP.${String(episode.id).padStart(2, "0")} ${episode.title} | The Last Timeline`;
+      }
+
+      function showToast(message) {
+        toast.textContent = message || "Saved.";
+        toast.classList.add("show");
+
+        if (toastTimer) {
+          clearTimeout(toastTimer);
+        }
+
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("show");
+        }, 1600);
       }
 
       function formatInlineText(text) {
