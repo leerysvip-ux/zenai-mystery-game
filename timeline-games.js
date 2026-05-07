@@ -2,15 +2,16 @@
    ZenAI Mystery Universe
    Series 02: The Last Timeline
    File: timeline-games.js
-   Version: Playable Story Data v1.0
+   Version: Playable Story Data v1.2
 
-   用途：
-   1. 给 timeline.html 调用的 50 集剧情数据
-   2. 已内置 traveler 视角字段
-   3. 已内置 11:11 PM 时钟状态字段
-   4. 已内置 EP.31 红眼档案宇宙彩蛋
-   5. 已内置 EP.39 Eli 视角反转
-   6. 已内置 EP.50 Hold On / Let Go 终章逻辑
+   本版重点：
+   1. 强化 ACT 01：EP.01 - EP.10 正式游戏文本
+   2. EP.01 - EP.05：铺设希望
+   3. EP.06 - EP.10：引入循环绝望
+   4. 保留 traveler / prop / clockMode / visualMode / fragmentType
+   5. 保留 EP.31 红眼宇宙彩蛋
+   6. 保留 EP.39 Eli 视角反转
+   7. 保留 EP.50 Hold On / Let Go 终章逻辑
 ========================================================= */
 
 const timelineMeta = {
@@ -37,16 +38,24 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "message",
     mainText: [
-      "At 11:11 PM, Eli sends one final message.",
+      "At 11:08 PM, Eli sends a message that feels wrong before you even finish reading it.",
       "\"Don’t come looking for me.\"",
-      "By the time you reach the street, there is only white light, rain on the pavement, and a broken watch lying beside a spilled cup of coffee.",
-      "You fall to your knees, screaming Eli’s name into a world that no longer answers.",
-      "Then everything goes black."
+      "There is no explanation. No emoji. No second message. Just five words sitting on your screen like a door closing from the other side.",
+      "You call once. No answer. Twice. No answer. By the third call, your hands are already shaking.",
+      "The city outside is soaked in rain. Streetlights smear across the pavement. Somewhere far away, a clocktower begins to ring even though there is no clocktower in this neighborhood.",
+      "At 11:11 PM, you reach the crosswalk.",
+      "White light swallows everything.",
+      "When your vision returns, Eli is gone. No body. No ambulance. No witnesses. Only a broken watch lying beside a spilled cup of coffee.",
+      "The watch hands are frozen at 11:11 PM.",
+      "You fall to your knees and scream Eli’s name until your throat stops sounding like yours.",
+      "Then the entire world goes silent."
     ],
     choiceText: "Wake Up",
     quote: "Some nights do not end. They reset.",
-    endingHint: "You open your eyes at 7:00 AM. The same day has begun again.",
+    endingHint:
+      "You open your eyes at 7:00 AM. Your phone buzzes. Eli is alive.",
   },
+
   {
     id: 2,
     title: "The Message That Shouldn’t Exist",
@@ -57,16 +66,26 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "message",
     mainText: [
-      "Your phone contains an unsent draft you do not remember typing.",
+      "You wake up gasping, still feeling rain on your skin.",
+      "Your room is bright with morning. The same shirt is on the chair. The same cup is on your desk. The same notification waits on your phone.",
+      "Eli: \"Coffee later?\"",
+      "For three seconds, your heart believes mercy exists.",
+      "Then you notice another message sitting in your draft box. It has no recipient. It has no timestamp. It is written in your own typing style, but you have no memory of writing it.",
       "\"You have tried this before.\"",
-      "Every detail in the message matches the night you just survived: the rain, the street, the white light, Eli’s final warning.",
-      "You call Eli, desperate to hear their voice.",
-      "Eli answers casually, alive, unaware that you have already lost them once."
+      "Below it, more words appear slowly, as if someone is typing from inside the screen.",
+      "\"Do not trust 11:11 PM.\"",
+      "You call Eli immediately. They answer with a sleepy laugh, annoyed and alive.",
+      "\"You sound like you saw a ghost,\" Eli says.",
+      "You almost tell them the truth. Instead, you ask them not to go near the east crosswalk tonight.",
+      "Eli pauses.",
+      "\"How did you know I was going there?\""
     ],
     choiceText: "Call Eli",
-    quote: "The future left a note in your hand.",
-    endingHint: "Eli says the same sentence you heard in your nightmare.",
+    quote: "The future left a warning in your own hands.",
+    endingHint:
+      "Eli says a sentence you heard after their death, before they ever had a chance to say it.",
   },
+
   {
     id: 3,
     title: "One More Morning",
@@ -77,16 +96,28 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "watch",
     mainText: [
-      "This time, you arrive at Eli’s door before anything can happen.",
-      "You beg them not to leave the apartment. You say you had a terrible dream. You say today feels wrong.",
-      "Eli stays.",
-      "For one impossible hour, you believe you have changed fate.",
-      "Then, at 11:11 PM, the ceiling light flickers. The room bends. The accident comes inside."
+      "This time, you do not wait for fate to start moving.",
+      "You arrive at Eli’s door before breakfast. You knock too hard. You say too much. Your voice breaks in all the wrong places.",
+      "Eli opens the door in an old sweater, holding a mug of coffee, alive in a way that hurts more than the memory of losing them.",
+      "You tell them you had a dream. You say the day feels unsafe. You say staying home would make you feel better.",
+      "Eli studies your face for a long time.",
+      "\"You are terrible at pretending this is just anxiety,\" they say.",
+      "But they stay.",
+      "For the first time, the day changes.",
+      "No crosswalk. No rain-soaked street. No final message. You make dinner together. You keep looking at the clock and pretending you are not.",
+      "At 11:10 PM, Eli squeezes your hand.",
+      "\"See? We made it.\"",
+      "At 11:11 PM, the ceiling light flickers.",
+      "The broken watch in your pocket starts ticking backward.",
+      "A sound like tearing metal moves through the apartment walls.",
+      "The accident has followed you inside."
     ],
     choiceText: "Hold Eli Back",
     quote: "Fate does not need a street to find someone.",
-    endingHint: "You wake again at 7:00 AM.",
+    endingHint:
+      "The room bends around Eli. You reach for them, and the morning restarts.",
   },
+
   {
     id: 4,
     title: "The Broken Watch",
@@ -97,16 +128,28 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "watch",
     mainText: [
-      "The broken watch appears in your pocket after every reset.",
-      "Its hands never move. They remain fixed at 11:11 PM.",
-      "On the back, under scratches and old blood, you find an engraving.",
+      "On the fourth morning, you stop screaming.",
+      "You sit on the floor and empty your pockets with the calm of someone who has run out of disbelief.",
+      "Keys. Phone. Receipt. A small piece of glass.",
+      "And the broken watch.",
+      "It should have been left in the rain. It should have belonged to the night Eli vanished. It should not be here, warm from your pocket.",
+      "The hands are still frozen at 11:11 PM.",
+      "You turn it over and find engraving beneath scratches and old blood.",
       "\"For the one who must live.\"",
-      "You do not remember receiving it. But when the cover opens, Eli’s photo is inside."
+      "You do not remember receiving it.",
+      "You press the side button. The cover opens.",
+      "Inside is a tiny photograph of Eli. Not from yesterday. Not from any photo you remember taking.",
+      "In the picture, Eli looks older. Tired. Smiling like they are trying not to cry.",
+      "Behind the photograph, there is a folded strip of paper.",
+      "It says only one thing:",
+      "\"When the watch breaks completely, one of us stays gone.\""
     ],
     choiceText: "Open The Watch",
     quote: "A gift from a future that has not forgiven you yet.",
-    endingHint: "The watch ticks once, though its hands do not move.",
+    endingHint:
+      "For the first time, the watch ticks once without moving its hands.",
   },
+
   {
     id: 5,
     title: "The Street With No Cars",
@@ -117,16 +160,30 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "photo",
     mainText: [
-      "You block the street. You call emergency services. You create a power outage. You make sure no cars can pass.",
-      "At 11:10 PM, the road is empty.",
-      "At 11:11 PM, Eli vanishes anyway.",
-      "No collision. No scream. No blood.",
-      "Only one empty shoe beneath the flickering traffic light."
+      "You decide the universe is not magic. It is a system. A system can be broken.",
+      "You map the street. Every traffic light. Every alley. Every camera. Every possible route Eli might take.",
+      "You call in a false emergency to block the east crosswalk. You report a gas leak. You make sure no cars can pass within three blocks.",
+      "By 10:55 PM, the street is empty.",
+      "By 11:05 PM, Eli is safe beside you, confused but trying to trust you.",
+      "By 11:10 PM, the rain stops.",
+      "The silence feels like victory.",
+      "Then every traffic light turns red at once.",
+      "At 11:11 PM, Eli looks at you and says, very softly, \"I think I have been here before.\"",
+      "You grab their hand.",
+      "Nothing hits them.",
+      "No car. No white light. No scream.",
+      "Eli simply disappears.",
+      "Their fingers vanish from inside your grip, leaving only warmth behind.",
+      "On the empty road, one shoe remains beneath the traffic signal.",
+      "The digital crossing sign flashes:",
+      "\"TIMELINE CORRECTION FAILED.\""
     ],
     choiceText: "Search The Street",
-    quote: "The accident was never just an accident.",
-    endingHint: "A traffic screen flashes: Timeline Correction Failed.",
+    quote: "The accident was never the cause. It was only the shape grief chose first.",
+    endingHint:
+      "A security camera captures the empty street. In the reflection, someone behind you is holding another watch.",
   },
+
   {
     id: 6,
     title: "The Train They Never Took",
@@ -137,16 +194,30 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "ticket",
     mainText: [
-      "You decide to leave the city with Eli.",
-      "A train should be safer than the street. A different route. A different ending.",
-      "The train pulls away from the station, and for a moment, Eli smiles like the future is possible.",
-      "Then the clock above the carriage begins to shake.",
-      "The speakers crackle: \"Timeline 006 will terminate at 11:11 PM.\""
+      "You stop trying to control the street. You choose distance instead.",
+      "A train leaves the city at 9:40 PM. It does not pass the crosswalk. It does not pass the apartment. It does not pass any place where Eli has died.",
+      "You buy two tickets with hands that know the route before your mind does.",
+      "Eli follows you onto the train because they are beginning to understand one terrifying thing:",
+      "You are not afraid of something that might happen.",
+      "You are afraid of something that already has.",
+      "At 10:49 PM, the train leaves the city.",
+      "For twenty minutes, the world feels breakable in a good way.",
+      "Eli leans against the window and says, \"Maybe we really can leave it behind.\"",
+      "At 11:08 PM, the carriage lights turn cold blue.",
+      "At 11:09 PM, every passenger stops moving.",
+      "At 11:10 PM, the clock above the door begins to shake.",
+      "At 11:11 PM, the speakers crackle.",
+      "\"Timeline 006 will terminate at 11:11 PM.\"",
+      "Every passenger turns toward Eli.",
+      "Their mouths open together.",
+      "\"Return what was borrowed.\""
     ],
     choiceText: "Run Through The Train",
     quote: "Changing direction is not the same as escaping fate.",
-    endingHint: "Every passenger turns toward Eli at the same time.",
+    endingHint:
+      "Eli looks at the frozen passengers and whispers, \"Why does this feel familiar?\"",
   },
+
   {
     id: 7,
     title: "A Door Opens Twice",
@@ -157,16 +228,32 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "door",
     mainText: [
-      "An old door appears in the hallway where no door existed before.",
-      "You open it and find another version of yourself sitting in darkness, holding Eli’s coat.",
-      "Their eyes are hollow. Their hands are shaking.",
-      "They look at you as if they have been waiting.",
-      "\"Don’t let them know you remember.\""
+      "The door appears on the seventh morning.",
+      "It stands at the end of your hallway where there has only ever been a blank wall.",
+      "Old wood. Brass handle. A scratch near the lock shaped like 11:11.",
+      "You know you should call Eli.",
+      "Instead, you open it.",
+      "The room beyond is not a room. It is the same hallway, but darker, older, soaked in dust.",
+      "Another version of you sits on the floor holding Eli’s coat.",
+      "They look like they have not slept in years.",
+      "When they see you, they do not seem surprised.",
+      "\"You are early,\" they say.",
+      "You ask where Eli is.",
+      "The other you laughs once, but it breaks before it becomes sound.",
+      "\"Which Eli?\"",
+      "On the wall behind them are tally marks. Dozens. Hundreds.",
+      "At the bottom, written in your handwriting:",
+      "\"Do not let Eli know how much they remember.\"",
+      "The other you crawls toward the door and grips your wrist.",
+      "\"They are not the one who started this,\" they whisper.",
+      "\"We are only catching up.\""
     ],
     choiceText: "Step Inside",
-    quote: "Some doors do not open into rooms. They open into grief.",
-    endingHint: "The other you disappears before you can ask what Eli knows.",
+    quote: "Some doors do not open into rooms. They open into grief that learned to wait.",
+    endingHint:
+      "Before you can ask what Eli remembers, the other you is pulled backward into darkness.",
   },
+
   {
     id: 8,
     title: "The First Paradox",
@@ -177,16 +264,33 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "message",
     mainText: [
-      "You tell Eli everything.",
-      "The reset. The watch. The street. The train. The way they keep vanishing at 11:11 PM.",
-      "Eli does not laugh. Eli does not call you insane.",
-      "They only ask one question.",
-      "\"How many times have you watched me die?\""
+      "You are tired of lying to someone you keep losing.",
+      "So you tell Eli everything.",
+      "The first message. The crosswalk. The watch. The apartment. The train. The door. The version of yourself that looked older than grief.",
+      "You expect Eli to think you are losing your mind.",
+      "They do not.",
+      "They go quiet in a way that scares you more than disbelief.",
+      "\"What time?\" Eli asks.",
+      "You blink.",
+      "\"What time does it always happen?\"",
+      "\"11:11 PM.\"",
+      "Eli closes their eyes.",
+      "For a moment, their face changes. Not older, exactly. Just heavier.",
+      "Like a person briefly remembering the weight of a life they were not supposed to carry.",
+      "\"How many times have you watched me die?\" they ask.",
+      "Your throat locks.",
+      "Before you can answer, your phone lights up with a new unsent draft.",
+      "\"Do not answer that.\"",
+      "The clock on the wall jumps from 4:16 PM to 11:11 PM.",
+      "Eli reaches for you.",
+      "\"Wait,\" they say. \"I know this part.\""
     ],
     choiceText: "Answer Eli",
-    quote: "Truth can be a wound if it arrives too soon.",
-    endingHint: "Before you can answer, the timeline forces another reset.",
+    quote: "Truth can be a wound if it arrives before memory is ready.",
+    endingHint:
+      "The timeline forces a reset the moment Eli almost remembers too much.",
   },
+
   {
     id: 9,
     title: "The Room Full of Tomorrow",
@@ -197,16 +301,33 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "photo",
     mainText: [
-      "Inside an abandoned apartment, you find a room that should not exist.",
-      "The walls are covered with photographs.",
-      "Each one captures Eli during the final second of a different timeline.",
-      "Timeline 001. Timeline 002. Timeline 003.",
-      "The last photo is labeled Timeline 049."
+      "The impossible room returns.",
+      "This time, you do not find it by accident. The broken watch leads you there, ticking harder whenever you face the wrong direction.",
+      "Behind the old door is a room covered in photographs.",
+      "Not memories. Evidence.",
+      "Eli at the crosswalk. Eli in the apartment. Eli on the train. Eli in the hospital you have not tried yet. Eli at a red station you have never seen.",
+      "Each photo is labeled with a timeline number.",
+      "Timeline 001.",
+      "Timeline 002.",
+      "Timeline 006.",
+      "Timeline 012.",
+      "Some photos show endings you remember. Some show failures you have not reached.",
+      "On one wall, there are pictures of you.",
+      "In some, you are alive.",
+      "In others, Eli is holding your body.",
+      "Your hands go cold.",
+      "The final row has only two frames.",
+      "Timeline 049 is filled with a photograph of Eli standing before a white door.",
+      "Timeline 050 is empty.",
+      "Under the empty frame, someone has written:",
+      "\"This one is not yours.\""
     ],
     choiceText: "Touch The Last Photo",
-    quote: "Tomorrow is not coming. It is waiting.",
-    endingHint: "A blank space on the wall is labeled Timeline 050.",
+    quote: "Tomorrow is not coming. It is waiting to see who pays for it.",
+    endingHint:
+      "Behind the empty Timeline 050 frame, you hear Eli crying from the other side of the wall.",
   },
+
   {
     id: 10,
     title: "Stop Saving Me",
@@ -217,15 +338,31 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "audio",
     mainText: [
-      "The broken watch opens by itself.",
-      "A recording begins to play.",
-      "Eli’s voice is soft, exhausted, and impossibly close.",
+      "On the tenth morning, the watch will not open.",
+      "You press the button until your thumb hurts. You whisper Eli’s name. You promise the empty room you will find a better way.",
+      "At 11:11 AM, exactly twelve hours before the usual ending, the watch opens by itself.",
+      "There is no photograph inside now.",
+      "Only a small speaker hidden behind the cracked face.",
+      "Static breathes through it.",
+      "Then Eli’s voice begins.",
       "\"If you hear this, it means you started again.\"",
-      "\"Please... stop saving me.\""
+      "Their voice is not the Eli from this morning. It is thinner. Older. Exhausted by a grief you do not yet understand.",
+      "\"I know you think love means trying one more time.\"",
+      "\"I know you think if you find the right road, the right door, the right minute, you can bring me back.\"",
+      "The recording breaks into static.",
+      "When it returns, Eli is crying.",
+      "\"But every time you save me, something else takes your place.\"",
+      "\"Every time you refuse to let me go, another part of you disappears.\"",
+      "\"Please.\"",
+      "\"Stop saving me.\"",
+      "You hold the watch so tightly the cracked glass cuts your palm.",
+      "Eli whispers your name one last time.",
+      "\"You were never supposed to be the one chasing me.\""
     ],
     choiceText: "Replay The Voice",
-    quote: "The person you are trying to save is begging you to stop.",
-    endingHint: "The recording ends with Eli whispering your name.",
+    quote: "The person you are trying to save is begging you to stop, and you still do not know why.",
+    endingHint:
+      "The recording ends with a second voice in the background. It is yours, dying in Eli’s arms.",
   },
 
   {
@@ -248,6 +385,7 @@ const timelineEpisodes = [
     quote: "You are saving a life by losing the reasons you loved it.",
     endingHint: "A memory of Eli’s smile disappears from your phone.",
   },
+
   {
     id: 12,
     title: "The Hospital Without Names",
@@ -268,6 +406,7 @@ const timelineEpisodes = [
     quote: "A safe room means nothing if time itself wants someone gone.",
     endingHint: "Eli’s hospital bracelet shows your name instead.",
   },
+
   {
     id: 13,
     title: "The Photo That Fades First",
@@ -288,6 +427,7 @@ const timelineEpisodes = [
     quote: "Some memories do not fade. They are taken.",
     endingHint: "The café in the photo no longer exists on the map.",
   },
+
   {
     id: 14,
     title: "Seven Minutes Earlier",
@@ -308,6 +448,7 @@ const timelineEpisodes = [
     quote: "Sometimes the universe gives you time only to prove it is not enough.",
     endingHint: "Eli knew where the danger would come from before you did.",
   },
+
   {
     id: 15,
     title: "The Stranger at the Crosswalk",
@@ -328,6 +469,7 @@ const timelineEpisodes = [
     quote: "The person you are saving may have saved you first.",
     endingHint: "You find a shard from a second broken watch.",
   },
+
   {
     id: 16,
     title: "The Notebook of Failed Worlds",
@@ -348,6 +490,7 @@ const timelineEpisodes = [
     quote: "You were never the only one fighting time.",
     endingHint: "The next page is signed with Eli’s initial.",
   },
+
   {
     id: 17,
     title: "The Song From Another Life",
@@ -368,6 +511,7 @@ const timelineEpisodes = [
     quote: "Some songs are not written. They survive.",
     endingHint: "The audio file saves itself as goodbye_107.mp3.",
   },
+
   {
     id: 18,
     title: "The World Where You Never Met",
@@ -388,6 +532,7 @@ const timelineEpisodes = [
     quote: "Love does not always begin with memory.",
     endingHint: "Eli saves you even as a stranger.",
   },
+
   {
     id: 19,
     title: "The Empty Seat Beside You",
@@ -408,6 +553,7 @@ const timelineEpisodes = [
     quote: "An empty seat can be louder than a scream.",
     endingHint: "The film ends with Eli turning toward the camera.",
   },
+
   {
     id: 20,
     title: "The First Time You Gave Up",
@@ -449,6 +595,7 @@ const timelineEpisodes = [
     quote: "The handwriting of the dead can still arrive early.",
     endingHint: "The ink is fresh.",
   },
+
   {
     id: 22,
     title: "The Version of You That Died",
@@ -469,6 +616,7 @@ const timelineEpisodes = [
     quote: "The first person lost was you.",
     endingHint: "Eli presses the watch and resets the world.",
   },
+
   {
     id: 23,
     title: "The Message Under the Floor",
@@ -489,6 +637,7 @@ const timelineEpisodes = [
     quote: "A secret can survive beneath the floor longer than a body can survive time.",
     endingHint: "The recording ends with your own crying in the background.",
   },
+
   {
     id: 24,
     title: "The Timeline Where Eli Lied",
@@ -509,6 +658,7 @@ const timelineEpisodes = [
     quote: "A lie told to protect you still cuts like truth.",
     endingHint: "A time fracture appears on Eli’s wrist.",
   },
+
   {
     id: 25,
     title: "The Red Station",
@@ -529,6 +679,7 @@ const timelineEpisodes = [
     quote: "Some stations are built for people who cannot arrive together.",
     endingHint: "A fourth rule is hidden behind a wall of broken clocks.",
   },
+
   {
     id: 26,
     title: "The Rules Written in Blood",
@@ -549,6 +700,7 @@ const timelineEpisodes = [
     quote: "A rule written in blood has already been broken.",
     endingHint: "The fourth rule begins with: The one who remembers most...",
   },
+
   {
     id: 27,
     title: "The Life You Borrowed",
@@ -569,6 +721,7 @@ const timelineEpisodes = [
     quote: "You called it luck because Eli never let you see the cost.",
     endingHint: "In the final memory, Eli says: Don’t tell them. Let them live.",
   },
+
   {
     id: 28,
     title: "Do Not Follow Me",
@@ -589,6 +742,7 @@ const timelineEpisodes = [
     quote: "Sometimes chasing someone is how you lose them faster.",
     endingHint: "The timeline tears open the moment you touch Eli’s hand.",
   },
+
   {
     id: 29,
     title: "The House That Remembers Both of You",
@@ -609,6 +763,7 @@ const timelineEpisodes = [
     quote: "A home can remember every version of heartbreak.",
     endingHint: "The house reveals the location of Eli’s second watch.",
   },
+
   {
     id: 30,
     title: "The Second Watch",
@@ -657,6 +812,7 @@ const timelineEpisodes = [
     quote: "Every universe keeps its grief somewhere.",
     endingHint: "The largest exhibit is labeled: Original Timeline — You Died.",
   },
+
   {
     id: 32,
     title: "The Birthday You Forgot",
@@ -677,6 +833,7 @@ const timelineEpisodes = [
     quote: "Obsession remembers the wound. Love remembers the person.",
     endingHint: "The candle melts into the shape of 11:11.",
   },
+
   {
     id: 33,
     title: "The World Where Eli Stayed",
@@ -697,6 +854,7 @@ const timelineEpisodes = [
     quote: "A saved life can still be borrowed from someone else.",
     endingHint: "Eli whispers: This is why I kept leaving.",
   },
+
   {
     id: 34,
     title: "A Perfect Day, Almost",
@@ -717,6 +875,7 @@ const timelineEpisodes = [
     quote: "A perfect day can hurt more than a terrible one.",
     endingHint: "The sun stops moving.",
   },
+
   {
     id: 35,
     title: "The Cost of Staying",
@@ -737,6 +896,7 @@ const timelineEpisodes = [
     quote: "Keeping someone can become another way of destroying them.",
     endingHint: "A white door appears at the center of the city.",
   },
+
   {
     id: 36,
     title: "The Letter From Future Eli",
@@ -757,6 +917,7 @@ const timelineEpisodes = [
     quote: "I was saving the version of you who still knew how to love.",
     endingHint: "The back of the letter says: Open Memory 000.",
   },
+
   {
     id: 37,
     title: "The Memory You Must Not Open",
@@ -777,6 +938,7 @@ const timelineEpisodes = [
     quote: "Some truths cost the last chance to avoid them.",
     endingHint: "You return to the first 11:11 PM.",
   },
+
   {
     id: 38,
     title: "The Day You Were Supposed to Die",
@@ -797,6 +959,7 @@ const timelineEpisodes = [
     quote: "Before you tried to save Eli, Eli broke time to save you.",
     endingHint: "Eli’s watch begins moving for the first time.",
   },
+
   {
     id: 39,
     title: "The First Sacrifice",
@@ -818,6 +981,7 @@ const timelineEpisodes = [
     quote: "This is the 107th time I watch you die. I’m not letting go yet.",
     endingHint: "Eli restarts the world and loses the memory of your first confession.",
   },
+
   {
     id: 40,
     title: "The Promise You Never Heard",
@@ -859,6 +1023,7 @@ const timelineEpisodes = [
     quote: "Two people can love each other so much they become each other’s cage.",
     endingHint: "Only one traveler may leave with memory intact.",
   },
+
   {
     id: 42,
     title: "The Room Between Seconds",
@@ -879,6 +1044,7 @@ const timelineEpisodes = [
     quote: "Some goodbyes need more than time can give.",
     endingHint: "Eli admits they remembered every timeline.",
   },
+
   {
     id: 43,
     title: "All the Ways You Saved Me",
@@ -899,6 +1065,7 @@ const timelineEpisodes = [
     quote: "You loved me so hard it almost destroyed you.",
     endingHint: "Eli reaches for your hand, but their fingers flicker.",
   },
+
   {
     id: 44,
     title: "All the Ways I Saved You",
@@ -919,6 +1086,7 @@ const timelineEpisodes = [
     quote: "You thought Eli was waiting to be saved. Eli was the first rescuer.",
     endingHint: "The museum cannot count Eli’s remaining sacrifices.",
   },
+
   {
     id: 45,
     title: "The Timeline That Wants One of You",
@@ -939,6 +1107,7 @@ const timelineEpisodes = [
     quote: "A rule does not need cruelty to break your heart.",
     endingHint: "The core asks: Save the one you love, or become the one they lose.",
   },
+
   {
     id: 46,
     title: "The Choice That Isn’t a Choice",
@@ -959,6 +1128,7 @@ const timelineEpisodes = [
     quote: "You cannot sacrifice yourself for someone who already sacrificed first.",
     endingHint: "Eli locked your death out of the final timeline.",
   },
+
   {
     id: 47,
     title: "Eli Remembers Everything",
@@ -979,6 +1149,7 @@ const timelineEpisodes = [
     quote: "Every time you looked at me like it was the first time, I had already lost you hundreds of times.",
     endingHint: "Eli’s body begins to fade from the white room.",
   },
+
   {
     id: 48,
     title: "The Final Rescue",
@@ -999,6 +1170,7 @@ const timelineEpisodes = [
     quote: "The final rescue was never yours to perform.",
     endingHint: "Eli begins disappearing from every timeline at once.",
   },
+
   {
     id: 49,
     title: "You Were Never the Only One Trying",
@@ -1019,6 +1191,7 @@ const timelineEpisodes = [
     quote: "You were never the only one trying.",
     endingHint: "The Last Door opens into morning light.",
   },
+
   {
     id: 50,
     title: "The Last Timeline",
@@ -1160,7 +1333,9 @@ function getTimelineProgress(id) {
 
 function isEliPerspectiveEpisode(id) {
   const episode = getTimelineEpisode(id);
-  return episode ? episode.traveler === "Eli" || episode.specialMode === "eliPerspective" : false;
+  return episode
+    ? episode.traveler === "Eli" || episode.specialMode === "eliPerspective"
+    : false;
 }
 
 function isFinalTimelineEpisode(id) {
