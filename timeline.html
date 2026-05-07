@@ -1,1 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Last Timeline | ZenAI Mystery Universe</title>
+  <meta
+    name="description"
+    content="The Last Timeline is Series 02 of ZenAI Mystery Universe — an emotional time travel story about sacrifice, love, and letting go."
+  />
 
+  <style>
+    :root {
+      --bg: #050814;
+      --bg2: #080d1f;
+      --card: rgba(255, 255, 255, 0.065);
+      --card2: rgba(255, 255, 255, 0.1);
+      --text: #f6f7fb;
+      --muted: rgba(246, 247, 251, 0.68);
+      --soft: rgba(246, 247, 251, 0.45);
+      --line: rgba(255, 255, 255, 0.14);
+      --blue: #6aa7ff;
+      --red: #ff5d73;
+      --orange: #ffc16a;
+      --white: #fff1d7;
+      --shadow: 0 30px 100px rgba(0, 0, 0, 0.55);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(76, 136, 255, 0.24), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(255, 93, 115, 0.15), transparent 34%),
+        linear-gradient(135deg, #040713 0%, #071025 46%, #03040b 100%);
+      overflow-x: hidden;
+      transition: background 0.8s ease, color 0.5s ease;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at center, black, transparent 75%);
+      opacity: 0.5;
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 115%, rgba(106, 167, 255, 0.15), transparent 35%),
+        linear-gradient(to bottom, transparent, rgba(0,0,0,0.35));
+      z-index: -1;
+    }
+
+    body.mode-red {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 61, 91, 0.28), transparent 32%),
+        radial-gradient(circle at 15% 35%, rgba(255, 93, 115, 0.18), transparent 28%),
+        linear-gradient(135deg, #13040a 0%, #160916 48%, #020307 100%);
+    }
+
+    body.mode-orange,
+    body.mode-reversed {
+      background:
+        radial-gradient(circle at 20% 8%, rgba(255, 193, 106, 0.25), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(255, 111, 93, 0.16), transparent 35%),
+        linear-gradient(135deg, #130c05 0%, #15101a 48%, #030306 100%);
+    }
+
+    body.mode-white {
+      color: #21170d;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 244, 216, 0.95), transparent 40%),
+        radial-gradient(circle at 15% 25%, rgba(255, 193, 106, 0.35), transparent 28%),
+        linear-gradient(135deg, #fff4dc 0%, #f7dba8 42%, #f2c57d 100%);
+    }
+
+    body.mode-white::before {
+      opacity: 0.15;
+    }
+
+    body.mode-white::after {
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.28));
+    }
+
+    body.final-collapse {
+      animation: bodyShake 0.2s infinite alternate;
+    }
+
+    @keyframes bodyShake {
+      from { transform: translateX(-1px); filter: saturate(1.25); }
+      to { transform: translateX(1px); filter: saturate(1.55) contrast(1.15); }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0 18px;
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 45% 40%, rgba(255,255,255,0.9) 0 3px, transparent 4px),
+        radial-gradient(circle at 55% 52%, rgba(106,167,255,0.65), transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+      box-shadow: 0 14px 45px rgba(106, 167, 255, 0.18);
+      flex: 0 0 auto;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .brand strong {
+      display: block;
+      margin-top: 2px;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      text-transform: none;
+      white-space: nowrap;
+    }
+
+    body.mode-white .brand h1,
+    body.mode-white .brand strong {
+      color: #21170d;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a,
+    .nav button {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      padding: 10px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      backdrop-filter: blur(12px);
+    }
+
+    body.mode-white .nav a,
+    body.mode-white .nav button {
+      color: #21170d;
+      background: rgba(255,255,255,0.42);
+      border-color: rgba(33, 23, 13, 0.18);
+    }
+
+    .nav a:hover,
+    .nav button:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.13);
+    }
+
+    .hero {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,255,255,0.095), rgba(255,255,255,0.035));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px);
+      overflow: hidden;
+    }
+
+    body.mode-white .panel {
+      border-color: rgba(33, 23, 13, 0.18);
+      background: linear-gradient(135deg, rgba(255,255,255,0.68), rgba(255,255,255,0.35));
+      box-shadow: 0 30px 90px rgba(99, 62, 13, 0.22);
+    }
+
+    .intro {
+      padding: 34px;
+      position: relative;
+      min-height: 390px;
+    }
+
+    .intro::before {
+      content: "";
+      position: absolute;
+      inset: -120px -120px auto auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(106,167,255,0.35), transparent 64%);
+      filter: blur(12px);
+      pointer-events: none;
+    }
+
+    body.mode-orange .intro::before,
+    body.mode-reversed .intro::before {
+      background: radial-gradient(circle, rgba(255,193,106,0.42), transparent 64%);
+    }
+
+    body.mode-red .intro::before {
+      background: radial-gradient(circle, rgba(255,93,115,0.38), transparent 64%);
+    }
+
+    body.mode-white .intro::before {
+      background: radial-gradient(circle, rgba(255,255,255,0.8), transparent 64%);
+    }
+
+    .kicker {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.055);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    body.mode-white .kicker {
+      color: rgba(33, 23, 13, 0.75);
+      background: rgba(255,255,255,0.45);
+      border-color: rgba(33, 23, 13, 0.18);
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 24px var(--blue);
+    }
+
+    body.mode-red .dot {
+      background: var(--red);
+      box-shadow: 0 0 24px var(--red);
+    }
+
+    body.mode-orange .dot,
+    body.mode-reversed .dot {
+      background: var(--orange);
+      box-shadow: 0 0 24px var(--orange);
+    }
+
+    body.mode-white .dot {
+      background: #8a4b00;
+      box-shadow: 0 0 24px rgba(138, 75, 0, 0.35);
+    }
+
+    .intro h2 {
+      position: relative;
+      z-index: 1;
+      margin: 22px 0 14px;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 0.88;
+      letter-spacing: -0.08em;
+    }
+
+    .intro h2 span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.42em;
+      letter-spacing: -0.04em;
+      margin-top: 12px;
+      font-weight: 650;
+    }
+
+    body.mode-white .intro h2 span {
+      color: rgba(33, 23, 13, 0.68);
+    }
+
+    .intro p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 660px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.72;
+    }
+
+    body.mode-white .intro p {
+      color: rgba(33, 23, 13, 0.76);
+    }
+
+    .hero-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      padding: 13px 18px;
+      border-radius: 999px;
+      color: #08101f;
+      background: linear-gradient(135deg, #ffffff, #9fc7ff);
+      font-weight: 780;
+      letter-spacing: -0.02em;
+      transition: 0.22s ease;
+      box-shadow: 0 16px 40px rgba(106,167,255,0.22);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
+    .btn.secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    body.mode-white .btn.secondary {
+      color: #21170d;
+      background: rgba(255,255,255,0.5);
+      border-color: rgba(33, 23, 13, 0.18);
+    }
+
+    .btn.danger {
+      color: #fff;
+      background: linear-gradient(135deg, #ff5d73, #72131f);
+      box-shadow: 0 16px 45px rgba(255, 93, 115, 0.26);
+    }
+
+    .btn.letgo {
+      color: #21170d;
+      background: linear-gradient(135deg, #fff7dd, #ffc16a);
+      box-shadow: 0 16px 60px rgba(255, 193, 106, 0.35);
+      animation: breathe 1.8s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: translateY(0); box-shadow: 0 16px 60px rgba(255, 193, 106, 0.25); }
+      50% { transform: translateY(-2px); box-shadow: 0 24px 80px rgba(255, 193, 106, 0.5); }
+    }
+
+    .clock-panel {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 390px;
+      position: relative;
+    }
+
+    .clock-panel::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      pointer-events: none;
+    }
+
+    .clock-title {
+      position: relative;
+      z-index: 1;
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .clock {
+      position: relative;
+      z-index: 1;
+      margin: 36px 0 16px;
+      font-variant-numeric: tabular-nums;
+      font-size: clamp(54px, 8vw, 96px);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      font-weight: 850;
+      text-shadow: 0 0 36px rgba(106, 167, 255, 0.26);
+    }
+
+    .clock.normal {
+      animation: faintPulse 2.8s ease-in-out infinite;
+    }
+
+    .clock.warning {
+      color: #ffd0d6;
+      text-shadow: 0 0 36px rgba(255, 93, 115, 0.7);
+      animation: warningShake 0.11s infinite alternate;
+    }
+
+    .clock.frozen {
+      color: #ffffff;
+      text-shadow: 0 0 44px rgba(255,255,255,0.38);
+    }
+
+    .clock.collapse {
+      color: #ff5d73;
+      text-shadow: 3px 0 #6aa7ff, -3px 0 #ffc16a, 0 0 50px rgba(255, 93, 115, 0.8);
+      animation: glitchClock 0.2s infinite;
+    }
+
+    body.mode-white .clock {
+      color: #21170d;
+      text-shadow: 0 0 34px rgba(255,255,255,0.65);
+    }
+
+    @keyframes faintPulse {
+      0%, 100% { opacity: 0.62; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes warningShake {
+      from { transform: translateX(-2px) rotate(-0.2deg); }
+      to { transform: translateX(2px) rotate(0.2deg); }
+    }
+
+    @keyframes glitchClock {
+      0% { transform: translate(0, 0); filter: hue-rotate(0deg); }
+      30% { transform: translate(2px, -1px); filter: hue-rotate(30deg); }
+      60% { transform: translate(-2px, 1px); filter: hue-rotate(-25deg); }
+      100% { transform: translate(0, 0); filter: hue-rotate(0deg); }
+    }
+
+    .clock-desc {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    body.mode-white .clock-desc {
+      color: rgba(33, 23, 13, 0.72);
+    }
+
+    .progress-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .progress {
+      height: 9px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--line);
+    }
+
+    body.mode-white .progress {
+      background: rgba(33, 23, 13, 0.09);
+      border-color: rgba(33, 23, 13, 0.16);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 2%;
+      background: linear-gradient(90deg, #6aa7ff, #ffc16a, #ff5d73);
+      border-radius: inherit;
+      transition: width 0.4s ease;
+    }
+
+    .game {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .side {
+      padding: 22px;
+    }
+
+    .episode-list-title {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .episode-list {
+      display: grid;
+      gap: 8px;
+      max-height: 670px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .episode-item {
+      border: 1px solid transparent;
+      background: rgba(255,255,255,0.045);
+      color: var(--muted);
+      border-radius: 16px;
+      padding: 11px 12px;
+      cursor: pointer;
+      text-align: left;
+      transition: 0.18s ease;
+      width: 100%;
+    }
+
+    .episode-item:hover {
+      background: rgba(255,255,255,0.09);
+      color: var(--text);
+    }
+
+    .episode-item.active {
+      border-color: rgba(106,167,255,0.45);
+      background: rgba(106,167,255,0.15);
+      color: var(--text);
+    }
+
+    body.mode-white .episode-item {
+      background: rgba(255,255,255,0.38);
+      color: rgba(33, 23, 13, 0.72);
+    }
+
+    body.mode-white .episode-item.active {
+      border-color: rgba(138, 75, 0, 0.26);
+      background: rgba(255,255,255,0.68);
+      color: #21170d;
+    }
+
+    .episode-item strong {
+      display: block;
+      font-size: 13px;
+      color: inherit;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .episode-item span {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      opacity: 0.72;
+    }
+
+    .story {
+      padding: 30px;
+      min-height: 670px;
+      position: relative;
+    }
+
+    body.mode-reversed .story {
+      transform: scaleX(-1);
+    }
+
+    body.mode-reversed .story > * {
+      transform: scaleX(-1);
+    }
+
+    .episode-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .episode-num {
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .episode-title {
+      margin: 8px 0 8px;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 0.94;
+      letter-spacing: -0.075em;
+    }
+
+    .episode-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    body.mode-white .episode-subtitle,
+    body.mode-white .episode-num {
+      color: rgba(33, 23, 13, 0.7);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+      min-width: 230px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.055);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .chip b {
+      color: var(--text);
+      font-weight: 760;
+    }
+
+    body.mode-white .chip {
+      color: rgba(33, 23, 13, 0.68);
+      border-color: rgba(33, 23, 13, 0.17);
+      background: rgba(255,255,255,0.45);
+    }
+
+    body.mode-white .chip b {
+      color: #21170d;
+    }
+
+    .story-body {
+      margin-top: 26px;
+      display: grid;
+      gap: 15px;
+    }
+
+    .story-body p {
+      margin: 0;
+      color: rgba(246,247,251,0.82);
+      font-size: 18px;
+      line-height: 1.82;
+    }
+
+    body.mode-white .story-body p {
+      color: rgba(33, 23, 13, 0.78);
+    }
+
+    .quote {
+      margin: 28px 0 0;
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(106,167,255,0.28);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(106,167,255,0.15), transparent 40%),
+        rgba(255,255,255,0.055);
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: -0.045em;
+      font-weight: 760;
+    }
+
+    body.mode-red .quote {
+      border-color: rgba(255,93,115,0.32);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,93,115,0.16), transparent 40%),
+        rgba(255,255,255,0.055);
+    }
+
+    body.mode-orange .quote,
+    body.mode-reversed .quote {
+      border-color: rgba(255,193,106,0.34);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,193,106,0.18), transparent 40%),
+        rgba(255,255,255,0.055);
+    }
+
+    body.mode-white .quote {
+      color: #21170d;
+      border-color: rgba(138,75,0,0.2);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.75), transparent 40%),
+        rgba(255,255,255,0.45);
+    }
+
+    .hint {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    body.mode-white .hint {
+      color: rgba(33, 23, 13, 0.7);
+    }
+
+    .easter {
+      margin-top: 22px;
+      padding: 18px;
+      border: 1px solid rgba(255, 93, 115, 0.25);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(255,93,115,0.18), transparent 42%),
+        rgba(255,255,255,0.045);
+      border-radius: 22px;
+    }
+
+    .easter small {
+      display: block;
+      color: rgba(255,255,255,0.52);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 8px;
+    }
+
+    .easter strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .easter p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 28px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .control-left,
+    .control-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .final-box {
+      margin-top: 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      padding: 22px;
+      display: none;
+    }
+
+    .final-box.show {
+      display: block;
+    }
+
+    body.mode-white .final-box {
+      border-color: rgba(33, 23, 13, 0.16);
+      background: rgba(255,255,255,0.52);
+    }
+
+    .final-box h3 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      letter-spacing: -0.05em;
+    }
+
+    .final-box p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    body.mode-white .final-box p {
+      color: rgba(33, 23, 13, 0.74);
+    }
+
+    .memory-card {
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,193,106,0.34);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255,244,216,0.82), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,0.88), rgba(255,193,106,0.36));
+      color: #241607;
+      box-shadow: 0 20px 70px rgba(255,193,106,0.22);
+    }
+
+    .memory-card small {
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.62;
+      margin-bottom: 12px;
+    }
+
+    .memory-card strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1.18;
+      letter-spacing: -0.06em;
+    }
+
+    .memory-card span {
+      display: block;
+      margin-top: 14px;
+      opacity: 0.72;
+      line-height: 1.5;
+    }
+
+    .hold-message {
+      margin-top: 18px;
+      padding: 17px;
+      border-radius: 18px;
+      color: #ffd7dc;
+      border: 1px solid rgba(255,93,115,0.3);
+      background: rgba(255,93,115,0.09);
+      display: none;
+      line-height: 1.55;
+    }
+
+    .hold-message.show {
+      display: block;
+    }
+
+    .hold-message.glitch {
+      animation: textGlitch 0.22s infinite alternate;
+    }
+
+    @keyframes textGlitch {
+      from { text-shadow: 2px 0 #6aa7ff; transform: skewX(-1deg); }
+      to { text-shadow: -2px 0 #ffc16a; transform: skewX(1deg); }
+    }
+
+    .empty-state {
+      padding: 30px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 30px;
+      padding: 22px 0 0;
+      color: var(--soft);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 920px) {
+      .topbar {
+        position: relative;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .hero,
+      .game {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        display: none;
+      }
+
+      .intro,
+      .clock-panel,
+      .story {
+        min-height: auto;
+      }
+
+      .episode-head {
+        flex-direction: column;
+      }
+
+      .chips {
+        justify-content: flex-start;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 22px, 1180px);
+        padding-top: 10px;
+      }
+
+      .intro,
+      .clock-panel,
+      .story {
+        padding: 22px;
+      }
+
+      .brand strong {
+        font-size: 16px;
+      }
+
+      .nav a,
+      .nav button {
+        padding: 9px 11px;
+        font-size: 12px;
+      }
+
+      .clock {
+        font-size: 58px;
+      }
+
+      .story-body p {
+        font-size: 16px;
+      }
+
+      .quote {
+        font-size: 20px;
+      }
+
+      .controls {
+        flex-direction: column;
+      }
+
+      .control-left,
+      .control-right {
+        width: 100%;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body class="mode-blue">
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Back to ZenAI Mystery Universe home">
+        <div class="brand-mark"></div>
+        <div>
+          <h1>ZenAI Mystery Universe</h1>
+          <strong>The Last Timeline</strong>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Universe Home</a>
+        <a href="red-eye.html">Red Eye Files</a>
+        <a href="archive.html">Archive Room</a>
+        <button type="button" id="resetTimelineBtn">Reset Timeline</button>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="panel intro">
+        <div class="kicker"><span class="dot"></span> Series 02 · Time Travel Love Story</div>
+        <h2>
+          The Last Timeline
+          <span>最后的时间线</span>
+        </h2>
+        <p>
+          You spent 49 timelines trying to save Eli. In the 50th, you discover Eli was saving you too.
+          This is not a story about defeating time. This is a story about learning to let go.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn" type="button" id="startBtn">Start / Continue</button>
+          <button class="btn secondary" type="button" id="jumpFinalBtn">Enter EP.50</button>
+        </div>
+      </div>
+
+      <aside class="panel clock-panel">
+        <div>
+          <div class="clock-title">Core Timeline Signal</div>
+          <div class="clock normal" id="timelineClock">11:11 PM</div>
+          <div class="clock-desc" id="clockDesc">
+            The 11:11 PM clock flickers faintly.
+          </div>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-row">
+            <span id="progressText">EP.01 / 50</span>
+            <span id="progressPercent">2%</span>
+          </div>
+          <div class="progress">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <main class="game" id="game">
+      <aside class="panel side">
+        <h3 class="episode-list-title">Episode Select</h3>
+        <div class="episode-list" id="episodeList"></div>
+      </aside>
+
+      <section class="panel story">
+        <div id="storyContent">
+          <div class="empty-state">
+            Loading The Last Timeline...
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      ZenAI Mystery Universe · Series 02 · The Last Timeline
+    </footer>
+  </div>
+
+  <script src="timeline-games.js"></script>
+
+  <script>
+    (function () {
+      const STORAGE_CURRENT = "timeline_current_episode";
+      const STORAGE_ARCHIVE = "timeline_archive_saved";
+      const STORAGE_HOLD = "timeline_hold_on_count";
+      const STORAGE_COMPLETE = "timeline_completed";
+
+      const episodes = window.timelineEpisodes || [];
+      const meta = window.timelineMeta || {};
+      const clockModes = window.timelineClockModes || {};
+      const finalLogic = window.timelineFinalLogic || {};
+
+      let currentId = getInitialEpisodeId();
+
+      const body = document.body;
+      const storyContent = document.getElementById("storyContent");
+      const episodeList = document.getElementById("episodeList");
+      const timelineClock = document.getElementById("timelineClock");
+      const clockDesc = document.getElementById("clockDesc");
+      const progressText = document.getElementById("progressText");
+      const progressPercent = document.getElementById("progressPercent");
+      const progressFill = document.getElementById("progressFill");
+
+      const startBtn = document.getElementById("startBtn");
+      const jumpFinalBtn = document.getElementById("jumpFinalBtn");
+      const resetTimelineBtn = document.getElementById("resetTimelineBtn");
+
+      if (!episodes.length) {
+        storyContent.innerHTML = `
+          <div class="empty-state">
+            timeline-games.js has not loaded. Make sure timeline-games.js and timeline.html are in the same folder.
+          </div>
+        `;
+        return;
+      }
+
+      renderEpisodeList();
+      renderEpisode(currentId);
+
+      startBtn.addEventListener("click", function () {
+        document.getElementById("game").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      jumpFinalBtn.addEventListener("click", function () {
+        goToEpisode(50);
+        document.getElementById("game").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      resetTimelineBtn.addEventListener("click", function () {
+        const ok = window.confirm("Reset The Last Timeline progress?");
+        if (!ok) return;
+
+        localStorage.removeItem(STORAGE_CURRENT);
+        localStorage.removeItem(STORAGE_ARCHIVE);
+        localStorage.removeItem(STORAGE_HOLD);
+        localStorage.removeItem(STORAGE_COMPLETE);
+
+        goToEpisode(1);
+      });
+
+      function getInitialEpisodeId() {
+        const params = new URLSearchParams(window.location.search);
+        const epFromUrl = Number(params.get("ep"));
+        const epFromStorage = Number(localStorage.getItem(STORAGE_CURRENT));
+        const id = epFromUrl || epFromStorage || 1;
+        return clampEpisode(id);
+      }
+
+      function clampEpisode(id) {
+        const num = Number(id) || 1;
+        return Math.max(1, Math.min(episodes.length || 50, num));
+      }
+
+      function getEpisode(id) {
+        return episodes.find((item) => Number(item.id) === Number(id)) || episodes[0];
+      }
+
+      function saveCurrentEpisode(id) {
+        localStorage.setItem(STORAGE_CURRENT, String(id));
+      }
+
+      function getSavedArchive() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_ARCHIVE) || "[]");
+        } catch (error) {
+          return [];
+        }
+      }
+
+      function saveArchiveEpisode(episode) {
+        const saved = getSavedArchive();
+        const exists = saved.some((item) => Number(item.id) === Number(episode.id));
+
+        if (!exists) {
+          saved.push({
+            id: episode.id,
+            title: episode.title,
+            quote: episode.quote,
+            prop: episode.prop,
+            traveler: episode.traveler,
+            fragmentType: episode.fragmentType
+          });
+          localStorage.setItem(STORAGE_ARCHIVE, JSON.stringify(saved));
+        }
+      }
+
+      function renderEpisodeList() {
+        episodeList.innerHTML = episodes.map((episode) => {
+          return `
+            <button
+              type="button"
+              class="episode-item ${Number(episode.id) === Number(currentId) ? "active" : ""}"
+              data-ep="${episode.id}"
+            >
+              <strong>EP.${String(episode.id).padStart(2, "0")} · ${escapeHtml(episode.title)}</strong>
+              <span>${escapeHtml(episode.traveler)} · ${escapeHtml(episode.clockMode)}</span>
+            </button>
+          `;
+        }).join("");
+
+        episodeList.querySelectorAll(".episode-item").forEach((button) => {
+          button.addEventListener("click", function () {
+            goToEpisode(Number(button.dataset.ep));
+          });
+        });
+      }
+
+      function goToEpisode(id) {
+        currentId = clampEpisode(id);
+        saveCurrentEpisode(currentId);
+
+        const url = new URL(window.location.href);
+        url.searchParams.set("ep", String(currentId));
+        window.history.replaceState({}, "", url.toString());
+
+        renderEpisodeList();
+        renderEpisode(currentId);
+      }
+
+      function renderEpisode(id) {
+        const episode = getEpisode(id);
+        saveArchiveEpisode(episode);
+        applyVisualMode(episode);
+        renderClock(episode);
+        renderProgress(episode);
+
+        const paragraphs = Array.isArray(episode.mainText)
+          ? episode.mainText.map((line) => `<p>${formatInlineText(line)}</p>`).join("")
+          : `<p>${formatInlineText(episode.mainText || "")}</p>`;
+
+        const easter = episode.universeEasterEgg ? renderEasterEgg(episode.universeEasterEgg) : "";
+        const finalControls = episode.specialMode === "finalChoice"
+          ? renderFinalChoiceControls(episode)
+          : "";
+
+        storyContent.innerHTML = `
+          <div class="episode-head">
+            <div>
+              <div class="episode-num">EP.${String(episode.id).padStart(2, "0")} · ${escapeHtml(meta.enTitle || "The Last Timeline")}</div>
+              <h2 class="episode-title">${escapeHtml(episode.title)}</h2>
+              <p class="episode-subtitle">${escapeHtml(episode.subtitle || "")}</p>
+            </div>
+
+            <div class="chips">
+              <span class="chip">Traveler: <b>${escapeHtml(episode.traveler || "You")}</b></span>
+              <span class="chip">Prop: <b>${escapeHtml(episode.prop || "Broken Watch")}</b></span>
+              <span class="chip">Clock: <b>${escapeHtml(episode.clockMode || "normal")}</b></span>
+              <span class="chip">Fragment: <b>${escapeHtml(episode.fragmentType || "memory")}</b></span>
+            </div>
+          </div>
+
+          <div class="story-body">
+            ${paragraphs}
+          </div>
+
+          <div class="quote">“${escapeHtml(episode.quote || "")}”</div>
+          <div class="hint">${escapeHtml(episode.endingHint || "")}</div>
+
+          ${easter}
+          ${finalControls}
+
+          <div class="controls">
+            <div class="control-left">
+              <button class="btn secondary" type="button" id="prevBtn">Previous</button>
+              <button class="btn secondary" type="button" id="saveFragmentBtn">Save Fragment</button>
+            </div>
+
+            <div class="control-right">
+              ${episode.specialMode === "finalChoice"
+                ? ""
+                : `<button class="btn" type="button" id="nextBtn">${escapeHtml(episode.choiceText || "Continue")}</button>`
+              }
+            </div>
+          </div>
+        `;
+
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const saveFragmentBtn = document.getElementById("saveFragmentBtn");
+
+        prevBtn.addEventListener("click", function () {
+          goToEpisode(Math.max(1, currentId - 1));
+        });
+
+        if (nextBtn) {
+          nextBtn.addEventListener("click", function () {
+            goToEpisode(Math.min(episodes.length, currentId + 1));
+          });
+        }
+
+        saveFragmentBtn.addEventListener("click", function () {
+          saveArchiveEpisode(episode);
+          saveFragmentBtn.textContent = "Fragment Saved";
+          setTimeout(() => {
+            saveFragmentBtn.textContent = "Save Fragment";
+          }, 1300);
+        });
+
+        if (episode.specialMode === "finalChoice") {
+          bindFinalChoice(episode);
+        }
+      }
+
+      function renderEasterEgg(easter) {
+        return `
+          <div class="easter">
+            <small>Universe Fragment</small>
+            <strong>${escapeHtml(easter.object || "A faded photograph stitched with a red thread.")}</strong>
+            <p>“${escapeHtml(easter.label || "Some goodbyes happen in other rooms.")}”</p>
+          </div>
+        `;
+      }
+
+      function renderFinalChoiceControls(episode) {
+        const holdText = episode.finalChoices?.holdOn?.buttonText || "Hold On";
+        const letGoText = episode.finalChoices?.letGo?.buttonText || "Let Go";
+
+        return `
+          <div class="final-box show" id="finalChoiceBox">
+            <h3>The Final Choice</h3>
+            <p>
+              You are not choosing whether Eli mattered. You are choosing whether love becomes a cage,
+              or becomes the life they kept giving back to you.
+            </p>
+
+            <div class="hero-actions">
+              <button class="btn danger" type="button" id="holdOnBtn">${escapeHtml(holdText)}</button>
+              <button class="btn letgo" type="button" id="letGoBtn">${escapeHtml(letGoText)}</button>
+            </div>
+
+            <div class="hold-message" id="holdMessage"></div>
+
+            <div class="final-box" id="letGoResult"></div>
+          </div>
+        `;
+      }
+
+      function bindFinalChoice(episode) {
+        const holdOnBtn = document.getElementById("holdOnBtn");
+        const letGoBtn = document.getElementById("letGoBtn");
+        const holdMessage = document.getElementById("holdMessage");
+        const letGoResult = document.getElementById("letGoResult");
+
+        holdOnBtn.addEventListener("click", function () {
+          let count = Number(localStorage.getItem(STORAGE_HOLD) || "0");
+          count += 1;
+          localStorage.setItem(STORAGE_HOLD, String(count));
+
+          const lines = episode.finalChoices?.holdOn?.lines || [];
+          const line = lines[Math.min(count - 1, lines.length - 1)] || "Love cannot become a cage.";
+
+          holdMessage.classList.add("show");
+          holdMessage.innerHTML = escapeHtml(line);
+
+          if (count >= 3) {
+            holdMessage.classList.add("glitch");
+            body.classList.add("final-collapse");
+            timelineClock.className = "clock collapse";
+            clockDesc.textContent = "The clock glitches, tears, and corrupts the screen.";
+          }
+
+          if (count >= 4) {
+            holdMessage.innerHTML = "Y̷o̷u̷r̷ ̷o̷b̷s̷e̷s̷s̷i̷o̷n̷ ̷i̷s̷ ̷t̷e̷a̷r̷i̷n̷g̷ ̷t̷h̷e̷ ̷w̷o̷r̷l̷d̷ ̷a̷p̷a̷r̷t̷.";
+          }
+        });
+
+        letGoBtn.addEventListener("click", function () {
+          body.classList.remove("final-collapse");
+          body.className = "mode-white";
+          timelineClock.className = "clock frozen";
+          clockDesc.textContent = "The clock freezes, but this time, it does not hurt.";
+
+          localStorage.setItem(STORAGE_COMPLETE, "true");
+
+          const letGo = episode.finalChoices?.letGo || {};
+          const lines = Array.isArray(letGo.lines) ? letGo.lines : [];
+          const renderedLines = lines.map((line) => `<p>${formatInlineText(line)}</p>`).join("");
+
+          letGoResult.classList.add("show");
+          letGoResult.innerHTML = `
+            <h3>${escapeHtml(letGo.successTitle || "Final Goodbye")}</h3>
+            ${renderedLines}
+
+            <div class="memory-card">
+              <small>Save This Timeline</small>
+              <strong>${escapeHtml(letGo.quote || "In every timeline, I chose the one where you lived.")}</strong>
+              <span>${escapeHtml(letGo.finalLine || "Now live the life I kept giving back to you.")}</span>
+            </div>
+          `;
+
+          saveArchiveEpisode({
+            id: 50,
+            title: "Final Memory",
+            quote: letGo.quote || "In every timeline, I chose the one where you lived.",
+            prop: "Two Coffees",
+            traveler: "You",
+            fragmentType: "final"
+          });
+        });
+      }
+
+      function applyVisualMode(episode) {
+        body.classList.remove(
+          "mode-blue",
+          "mode-red",
+          "mode-orange",
+          "mode-white",
+          "mode-reversed",
+          "final-collapse"
+        );
+
+        const mode = episode.visualMode || "blue";
+
+        if (mode === "red") {
+          body.classList.add("mode-red");
+        } else if (mode === "orange") {
+          body.classList.add("mode-orange");
+        } else if (mode === "white") {
+          body.classList.add("mode-white");
+        } else if (mode === "reversed") {
+          body.classList.add("mode-reversed");
+        } else {
+          body.classList.add("mode-blue");
+        }
+      }
+
+      function renderClock(episode) {
+        const mode = episode.clockMode || "normal";
+        timelineClock.className = `clock ${mode}`;
+        timelineClock.textContent = "11:11 PM";
+
+        const desc = clockModes[mode]?.description || "The 11:11 PM clock flickers faintly.";
+        clockDesc.textContent = desc;
+      }
+
+      function renderProgress(episode) {
+        const current = Number(episode.id) || 1;
+        const total = episodes.length || 50;
+        const percent = Math.round((current / total) * 100);
+
+        progressText.textContent = `EP.${String(current).padStart(2, "0")} / ${total}`;
+        progressPercent.textContent = `${percent}%`;
+        progressFill.style.width = `${percent}%`;
+      }
+
+      function formatInlineText(text) {
+        const safe = escapeHtml(String(text || ""));
+        return safe.replace(/"([^"]+)"/g, "“$1”");
+      }
+
+      function escapeHtml(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+    })();
+  </script>
+</body>
+</html>
