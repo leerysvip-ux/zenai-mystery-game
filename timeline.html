@@ -150,7 +150,8 @@
     .noise-layer,
     .scan-layer,
     .light-leak,
-    .transition-flash {
+    .transition-flash,
+    .final-ritual-aura {
       position: fixed;
       inset: 0;
       pointer-events: none;
@@ -212,6 +213,33 @@
         radial-gradient(circle at 88% 18%, rgba(255,255,255,0.06), transparent 22%);
       filter: blur(8px);
       transition: opacity 0.6s ease, background 0.6s ease;
+    }
+
+    .final-ritual-aura {
+      z-index: -1;
+      opacity: 0;
+      background:
+        radial-gradient(circle at 50% 58%, rgba(255, 245, 223, 0.22), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(255, 193, 106, 0.16), transparent 34%);
+      filter: blur(10px);
+      transition: opacity 0.8s ease;
+    }
+
+    body.final-mode .final-ritual-aura {
+      opacity: 0.95;
+      animation: finalAuraBreath 5s ease-in-out infinite;
+    }
+
+    body.final-released .final-ritual-aura {
+      opacity: 1;
+      background:
+        radial-gradient(circle at 50% 52%, rgba(255, 245, 223, 0.34), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.14), transparent 38%);
+    }
+
+    @keyframes finalAuraBreath {
+      0%, 100% { transform: scale(1); opacity: 0.72; }
+      50% { transform: scale(1.06); opacity: 1; }
     }
 
     .transition-flash {
@@ -804,31 +832,292 @@
     .final-choice-panel {
       display: none;
       position: relative;
-      z-index: 2;
-      margin-top: 18px;
-      border: 1px solid rgba(255,245,223,0.18);
+      z-index: 4;
+      margin-top: 26px;
+      border: 1px solid rgba(255,245,223,0.28);
       background:
-        radial-gradient(circle at 50% 0%, rgba(255,245,223,0.12), transparent 36%),
-        rgba(255,255,255,0.05);
-      border-radius: 24px;
-      padding: 18px;
+        radial-gradient(circle at 50% 0%, rgba(255,245,223,0.18), transparent 36%),
+        radial-gradient(circle at 12% 100%, rgba(255,77,99,0.11), transparent 26%),
+        linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.035));
+      border-radius: 30px;
+      padding: 24px;
+      box-shadow:
+        0 0 0 1px rgba(255,245,223,0.06),
+        0 0 80px rgba(255,245,223,0.13),
+        0 26px 100px rgba(0,0,0,0.45);
+      overflow: hidden;
     }
 
     body.final-mode .final-choice-panel {
       display: block;
+      animation: ritualAppear 0.75s ease both;
+    }
+
+    @keyframes ritualAppear {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.985);
+        filter: blur(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    .final-choice-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent),
+        radial-gradient(circle at 50% 0%, rgba(255,245,223,0.22), transparent 36%);
+      opacity: 0.75;
+    }
+
+    .ritual-header {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .ritual-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,245,223,0.22);
+      background: rgba(255,245,223,0.08);
+      border-radius: 999px;
+      padding: 8px 11px;
+      color: rgba(255,245,223,0.74);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: 10px;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .ritual-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,245,223,0.95);
+      box-shadow: 0 0 18px rgba(255,245,223,0.75);
+      animation: ritualDot 1.7s ease-in-out infinite;
+    }
+
+    @keyframes ritualDot {
+      0%, 100% { opacity: 0.48; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.22); }
     }
 
     .final-choice-panel h3 {
-      margin: 0 0 10px;
-      font-size: 28px;
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      font-size: clamp(36px, 4.5vw, 62px);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+      text-wrap: balance;
+    }
+
+    .ritual-count {
+      position: relative;
+      z-index: 2;
+      min-width: 86px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.18);
+      border-radius: 20px;
+      padding: 12px;
+      color: rgba(255,255,255,0.74);
+    }
+
+    .ritual-count small {
+      display: block;
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 9px;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+
+    .ritual-count strong {
+      display: block;
+      font-size: 24px;
       line-height: 1;
-      letter-spacing: -0.055em;
+      letter-spacing: -0.04em;
+      color: rgba(255,245,223,0.94);
+    }
+
+    .ritual-desc {
+      position: relative;
+      z-index: 2;
+      margin: 0 0 18px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.65;
+      font-size: 15px;
+      max-width: 760px;
+    }
+
+    .final-choice-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .choice-card {
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 26px;
+      padding: 18px;
+      min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      cursor: pointer;
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .choice-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .choice-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.75;
+    }
+
+    .choice-card.hold {
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,77,99,0.18), transparent 40%),
+        rgba(0,0,0,0.18);
+    }
+
+    .choice-card.hold:hover {
+      border-color: rgba(255,77,99,0.36);
+      box-shadow: 0 0 48px rgba(255,77,99,0.14);
+    }
+
+    .choice-card.release {
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,245,223,0.20), transparent 40%),
+        radial-gradient(circle at 100% 100%, rgba(255,193,106,0.14), transparent 36%),
+        rgba(255,255,255,0.055);
+      border-color: rgba(255,245,223,0.22);
+      animation: releasePulse 2.8s ease-in-out infinite;
+    }
+
+    .choice-card.release:hover {
+      border-color: rgba(255,245,223,0.46);
+      box-shadow: 0 0 60px rgba(255,245,223,0.18);
+    }
+
+    @keyframes releasePulse {
+      0%, 100% {
+        box-shadow: 0 0 34px rgba(255,245,223,0.08);
+      }
+      50% {
+        box-shadow: 0 0 54px rgba(255,245,223,0.18);
+      }
+    }
+
+    .choice-card small {
+      position: relative;
+      z-index: 2;
+      display: block;
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: 10px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .choice-card strong {
+      position: relative;
+      z-index: 2;
+      display: block;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 0.96;
+      letter-spacing: -0.065em;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .choice-card p {
+      position: relative;
+      z-index: 2;
+      margin: 12px 0 0;
+      color: rgba(255,255,255,0.64);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .choice-card .choice-action {
+      position: relative;
+      z-index: 2;
+      margin-top: 18px;
+      width: 100%;
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 18px;
+      font-size: 17px;
+      font-weight: 950;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .choice-card.hold .choice-action {
+      color: #fff;
+      background: linear-gradient(135deg, #ff6074, #5f0714);
+      box-shadow: 0 18px 45px rgba(255,77,99,0.17);
+    }
+
+    .choice-card.release .choice-action {
+      color: #1a1308;
+      background: linear-gradient(135deg, #ffffff, #fff0c6, #ffc16a);
+      box-shadow: 0 18px 48px rgba(255,245,223,0.18);
+    }
+
+    .choice-action:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
+    .ritual-note {
+      position: relative;
+      z-index: 2;
+      margin: 16px 0 0;
+      color: rgba(255,245,223,0.66);
+      font-size: 13px;
+      line-height: 1.55;
+      text-align: center;
     }
 
     .final-output {
+      position: relative;
+      z-index: 2;
       display: grid;
       gap: 10px;
-      margin-top: 14px;
+      margin-top: 18px;
     }
 
     .final-line {
@@ -841,6 +1130,23 @@
       opacity: 0;
       transform: translateY(8px);
       animation: lineReveal 0.55s ease forwards;
+    }
+
+    body.clock-collapse .final-choice-panel {
+      border-color: rgba(255,77,99,0.42);
+      box-shadow:
+        0 0 0 1px rgba(255,77,99,0.16),
+        0 0 90px rgba(255,77,99,0.24),
+        0 26px 100px rgba(0,0,0,0.55);
+      animation: finalCollapseShake 0.42s ease both;
+    }
+
+    @keyframes finalCollapseShake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      50% { transform: translateX(3px); }
+      75% { transform: translateX(-1px); }
+      100% { transform: translateX(0); }
     }
 
     .memory-card {
@@ -876,6 +1182,40 @@
       font-size: 28px;
       line-height: 1.22;
       letter-spacing: -0.055em;
+    }
+
+    .final-scroll-cue {
+      display: none;
+      position: fixed;
+      z-index: 90;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      border: 1px solid rgba(255,245,223,0.22);
+      background: rgba(12,10,7,0.72);
+      color: rgba(255,245,223,0.86);
+      border-radius: 999px;
+      padding: 11px 15px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 70px rgba(0,0,0,0.48);
+      font-size: 13px;
+      cursor: pointer;
+      animation: scrollCue 1.8s ease-in-out infinite;
+    }
+
+    body.final-mode .final-scroll-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    body.final-released .final-scroll-cue {
+      display: none;
+    }
+
+    @keyframes scrollCue {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.72; }
+      50% { transform: translateX(-50%) translateY(-5px); opacity: 1; }
     }
 
     .toast {
@@ -988,6 +1328,29 @@
       .btn {
         width: 100%;
       }
+
+      .ritual-header {
+        display: block;
+      }
+
+      .ritual-count {
+        margin-top: 14px;
+        width: 100%;
+        text-align: left;
+      }
+
+      .final-choice-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .choice-card {
+        min-height: 170px;
+      }
+
+      .final-scroll-cue {
+        max-width: calc(100% - 32px);
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -996,7 +1359,9 @@
   <div class="noise-layer" aria-hidden="true"></div>
   <div class="scan-layer" aria-hidden="true"></div>
   <div class="light-leak" aria-hidden="true"></div>
+  <div class="final-ritual-aura" aria-hidden="true"></div>
   <div class="transition-flash" id="transitionFlash" aria-hidden="true"></div>
+  <button class="final-scroll-cue" id="finalScrollCue" type="button">Final choice is waiting ↓</button>
   <div class="toast" id="toast">Saved.</div>
 
   <div class="page">
@@ -1061,14 +1426,54 @@
         </div>
 
         <div class="final-choice-panel" id="finalChoicePanel">
-          <h3>The final choice</h3>
-          <p class="hint">
-            Holding on will not bring Eli back. Letting go will not erase love.
-          </p>
-          <div class="action-row">
-            <button class="btn danger" type="button" id="holdOnBtn">Hold On</button>
-            <button class="btn" type="button" id="letGoBtn">Let Go</button>
+          <div class="ritual-header">
+            <div>
+              <div class="ritual-kicker">
+                <span class="ritual-dot"></span>
+                <span>Final Timeline Ritual</span>
+              </div>
+              <h3>The last choice is not to save Eli. It is to understand the gift.</h3>
+            </div>
+            <div class="ritual-count">
+              <small>Hold attempts</small>
+              <strong id="holdAttemptText">0</strong>
+            </div>
           </div>
+
+          <p class="ritual-desc">
+            Holding on will not bring Eli back. It will only turn Eli’s sacrifice into another cage.
+            Letting go does not erase love. It lets the life Eli saved finally begin.
+          </p>
+
+          <div class="final-choice-grid">
+            <div class="choice-card hold" id="holdChoiceCard">
+              <div>
+                <small>Refuse the goodbye</small>
+                <strong>Hold On</strong>
+                <p>
+                  Keep Eli inside the broken timeline. The room will crack, the clock will return,
+                  and love will become a prison.
+                </p>
+              </div>
+              <button class="choice-action" type="button" id="holdOnBtn">Hold On</button>
+            </div>
+
+            <div class="choice-card release" id="releaseChoiceCard">
+              <div>
+                <small>Accept the gift</small>
+                <strong>Let Go</strong>
+                <p>
+                  Release the final timeline. The clock moves past 11:11 PM, and Eli’s last wish becomes your life.
+                </p>
+              </div>
+              <button class="choice-action" type="button" id="letGoBtn">Let Go</button>
+            </div>
+          </div>
+
+          <p class="ritual-note">
+            This is the flagship ending: not victory over death, but love strong enough to stop destroying itself.
+          </p>
+
           <div class="final-output" id="finalOutput"></div>
         </div>
 
@@ -1136,6 +1541,7 @@
         transitionFlash: document.getElementById("transitionFlash"),
         toast: document.getElementById("toast"),
         soundBtn: document.getElementById("soundBtn"),
+        finalScrollCue: document.getElementById("finalScrollCue"),
         episodeKicker: document.getElementById("episodeKicker"),
         clockDisplay: document.getElementById("clockDisplay"),
         episodeTitle: document.getElementById("episodeTitle"),
@@ -1157,6 +1563,9 @@
         archiveList: document.getElementById("archiveList"),
         cinematicHint: document.getElementById("cinematicHint"),
         finalChoicePanel: document.getElementById("finalChoicePanel"),
+        holdAttemptText: document.getElementById("holdAttemptText"),
+        holdChoiceCard: document.getElementById("holdChoiceCard"),
+        releaseChoiceCard: document.getElementById("releaseChoiceCard"),
         holdOnBtn: document.getElementById("holdOnBtn"),
         letGoBtn: document.getElementById("letGoBtn"),
         finalOutput: document.getElementById("finalOutput"),
@@ -1217,18 +1626,34 @@
         audio.toggle();
       });
 
-      elements.holdOnBtn.addEventListener("click", function () {
+      elements.holdOnBtn.addEventListener("click", function (event) {
+        event.stopPropagation();
         audio.interact();
         handleHoldOn();
       });
 
-      elements.letGoBtn.addEventListener("click", function () {
+      elements.letGoBtn.addEventListener("click", function (event) {
+        event.stopPropagation();
+        audio.interact();
+        handleLetGo();
+      });
+
+      elements.holdChoiceCard.addEventListener("click", function () {
+        audio.interact();
+        handleHoldOn();
+      });
+
+      elements.releaseChoiceCard.addEventListener("click", function () {
         audio.interact();
         handleLetGo();
       });
 
       elements.saveFinalMemoryBtn.addEventListener("click", function () {
         saveFinalMemory();
+      });
+
+      elements.finalScrollCue.addEventListener("click", function () {
+        scrollToFinalChoice();
       });
 
       function getEpisodeFromUrl() {
@@ -1296,6 +1721,7 @@
         const isFinal = currentEpisode.specialMode === "finalChoice" || currentEpisode.id === 50;
         elements.body.classList.toggle("final-mode", isFinal);
         elements.finalOutput.innerHTML = "";
+        elements.holdAttemptText.textContent = localStorage.getItem(HOLD_KEY) || "0";
         elements.memoryCardText.textContent =
           finalLogic?.finalMemoryCard?.quote ||
           currentEpisode?.finalChoices?.letGo?.quote ||
@@ -1307,6 +1733,15 @@
         });
 
         updateCinematicHint(currentEpisode);
+
+        if (isFinal) {
+          setTimeout(() => {
+            showToast("Final choice unlocked: Hold On or Let Go.");
+          }, 620);
+          setTimeout(() => {
+            scrollToFinalChoice(false);
+          }, 1200);
+        }
       }
 
       function applyVisualMode(episode) {
@@ -1449,15 +1884,17 @@
         const choice = currentEpisode.finalChoices.holdOn;
         const count = Number(localStorage.getItem(HOLD_KEY) || "0") + 1;
         localStorage.setItem(HOLD_KEY, String(count));
+        elements.holdAttemptText.textContent = String(count);
 
         elements.body.classList.add("clock-collapse");
         elements.body.classList.remove("final-released");
 
         audio.holdOn();
         renderFinalLines(choice.lines || [], count);
+        scrollToFinalChoice();
 
         if (count >= (choice.maxBeforeCollapse || 3)) {
-          showToast("The timeline is collapsing.");
+          showToast("The timeline is collapsing. Let Go is glowing.");
         } else {
           showToast(`Hold On · Attempt ${count}`);
         }
@@ -1469,6 +1906,7 @@
         const choice = currentEpisode.finalChoices.letGo;
         localStorage.setItem(COMPLETED_KEY, "true");
         localStorage.setItem(HOLD_KEY, "0");
+        elements.holdAttemptText.textContent = "0";
 
         elements.body.classList.remove("clock-collapse");
         elements.body.classList.add("final-released");
@@ -1476,6 +1914,7 @@
         audio.letGo();
         renderFinalLines(choice.lines || [], 0);
         showToast("The final timeline is released.");
+        scrollToFinalChoice();
 
         setTimeout(() => {
           saveFinalMemory();
@@ -1487,6 +1926,14 @@
           const delay = Math.min(index * 0.07, 0.72);
           return `<div class="final-line" style="animation-delay:${delay}s">${escapeHtml(line)}</div>`;
         }).join("");
+      }
+
+      function scrollToFinalChoice(smooth = true) {
+        if (!elements.finalChoicePanel) return;
+        elements.finalChoicePanel.scrollIntoView({
+          behavior: smooth ? "smooth" : "smooth",
+          block: "center",
+        });
       }
 
       function cinematicFlash() {
