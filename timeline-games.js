@@ -2,16 +2,15 @@
    ZenAI Mystery Universe
    Series 02: The Last Timeline
    File: timeline-games.js
-   Version: Playable Story Data v1.4
+   Version: Playable Story Data v1.5
 
    本版重点：
-   1. 修正 ACT02 没生效问题
-   2. 强化 EP.01 - EP.10 ACT01
-   3. 强化 EP.11 - EP.20 ACT02
-   4. 新增强化 EP.21 - EP.30 ACT03
-   5. 保留 EP.31 红眼宇宙彩蛋
-   6. 保留 EP.39 Eli 视角反转
-   7. 保留 EP.50 Hold On / Let Go 终章逻辑
+   1. 保留 EP.01 - EP.30 已强化剧情
+   2. 强化 EP.31 - EP.40 ACT04
+   3. ACT04 核心主题：
+      The Truth Behind the Museum
+      时间线博物馆真相 / 红眼宇宙彩蛋 / Eli视角反转
+   4. 保留 EP.50 Hold On / Let Go 终章逻辑
 ========================================================= */
 
 const timelineMeta = {
@@ -19,7 +18,7 @@ const timelineMeta = {
   seriesId: "series-02",
   cnTitle: "最后的时间线",
   enTitle: "The Last Timeline",
-  version: "v1.4",
+  version: "v1.5",
   theme: "Time Travel / Sacrifice / Love / Letting Go",
   coreTime: "11:11 PM",
   coreProp: "Broken Watch",
@@ -1227,18 +1226,42 @@ const timelineEpisodes = [
       object: "A faded photograph stitched with a red thread.",
       label: "Some goodbyes happen in other rooms.",
       meaning:
-        "A quiet universe-level connection to the Red Eye Files, hinting that the Archive and Museum belong to the same emotional universe.",
+        "A quiet universe-level connection to The Red Eye Files, hinting that the Archive and Museum belong to the same emotional universe.",
     },
     mainText: [
-      "The Timeline Museum is silent.",
-      "Each glass case contains one failed world.",
-      "You see Eli gone. You see yourself gone. You see cities frozen at 11:11 PM.",
-      "In one corner, there is a faded photograph stitched with a red thread.",
-      "The small label reads: Some goodbyes happen in other rooms."
+      "The Timeline Museum is not a building.",
+      "It is a place grief built because neither of you would stop trying.",
+      "The floor is black glass. Beneath it, entire cities flicker and vanish like memories being drowned.",
+      "Every hallway is lined with cases.",
+      "Every case contains one failed world.",
+      "Timeline 001: rainwater on pavement, one broken watch, your scream caught forever in white light.",
+      "Timeline 006: a frozen train carriage, passengers turned toward Eli, mouths open with the same borrowed sentence.",
+      "Timeline 020: an empty chair across from you, a world that no longer knows Eli’s name.",
+      "Timeline 030: two watches touching inside a house that remembered both of your griefs.",
+      "You walk past hundreds of endings.",
+      "Some belong to you.",
+      "Some belong to Eli.",
+      "Some are so badly broken the museum can only display them as static.",
+      "Eli keeps their hand in yours, but you feel their fingers tremble whenever you pass a case marked Original Debt.",
+      "In one corner of the museum, almost hidden behind a cracked display wall, there is a small exhibit that does not belong to your story.",
+      "A faded photograph.",
+      "A red thread stitched through the torn edge.",
+      "A dark eye reflected faintly in the glass.",
+      "The label reads:",
+      "\"Some goodbyes happen in other rooms.\"",
+      "You do not understand it yet.",
+      "But the red thread tightens around the photograph when your watch gets close.",
+      "For one second, you hear another voice, distant and warm:",
+      "\"Don’t be afraid of the dark anymore.\"",
+      "Then the museum lights flicker red.",
+      "A new door opens at the end of the hall.",
+      "Above it, glowing letters appear:",
+      "\"ORIGINAL TIMELINE EXHIBIT.\""
     ],
     choiceText: "Enter The Original Exhibit",
     quote: "Every universe keeps its grief somewhere.",
-    endingHint: "The largest exhibit is labeled: Original Timeline — You Died.",
+    endingHint:
+      "The largest exhibit is labeled: Original Timeline — You Died.",
   },
 
   {
@@ -1251,15 +1274,40 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "memory",
     mainText: [
-      "Inside the museum, you find a birthday cake with one candle burning.",
+      "Before the Original Timeline Exhibit opens, the museum forces you into a smaller room.",
+      "No red lights.",
+      "No clocks.",
+      "Only a kitchen table, one birthday cake, and a single candle that never melts.",
+      "Eli stands across from you, younger than now, wearing the sweater they ruined with frosting the first year you celebrated together.",
+      "The room is warm in a way that feels unfair.",
       "You know the exact second Eli dies.",
       "You know the sound of the watch before every reset.",
-      "But you cannot remember Eli’s birthday.",
-      "Eli asks, \"You remember how I die. Do you still remember how I lived?\""
+      "You know the crosswalk, the hospital, the train, the station, the house, the red rules, the second watch.",
+      "But when Eli asks, \"What day is my birthday?\" you cannot answer.",
+      "The silence hurts more than the question.",
+      "You search yourself for the date.",
+      "You find only 11:11 PM.",
+      "You search for the memory of buying this cake.",
+      "You find only rain.",
+      "You search for the song Eli sang while lighting the candle.",
+      "You find only static.",
+      "Eli looks at you with a sadness so gentle it nearly breaks you.",
+      "\"You remember how I die,\" they say.",
+      "\"Do you still remember how I lived?\"",
+      "The candle flame bends toward you.",
+      "Inside it, you see small ordinary days you failed to protect.",
+      "Eli laughing with flour on their cheek.",
+      "Eli falling asleep halfway through a movie.",
+      "Eli saying your name in the morning like the world had not become impossible yet.",
+      "The cake begins to fade.",
+      "You whisper a date.",
+      "You are wrong.",
+      "Eli smiles anyway, because they know you are trying to remember the person, not just the wound."
     ],
     choiceText: "Remember Eli’s Life",
     quote: "Obsession remembers the wound. Love remembers the person.",
-    endingHint: "The candle melts into the shape of 11:11.",
+    endingHint:
+      "The candle melts into the shape of 11:11, and the museum opens the next exhibit.",
   },
 
   {
@@ -1272,15 +1320,42 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "memory",
     mainText: [
-      "For the first time, Eli stays.",
-      "No accident arrives. No clock breaks. No white light takes them.",
-      "You sit together in a quiet kitchen, stunned by peace.",
-      "Then your fingers become transparent around the coffee cup.",
-      "Eli sees it and does not look surprised. Only heartbroken."
+      "The next exhibit is impossible because it looks like mercy.",
+      "You wake in a quiet kitchen.",
+      "No rain.",
+      "No warning message.",
+      "No broken streetlight.",
+      "No white flash waiting at the edge of the room.",
+      "Eli is alive.",
+      "Not flickering.",
+      "Not vanishing.",
+      "Not asking you to stop saving them.",
+      "Just alive, barefoot on the kitchen floor, making coffee and humming the song you almost forgot.",
+      "For the first time in thirty-three timelines, 11:11 PM passes without taking Eli.",
+      "The clock changes to 11:12.",
+      "You laugh so hard it sounds like grief leaving your body.",
+      "Eli laughs too.",
+      "You hold them.",
+      "The world does not collapse.",
+      "For one perfect minute, you believe you won.",
+      "Then your hand passes through Eli’s sleeve.",
+      "You look down.",
+      "Your fingers are transparent.",
+      "The coffee cup on the table shows the wood grain through your skin.",
+      "Eli stops smiling.",
+      "Not because they are surprised.",
+      "Because they knew.",
+      "\"This is why I kept leaving,\" they whisper.",
+      "You try to say no.",
+      "Your voice comes out thin, like a radio losing signal.",
+      "The watch on the table displays a sentence you have been avoiding since the beginning:",
+      "\"A saved life must be borrowed from someone else.\"",
+      "Eli reaches for you, but this time your body is the one the timeline cannot hold."
     ],
     choiceText: "Hide Your Hand",
     quote: "A saved life can still be borrowed from someone else.",
-    endingHint: "Eli whispers: This is why I kept leaving.",
+    endingHint:
+      "Eli whispers: This is why I kept leaving.",
   },
 
   {
@@ -1293,15 +1368,43 @@ const timelineEpisodes = [
     visualMode: "orange",
     fragmentType: "photo",
     mainText: [
-      "There is no chase today.",
-      "Only coffee, a walk through the city, an old song, and Eli’s hand in yours.",
-      "You almost believe this is victory.",
-      "At sunset, Eli looks at the sky and says:",
-      "\"This is the day I kept trying to give you.\""
+      "The museum gives you one day without rules.",
+      "That is how you know it is dangerous.",
+      "You and Eli wake in a city that has not learned to hurt you yet.",
+      "The sky is clear.",
+      "The clocks work normally.",
+      "The watch is quiet for the first time, resting on the table like an ordinary broken thing.",
+      "Eli buys two coffees from the café that disappeared in Timeline 013.",
+      "They give you the one with too much sugar because they remember how you used to pretend not to like it.",
+      "You walk through the city together.",
+      "No hiding.",
+      "No running.",
+      "No checking every intersection for death.",
+      "Eli points at a bookstore you once promised to visit.",
+      "You buy a postcard neither of you intends to send.",
+      "You sit in a park and Eli tells you a joke so bad you laugh before they finish it.",
+      "The laugh feels unfamiliar in your mouth.",
+      "Like something returning from exile.",
+      "At sunset, Eli takes a photo of you.",
+      "Not for evidence.",
+      "Not to prove the timeline happened.",
+      "Just because they want to remember you smiling.",
+      "You almost believe this is the ending you deserve.",
+      "Eli looks at the sky and says:",
+      "\"This is the day I kept trying to give you.\"",
+      "The sentence is too gentle.",
+      "Too final.",
+      "The sun stops moving.",
+      "The park becomes silent.",
+      "Every bird freezes mid-flight.",
+      "Eli closes their eyes.",
+      "\"I’m sorry,\" they say.",
+      "\"A perfect day was all I could steal.\""
     ],
     choiceText: "Stay In The Day",
     quote: "A perfect day can hurt more than a terrible one.",
-    endingHint: "The sun stops moving.",
+    endingHint:
+      "The sun stops moving, and the perfect day begins to crack around the edges.",
   },
 
   {
@@ -1314,15 +1417,41 @@ const timelineEpisodes = [
     visualMode: "orange",
     fragmentType: "memory",
     mainText: [
-      "Eli is alive, but the world is dying.",
-      "People walk without shadows.",
-      "The clouds repeat the same shape.",
+      "At first, the cracks are beautiful.",
+      "Thin gold lines across the sky.",
+      "Light spilling through them like dawn trying to enter too early.",
+      "Then people lose their shadows.",
+      "Then the same dog runs past the café six times.",
+      "Then every window reflects a different version of Eli dying.",
+      "The perfect day begins repeating itself in pieces.",
+      "Coffee spills upward.",
+      "The postcard rewrites its message.",
+      "The park bench appears in the middle of the street.",
+      "The frozen birds fall without moving their wings.",
+      "Eli holds your hand while the world unthreads.",
+      "\"It cannot hold us both,\" they say.",
+      "You refuse to listen.",
+      "You say you can fix it.",
+      "You say you can find another loophole.",
+      "You say the words because they are the only tools obsession has left.",
+      "The sky turns the color of old film burning.",
       "Every clock in the city becomes 11:11 PM.",
-      "The timeline core displays: A borrowed ending cannot hold."
+      "Not ticking.",
+      "Not warning.",
+      "Accusing.",
+      "A black door rises from the center of the street.",
+      "On it, a message pulses in red:",
+      "\"BORROWED ENDING FAILURE.\"",
+      "Below it, a second sentence appears:",
+      "\"ONE TRAVELER MUST RELEASE THE OTHER.\"",
+      "Eli steps toward the door.",
+      "You pull them back.",
+      "The city screams."
     ],
     choiceText: "Find The Core",
     quote: "Keeping someone can become another way of destroying them.",
-    endingHint: "A white door appears at the center of the city.",
+    endingHint:
+      "A white door appears inside the black one, leading to the timeline core.",
   },
 
   {
@@ -1335,15 +1464,41 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "letter",
     mainText: [
-      "Behind the white door, you find a letter addressed to you.",
-      "Eli’s handwriting trembles across the page.",
-      "\"You thought you were saving me.\"",
-      "\"I was saving the version of you who still knew how to love.\"",
-      "You realize the loops have not only threatened Eli. They have been changing you."
+      "Behind the white door is not the core.",
+      "Not yet.",
+      "It is a small room with no walls, only paper floating in the air like snow.",
+      "Every page is a letter from Eli.",
+      "Some are addressed to you.",
+      "Some are addressed to versions of you who did not survive long enough to read them.",
+      "Some are addressed to Eli themselves, written as instructions for what to do if they forgot too much.",
+      "One letter floats closer than the rest.",
+      "Your name is written on the front.",
+      "The handwriting is weak.",
+      "Older.",
+      "Almost gone.",
+      "You open it.",
+      "\"If you are reading this, then I failed to leave cleanly.\"",
+      "\"I know you think the story is about saving me.\"",
+      "\"It was never that simple.\"",
+      "The paper trembles in your hands.",
+      "\"I was saving the version of you who still knew how to love without turning love into a prison.\"",
+      "\"Every loop made you braver.\"",
+      "\"Every loop also made you smaller.\"",
+      "\"You began remembering my death better than my life.\"",
+      "\"You began choosing rescue over tenderness.\"",
+      "\"You began asking how to keep me instead of asking what I wanted.\"",
+      "You cannot breathe.",
+      "The next line appears only after your tear hits the page.",
+      "\"So I built one final door.\"",
+      "\"Not to bring myself back.\"",
+      "\"To bring you back to yourself.\"",
+      "On the back of the letter, there are three words:",
+      "\"Open Memory 000.\""
     ],
     choiceText: "Open Memory 000",
     quote: "I was saving the version of you who still knew how to love.",
-    endingHint: "The back of the letter says: Open Memory 000.",
+    endingHint:
+      "The back of the letter says: Open Memory 000.",
   },
 
   {
@@ -1356,15 +1511,42 @@ const timelineEpisodes = [
     visualMode: "blue",
     fragmentType: "memory",
     mainText: [
-      "A warning appears before Memory 000 opens.",
-      "If you continue, you will learn the original truth.",
-      "But you will lose one final reset.",
-      "You press your hand to the broken watch.",
-      "The memory opens."
+      "Memory 000 waits inside the center of the room.",
+      "It is not displayed in a glass case.",
+      "It is not protected by locks.",
+      "It simply floats there, small and bright, like a thing that has been waiting for you to become tired enough to stop running.",
+      "The watch refuses to move closer.",
+      "Eli refuses too.",
+      "\"You don’t have to open it,\" they say.",
+      "But their voice says something else.",
+      "Their voice says: please understand before I disappear.",
+      "A warning appears above the memory:",
+      "\"OPENING MEMORY 000 WILL REMOVE ONE FINAL RESET.\"",
+      "\"AFTER THIS, THE NEXT CHOICE WILL BE REAL.\"",
+      "You look at Eli.",
+      "They are crying silently now.",
+      "\"Why didn’t you tell me?\" you ask.",
+      "Eli smiles like the question has killed them before.",
+      "\"Because every time you knew the whole truth, you tried to die for me.\"",
+      "The memory brightens.",
+      "You reach for it.",
+      "The room shakes.",
+      "The watch heats against your skin.",
+      "The 11:11 PM clock begins counting backward from eleven seconds.",
+      "Ten.",
+      "Nine.",
+      "Eight.",
+      "Eli whispers your name.",
+      "Seven.",
+      "Six.",
+      "Five.",
+      "You press your hand into Memory 000.",
+      "Everything becomes the first rain."
     ],
     choiceText: "Open Memory 000",
     quote: "Some truths cost the last chance to avoid them.",
-    endingHint: "You return to the first 11:11 PM.",
+    endingHint:
+      "You return to the first 11:11 PM, before either of you understood the price.",
   },
 
   {
@@ -1377,15 +1559,46 @@ const timelineEpisodes = [
     visualMode: "red",
     fragmentType: "memory",
     mainText: [
-      "You see the original timeline.",
-      "At 11:11 PM, the car is coming for you.",
-      "Eli is safe. Eli could leave.",
-      "Instead, Eli turns back, pushes you away, and takes your place in the light.",
-      "Except in this first version, Eli survives. You do not."
+      "Memory 000 begins before the loops.",
+      "Before your panic.",
+      "Before Eli’s warnings.",
+      "Before the watch learned to scream.",
+      "It is just an ordinary night.",
+      "You are late.",
+      "Eli is waiting across the street, pretending to be annoyed, smiling anyway.",
+      "The message on your phone is from them:",
+      "\"Don’t run. I’ll wait.\"",
+      "You run.",
+      "Because you are young enough, careless enough, loved enough to believe waiting is guaranteed.",
+      "The car comes from nowhere.",
+      "In every timeline after this, you believed it came for Eli.",
+      "But the headlights are aimed at you.",
+      "Eli sees the future one second before you do.",
+      "They drop the coffee.",
+      "They shout your name.",
+      "They run into the road.",
+      "Their hands hit your chest.",
+      "You fall backward.",
+      "The white light takes your place anyway.",
+      "Not because Eli failed.",
+      "Because this is the first ending, and the first ending is cruel enough to teach time what love is willing to break.",
+      "You see yourself on the pavement.",
+      "You see Eli crawling toward you, blood on their knees, both hands shaking around your face.",
+      "You hear them beg.",
+      "\"No. No, please. Not them.\"",
+      "Then Eli sees the watch in your hand.",
+      "A watch you bought that afternoon as a cheap anniversary gift.",
+      "A watch that was never supposed to be magic.",
+      "Eli presses the side button like prayer can become a machine.",
+      "The hands move backward.",
+      "The rain rises.",
+      "The world listens.",
+      "Eli pays the first price without knowing there will be another."
     ],
     choiceText: "Watch Eli Reset Time",
     quote: "Before you tried to save Eli, Eli broke time to save you.",
-    endingHint: "Eli’s watch begins moving for the first time.",
+    endingHint:
+      "Eli’s watch begins moving for the first time, and the first sacrifice chooses its owner.",
   },
 
   {
@@ -1400,14 +1613,52 @@ const timelineEpisodes = [
     specialMode: "eliPerspective",
     mainText: [
       "The screen reverses.",
-      "The colors shift from cold blue to warm orange.",
-      "The button no longer says Save Eli.",
+      "The world turns warm orange, then white at the edges.",
+      "The name in the corner changes.",
+      "Traveler: Eli.",
+      "For the first time, you are not chasing Eli through the timeline.",
+      "You are inside the person who started running first.",
+      "You feel their hands around the watch.",
+      "You feel their panic when your body goes still in the original rain.",
+      "You feel the first reset tear through them like a second death.",
+      "Morning returns.",
+      "You are Eli.",
+      "You remember watching the person you love die.",
+      "They do not.",
+      "They smile at you over coffee, alive because you paid something the universe has not explained yet.",
+      "You try to act normal.",
+      "You fail.",
+      "Then 11:11 PM comes again.",
+      "This time death changes shape.",
+      "A train platform.",
+      "A stairwell.",
+      "A fire alarm.",
+      "A hospital corridor.",
+      "A bridge in winter.",
+      "You save them again.",
+      "The watch cracks again.",
+      "Another memory disappears.",
+      "Again.",
+      "Again.",
+      "Again.",
+      "The screen fills with restarts.",
+      "Timeline 012.",
+      "Timeline 028.",
+      "Timeline 044.",
+      "Timeline 071.",
+      "Timeline 106.",
+      "You are Eli, standing beside another version of their body.",
+      "Your thumb hovers over the watch button.",
+      "The button does not say Restart.",
       "It says Save You.",
-      "You are Eli. You remember every version of the person you love dying in front of you."
+      "You press it anyway.",
+      "A message burns across the screen before the reset takes you:",
+      "\"This is the 107th time I watch you die. I’m not letting go yet.\""
     ],
     choiceText: "Restart As Eli",
     quote: "This is the 107th time I watch you die. I’m not letting go yet.",
-    endingHint: "Eli restarts the world and loses the memory of your first confession.",
+    endingHint:
+      "Eli restarts the world and loses the memory of your first confession.",
   },
 
   {
@@ -1420,15 +1671,47 @@ const timelineEpisodes = [
     visualMode: "orange",
     fragmentType: "memory",
     mainText: [
-      "Still inside Eli’s memory, you stand in the rain beside your own grave.",
-      "Eli’s hands are shaking around the watch.",
-      "They whisper to the stone:",
+      "You remain Eli for one more memory.",
+      "This one is quieter.",
+      "No screaming station.",
+      "No collapsing museum.",
+      "No city of broken clocks.",
+      "Only rain, a cemetery, and your own name carved into stone.",
+      "Eli stands at your grave with the watch pressed against their chest.",
+      "They look younger than they should.",
+      "Older than anyone should.",
+      "Their coat is soaked through.",
+      "Their lips are blue from cold.",
+      "But they do not leave.",
+      "They speak to the grave like you can hear them.",
+      "\"I tried once,\" Eli says.",
+      "\"Then twice.\"",
+      "\"Then I stopped counting because counting made it feel like I was choosing numbers instead of you.\"",
+      "Their hands shake around the watch.",
+      "\"Every timeline asks me to give something up.\"",
+      "\"My memories.\"",
+      "\"My future.\"",
+      "\"My name in your mouth.\"",
+      "\"The way you looked at me the first time you knew you loved me.\"",
+      "Eli laughs once, broken and small.",
+      "\"I thought love meant I would eventually find a version where neither of us had to pay.\"",
+      "The grave is silent.",
+      "Eli kneels in the mud.",
+      "\"But if time only understands debt, then let it take mine.\"",
+      "The watch begins to glow.",
+      "Eli presses their forehead to the stone.",
       "\"I will break every timeline before I let this be the last one.\"",
-      "The watch answers."
+      "The ground beneath the grave splits with white light.",
+      "The watch answers.",
+      "Not like a machine.",
+      "Like something accepting a prayer.",
+      "The memory ends with Eli whispering one final promise:",
+      "\"Live long enough to forget this pain. I will remember it for both of us.\""
     ],
     choiceText: "Break The Timeline",
     quote: "I will break every timeline before I let this be the last one.",
-    endingHint: "The system displays: Timeline 040 — Both Travelers Active.",
+    endingHint:
+      "The system displays: Timeline 040 — Both Travelers Active.",
   },
 
   {
@@ -1449,7 +1732,8 @@ const timelineEpisodes = [
     ],
     choiceText: "Join The Memories",
     quote: "Two people can love each other so much they become each other’s cage.",
-    endingHint: "Only one traveler may leave with memory intact.",
+    endingHint:
+      "Only one traveler may leave with memory intact.",
   },
 
   {
@@ -1470,7 +1754,8 @@ const timelineEpisodes = [
     ],
     choiceText: "Listen To Eli",
     quote: "Some goodbyes need more than time can give.",
-    endingHint: "Eli admits they remembered every timeline.",
+    endingHint:
+      "Eli admits they remembered every timeline.",
   },
 
   {
@@ -1491,7 +1776,8 @@ const timelineEpisodes = [
     ],
     choiceText: "Let Eli Watch",
     quote: "You loved me so hard it almost destroyed you.",
-    endingHint: "Eli reaches for your hand, but their fingers flicker.",
+    endingHint:
+      "Eli reaches for your hand, but their fingers flicker.",
   },
 
   {
@@ -1512,7 +1798,8 @@ const timelineEpisodes = [
     ],
     choiceText: "Watch Eli’s Archive",
     quote: "You thought Eli was waiting to be saved. Eli was the first rescuer.",
-    endingHint: "The museum cannot count Eli’s remaining sacrifices.",
+    endingHint:
+      "The museum cannot count Eli’s remaining sacrifices.",
   },
 
   {
@@ -1533,7 +1820,8 @@ const timelineEpisodes = [
     ],
     choiceText: "Face The Core",
     quote: "A rule does not need cruelty to break your heart.",
-    endingHint: "The core asks: Save the one you love, or become the one they lose.",
+    endingHint:
+      "The core asks: Save the one you love, or become the one they lose.",
   },
 
   {
@@ -1554,7 +1842,8 @@ const timelineEpisodes = [
     ],
     choiceText: "Override The Command",
     quote: "You cannot sacrifice yourself for someone who already sacrificed first.",
-    endingHint: "Eli locked your death out of the final timeline.",
+    endingHint:
+      "Eli locked your death out of the final timeline.",
   },
 
   {
@@ -1575,7 +1864,8 @@ const timelineEpisodes = [
     ],
     choiceText: "Hold Eli",
     quote: "Every time you looked at me like it was the first time, I had already lost you hundreds of times.",
-    endingHint: "Eli’s body begins to fade from the white room.",
+    endingHint:
+      "Eli’s body begins to fade from the white room.",
   },
 
   {
@@ -1596,7 +1886,8 @@ const timelineEpisodes = [
     ],
     choiceText: "Stop Eli",
     quote: "The final rescue was never yours to perform.",
-    endingHint: "Eli begins disappearing from every timeline at once.",
+    endingHint:
+      "Eli begins disappearing from every timeline at once.",
   },
 
   {
@@ -1617,7 +1908,8 @@ const timelineEpisodes = [
     ],
     choiceText: "Enter The Last Timeline",
     quote: "You were never the only one trying.",
-    endingHint: "The Last Door opens into morning light.",
+    endingHint:
+      "The Last Door opens into morning light.",
   },
 
   {
