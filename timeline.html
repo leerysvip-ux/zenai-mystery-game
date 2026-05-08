@@ -32,14 +32,9 @@
       --muted: rgba(248, 244, 236, 0.66);
       --soft: rgba(248, 244, 236, 0.42);
       --line: rgba(255, 255, 255, 0.13);
-      --panel: rgba(255, 255, 255, 0.075);
-      --panel2: rgba(255, 255, 255, 0.11);
       --blue: #6aa7ff;
-      --blue2: #91c4ff;
       --red: #ff4d63;
-      --red2: #ff203c;
       --orange: #ffc16a;
-      --green: #78f0b2;
       --white: #fff5df;
       --shadow: 0 34px 120px rgba(0, 0, 0, 0.68);
       --radius: 30px;
@@ -145,6 +140,10 @@
 
     button {
       font-family: inherit;
+    }
+
+    .is-hidden {
+      display: none !important;
     }
 
     .noise-layer,
@@ -661,6 +660,23 @@
       margin-top: 20px;
     }
 
+    body.final-mode .main-action-row {
+      justify-content: flex-start;
+      opacity: 0.86;
+    }
+
+    body.final-mode .main-action-row::before {
+      content: "Final ritual controls are above.";
+      display: block;
+      width: 100%;
+      color: rgba(255,245,223,0.52);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 850;
+      margin-bottom: -4px;
+    }
+
     .btn {
       border: 0;
       cursor: pointer;
@@ -998,14 +1014,6 @@
       transform: translateY(-3px);
     }
 
-    .choice-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.75;
-    }
-
     .choice-card.hold {
       background:
         radial-gradient(circle at 20% 0%, rgba(255,77,99,0.18), transparent 40%),
@@ -1032,12 +1040,8 @@
     }
 
     @keyframes releasePulse {
-      0%, 100% {
-        box-shadow: 0 0 34px rgba(255,245,223,0.08);
-      }
-      50% {
-        box-shadow: 0 0 54px rgba(255,245,223,0.18);
-      }
+      0%, 100% { box-shadow: 0 0 34px rgba(255,245,223,0.08); }
+      50% { box-shadow: 0 0 54px rgba(255,245,223,0.18); }
     }
 
     .choice-card small {
@@ -1488,7 +1492,7 @@
           </div>
         </div>
 
-        <div class="action-row">
+        <div class="action-row main-action-row" id="mainActionRow">
           <button class="btn" type="button" id="mainActionBtn">Wake Up</button>
           <button class="btn secondary" type="button" id="saveFragmentBtn">Save Fragment</button>
           <button class="btn ghost" type="button" id="prevBtn">Previous</button>
@@ -1552,6 +1556,7 @@
         metaFragment: document.getElementById("metaFragment"),
         storyText: document.getElementById("storyText"),
         quoteText: document.getElementById("quoteText"),
+        mainActionRow: document.getElementById("mainActionRow"),
         mainActionBtn: document.getElementById("mainActionBtn"),
         saveFragmentBtn: document.getElementById("saveFragmentBtn"),
         prevBtn: document.getElementById("prevBtn"),
@@ -1707,7 +1712,8 @@
         elements.metaFragment.textContent = formatLabel(currentEpisode.fragmentType || "memory");
         elements.quoteText.textContent = currentEpisode.quote || "";
 
-        elements.progressText.textContent = `${String(progress.current).padStart(2, "0")} / ${String(progress.total).padStart(2, "0")}`;
+        elements.progressText.textContent =
+          `${String(progress.current).padStart(2, "0")} / ${String(progress.total).padStart(2, "0")}`;
         elements.progressFill.style.width = `${progress.percent}%`;
 
         elements.mainActionBtn.textContent = currentEpisode.choiceText || "Continue";
@@ -1719,6 +1725,7 @@
           .join("");
 
         const isFinal = currentEpisode.specialMode === "finalChoice" || currentEpisode.id === 50;
+
         elements.body.classList.toggle("final-mode", isFinal);
         elements.finalOutput.innerHTML = "";
         elements.holdAttemptText.textContent = localStorage.getItem(HOLD_KEY) || "0";
@@ -1727,6 +1734,9 @@
           currentEpisode?.finalChoices?.letGo?.quote ||
           currentEpisode.quote ||
           "";
+
+        elements.mainActionBtn.classList.toggle("is-hidden", isFinal);
+        elements.nextBtn.classList.toggle("is-hidden", isFinal);
 
         elements.episodeGrid.querySelectorAll(".ep-btn").forEach((button) => {
           button.classList.toggle("active", Number(button.dataset.ep) === Number(id));
@@ -1921,7 +1931,7 @@
         }, 900);
       }
 
-      function renderFinalLines(lines, seed) {
+      function renderFinalLines(lines) {
         elements.finalOutput.innerHTML = lines.map((line, index) => {
           const delay = Math.min(index * 0.07, 0.72);
           return `<div class="final-line" style="animation-delay:${delay}s">${escapeHtml(line)}</div>`;
