@@ -41,6 +41,8 @@
       --clock-glow: rgba(106, 167, 255, 0.48);
       --accent: #6aa7ff;
       --accent-soft: rgba(106, 167, 255, 0.16);
+      --paper: #eee2c8;
+      --paper-ink: #17120c;
     }
 
     * {
@@ -77,7 +79,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      z-index: -5;
+      z-index: -6;
       pointer-events: none;
       background:
         linear-gradient(rgba(255,255,255,0.026) 1px, transparent 1px),
@@ -91,7 +93,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      z-index: -4;
+      z-index: -5;
       pointer-events: none;
       background:
         linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.64)),
@@ -133,6 +135,14 @@
         linear-gradient(135deg, #0c0b08 0%, #19140c 48%, #050403 100%);
     }
 
+    body.phase-memory-decay {
+      filter: saturate(0.95) contrast(1.03);
+    }
+
+    body.phase-time-fold {
+      filter: saturate(0.9) contrast(1.08);
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -150,7 +160,10 @@
     .scan-layer,
     .light-leak,
     .transition-flash,
-    .final-ritual-aura {
+    .final-ritual-aura,
+    .memory-decay-layer,
+    .time-fold-layer,
+    .red-eye-link-layer {
       position: fixed;
       inset: 0;
       pointer-events: none;
@@ -169,12 +182,17 @@
     }
 
     body.clock-warning .noise-layer,
-    body.mode-red .noise-layer {
-      opacity: 0.11;
+    body.mode-red .noise-layer,
+    body.phase-memory-decay .noise-layer {
+      opacity: 0.12;
+    }
+
+    body.phase-time-fold .noise-layer {
+      opacity: 0.18;
     }
 
     body.clock-collapse .noise-layer {
-      opacity: 0.22;
+      opacity: 0.25;
     }
 
     @keyframes noiseMove {
@@ -200,8 +218,87 @@
     }
 
     body.clock-warning .scan-layer,
+    body.phase-time-fold .scan-layer,
     body.clock-collapse .scan-layer {
       opacity: 0.26;
+    }
+
+    .memory-decay-layer {
+      z-index: 75;
+      opacity: 0;
+      background:
+        radial-gradient(circle at 0% 50%, rgba(255, 77, 99, 0.16), transparent 24%),
+        radial-gradient(circle at 100% 45%, rgba(106, 167, 255, 0.14), transparent 24%),
+        linear-gradient(90deg, rgba(255,77,99,0.035), transparent 20%, transparent 80%, rgba(106,167,255,0.035));
+      mix-blend-mode: screen;
+      filter: blur(0.8px);
+      animation: decayBreath 4.5s ease-in-out infinite;
+    }
+
+    body.phase-memory-decay .memory-decay-layer {
+      opacity: 0.48;
+    }
+
+    body.phase-time-fold .memory-decay-layer {
+      opacity: 0.62;
+    }
+
+    @keyframes decayBreath {
+      0%, 100% { transform: translateX(0); opacity: 0.36; }
+      50% { transform: translateX(3px); opacity: 0.64; }
+    }
+
+    .time-fold-layer {
+      z-index: 76;
+      opacity: 0;
+      background:
+        repeating-linear-gradient(
+          103deg,
+          transparent 0px,
+          transparent 38px,
+          rgba(255,255,255,0.035) 39px,
+          transparent 42px
+        ),
+        linear-gradient(90deg, rgba(255,77,99,0.05), transparent 50%, rgba(106,167,255,0.05));
+      mix-blend-mode: screen;
+      filter: contrast(1.2);
+      animation: foldTear 3.4s ease-in-out infinite;
+    }
+
+    body.phase-time-fold .time-fold-layer {
+      opacity: 0.34;
+    }
+
+    body.clock-collapse .time-fold-layer {
+      opacity: 0.55;
+      animation-duration: 0.68s;
+    }
+
+    @keyframes foldTear {
+      0%, 100% { transform: translateX(0) skewX(0deg); }
+      35% { transform: translateX(-2px) skewX(-0.4deg); }
+      60% { transform: translateX(3px) skewX(0.5deg); }
+    }
+
+    .red-eye-link-layer {
+      z-index: 77;
+      opacity: 0;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(255, 20, 42, 0.22), transparent 12%),
+        radial-gradient(ellipse at 50% 12%, rgba(255, 0, 35, 0.18), transparent 25%),
+        radial-gradient(circle at 50% 12%, rgba(0,0,0,0.32), transparent 5%);
+      mix-blend-mode: screen;
+      filter: blur(1.2px);
+      animation: redEyePulse 2s ease-in-out infinite;
+    }
+
+    body.ep-40-red-link .red-eye-link-layer {
+      opacity: 0.72;
+    }
+
+    @keyframes redEyePulse {
+      0%, 100% { transform: scale(1); opacity: 0.38; }
+      50% { transform: scale(1.04); opacity: 0.82; }
     }
 
     .light-leak {
@@ -249,6 +346,17 @@
 
     .transition-flash.active {
       background: rgba(255, 255, 255, 0.62);
+    }
+
+    .transition-flash.reverse {
+      background: rgba(210, 235, 255, 0.36);
+      animation: reverseReverbFlash 0.55s ease both;
+    }
+
+    @keyframes reverseReverbFlash {
+      0% { opacity: 0; filter: blur(14px); }
+      35% { opacity: 1; filter: blur(2px); }
+      100% { opacity: 0; filter: blur(0); }
     }
 
     .page {
@@ -379,6 +487,21 @@
       opacity: 0.9;
     }
 
+    body.phase-memory-decay .story-panel {
+      box-shadow:
+        2px 0 0 rgba(255,77,99,0.08),
+        -2px 0 0 rgba(106,167,255,0.08),
+        var(--shadow);
+    }
+
+    body.phase-time-fold .story-panel {
+      box-shadow:
+        2px 0 0 rgba(255,77,99,0.14),
+        -2px 0 0 rgba(106,167,255,0.14),
+        0 0 80px rgba(255,77,99,0.09),
+        var(--shadow);
+    }
+
     body.mode-red .story-panel {
       box-shadow:
         0 0 0 1px rgba(255,77,99,0.16),
@@ -434,6 +557,7 @@
     }
 
     .clock {
+      position: relative;
       min-width: 230px;
       text-align: right;
       font-size: clamp(48px, 7vw, 88px);
@@ -450,6 +574,58 @@
       user-select: none;
     }
 
+    .clock::before,
+    .clock::after {
+      content: attr(data-time);
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .clock::before {
+      color: rgba(255,77,99,0.62);
+      transform: translateX(2px);
+    }
+
+    .clock::after {
+      color: rgba(106,167,255,0.54);
+      transform: translateX(-2px);
+    }
+
+    body.phase-memory-decay .clock::before,
+    body.phase-memory-decay .clock::after {
+      opacity: 0.18;
+    }
+
+    body.phase-time-fold .clock::before,
+    body.phase-time-fold .clock::after {
+      opacity: 0.28;
+      animation: clockGhost 0.5s steps(2) infinite;
+    }
+
+    body.ep-40-red-link .clock {
+      color: rgba(255, 226, 226, 0.96);
+      text-shadow:
+        0 0 8px rgba(255,255,255,0.7),
+        0 0 22px rgba(255,77,99,0.85),
+        0 0 60px rgba(255,0,35,0.55),
+        3px 0 rgba(255,77,99,0.34),
+        -3px 0 rgba(106,167,255,0.2);
+      animation: brokenNeon 0.82s steps(2) infinite;
+    }
+
+    body.ep-40-red-link .clock::before,
+    body.ep-40-red-link .clock::after {
+      opacity: 0.46;
+      animation: clockGhost 0.22s steps(2) infinite;
+    }
+
+    @keyframes clockGhost {
+      0%, 100% { clip-path: inset(0 0 72% 0); }
+      50% { clip-path: inset(55% 0 10% 0); }
+    }
+
     @keyframes clockFlicker {
       0%, 100% { opacity: 0.92; transform: translateX(0); }
       5% { opacity: 0.65; }
@@ -460,6 +636,16 @@
       53% { opacity: 0.45; transform: translateX(1px); }
       54% { opacity: 1; transform: translateX(-1px); }
       55% { transform: translateX(0); }
+    }
+
+    @keyframes brokenNeon {
+      0%, 100% { opacity: 0.95; transform: translate(0,0) skewX(0deg); }
+      10% { opacity: 0.22; transform: translate(2px,-1px) skewX(1deg); }
+      12% { opacity: 1; }
+      32% { opacity: 0.58; }
+      35% { opacity: 1; transform: translate(-2px,1px) skewX(-1deg); }
+      62% { opacity: 0.36; }
+      67% { opacity: 0.98; }
     }
 
     body.clock-warning .clock {
@@ -496,6 +682,18 @@
       letter-spacing: -0.078em;
       max-width: 850px;
       text-wrap: balance;
+    }
+
+    body.phase-memory-decay .episode-title {
+      text-shadow:
+        1px 0 rgba(255,77,99,0.14),
+        -1px 0 rgba(106,167,255,0.12);
+    }
+
+    body.phase-time-fold .episode-title {
+      text-shadow:
+        2px 0 rgba(255,77,99,0.18),
+        -2px 0 rgba(106,167,255,0.15);
     }
 
     .episode-title span {
@@ -570,6 +768,14 @@
       opacity: 0.72;
     }
 
+    body.phase-memory-decay .story-text {
+      filter: contrast(1.02);
+    }
+
+    body.phase-time-fold .story-text {
+      filter: contrast(1.08) saturate(0.96);
+    }
+
     .line {
       position: relative;
       margin: 0 0 13px;
@@ -603,9 +809,32 @@
       }
     }
 
+    body.phase-memory-decay .line:nth-child(3n),
     body.mode-red .line:nth-child(odd),
     body.clock-collapse .line:nth-child(odd) {
       text-shadow: 1px 0 rgba(255,77,99,0.22), -1px 0 rgba(106,167,255,0.16);
+    }
+
+    body.phase-time-fold .line:nth-child(4n) {
+      animation-name: lineRevealFold;
+    }
+
+    @keyframes lineRevealFold {
+      0% {
+        opacity: 0;
+        transform: translateY(8px) translateX(-5px);
+        filter: blur(7px);
+      }
+      45% {
+        opacity: 0.62;
+        transform: translateY(2px) translateX(3px);
+        filter: blur(2px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+        filter: blur(0);
+      }
     }
 
     body.mode-reversed .story-panel {
@@ -625,30 +854,79 @@
     .quote-box {
       position: relative;
       z-index: 2;
-      margin-top: 18px;
-      border: 1px solid rgba(255,255,255,0.16);
+      margin-top: 22px;
+      width: min(100%, 760px);
+      transform: rotate(-0.45deg);
+      border: 1px solid rgba(88, 65, 36, 0.34);
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
-      border-radius: 22px;
-      padding: 18px;
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.54), transparent 30%),
+        linear-gradient(135deg, rgba(255, 246, 221, 0.96), rgba(218, 196, 158, 0.90));
+      border-radius: 12px;
+      padding: 18px 18px 26px;
+      color: var(--paper-ink);
+      box-shadow:
+        0 18px 70px rgba(0,0,0,0.35),
+        inset 0 0 40px rgba(80,52,20,0.08);
+      overflow: hidden;
+    }
+
+    .quote-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 30% 24%, rgba(80, 52, 20, 0.08) 0 1px, transparent 1px),
+        radial-gradient(circle at 72% 60%, rgba(80, 52, 20, 0.08) 0 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.20), transparent 28%, rgba(80,52,20,0.07));
+      background-size: 8px 8px, 12px 12px, 100% 100%;
+      mix-blend-mode: multiply;
+      opacity: 0.72;
+    }
+
+    .quote-box::after {
+      content: "POLAROID MEMORY · FADED BUT NOT LOST";
+      position: relative;
+      z-index: 2;
+      display: block;
+      margin-top: 13px;
+      color: rgba(42, 31, 18, 0.44);
+      letter-spacing: 0.12em;
+      font-size: 10px;
+      font-weight: 950;
+      text-align: right;
     }
 
     .quote-box small {
+      position: relative;
+      z-index: 2;
       display: block;
-      color: var(--soft);
+      color: rgba(42, 31, 18, 0.50);
       text-transform: uppercase;
       letter-spacing: 0.13em;
       font-size: 10px;
-      font-weight: 850;
+      font-weight: 950;
       margin-bottom: 8px;
     }
 
     .quote-box strong {
+      position: relative;
+      z-index: 2;
       display: block;
-      font-size: 22px;
-      line-height: 1.28;
+      font-size: 23px;
+      line-height: 1.26;
       letter-spacing: -0.045em;
-      color: rgba(255,255,255,0.94);
+      color: rgba(23,18,12,0.92);
+      text-shadow: 0 1px 0 rgba(255,255,255,0.35);
+    }
+
+    body.phase-memory-decay .quote-box {
+      filter: sepia(0.18) saturate(0.92);
+    }
+
+    body.phase-time-fold .quote-box {
+      transform: rotate(-0.8deg) translateX(1px);
+      filter: sepia(0.22) contrast(1.05);
     }
 
     .action-row {
@@ -703,12 +981,6 @@
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.08);
       box-shadow: none;
-    }
-
-    .btn.danger {
-      color: #fff;
-      background: linear-gradient(135deg, #ff5e73, #5e0612);
-      box-shadow: 0 18px 50px rgba(255,77,99,0.20);
     }
 
     .btn.ghost {
@@ -1321,6 +1593,10 @@
         font-size: 16px;
       }
 
+      .quote-box {
+        transform: rotate(-0.25deg);
+      }
+
       .side-panel {
         padding: 18px;
       }
@@ -1362,6 +1638,9 @@
 <body>
   <div class="noise-layer" aria-hidden="true"></div>
   <div class="scan-layer" aria-hidden="true"></div>
+  <div class="memory-decay-layer" aria-hidden="true"></div>
+  <div class="time-fold-layer" aria-hidden="true"></div>
+  <div class="red-eye-link-layer" aria-hidden="true"></div>
   <div class="light-leak" aria-hidden="true"></div>
   <div class="final-ritual-aura" aria-hidden="true"></div>
   <div class="transition-flash" id="transitionFlash" aria-hidden="true"></div>
@@ -1395,7 +1674,7 @@
               <span id="episodeKicker">EP.01 · Timeline Stable</span>
             </div>
           </div>
-          <div class="clock" id="clockDisplay">11:11 PM</div>
+          <div class="clock" id="clockDisplay" data-time="11:11 PM">11:11 PM</div>
         </div>
 
         <h1 class="episode-title" id="episodeTitle">
@@ -1424,7 +1703,7 @@
 
         <article class="story-text" id="storyText"></article>
 
-        <div class="quote-box">
+        <div class="quote-box" id="quoteBox">
           <small>Memory Line</small>
           <strong id="quoteText">Some nights do not end. They reset.</strong>
         </div>
@@ -1599,7 +1878,7 @@
 
       elements.mainActionBtn.addEventListener("click", function () {
         audio.interact();
-        cinematicFlash();
+        cinematicFlash("reverse");
         sfxByAction();
         if (currentEpisodeId < timeline.length) {
           setTimeout(() => goToEpisode(currentEpisodeId + 1), 190);
@@ -1689,7 +1968,7 @@
 
         localStorage.setItem(CURRENT_KEY, String(id));
         applyVisualMode(currentEpisode);
-        audio.switchMode(currentEpisode.visualMode, currentEpisode.clockMode);
+        audio.switchMode(currentEpisode.visualMode, currentEpisode.clockMode, currentEpisode.id);
 
         const progress =
           typeof window.getTimelineProgress === "function"
@@ -1711,6 +1990,7 @@
         elements.metaClock.textContent = clockInfo.label || currentEpisode.clockMode || "Normal";
         elements.metaFragment.textContent = formatLabel(currentEpisode.fragmentType || "memory");
         elements.quoteText.textContent = currentEpisode.quote || "";
+        elements.clockDisplay.setAttribute("data-time", "11:11 PM");
 
         elements.progressText.textContent =
           `${String(progress.current).padStart(2, "0")} / ${String(progress.total).padStart(2, "0")}`;
@@ -1759,9 +2039,22 @@
 
         const mode = episode.visualMode || "blue";
         const clock = episode.clockMode || "normal";
+        const id = Number(episode.id);
 
         elements.body.classList.add(`mode-${mode}`);
         elements.body.classList.add(`clock-${clock}`);
+
+        if (id >= 11) {
+          elements.body.classList.add("phase-memory-decay");
+        }
+
+        if (id >= 22) {
+          elements.body.classList.add("phase-time-fold");
+        }
+
+        if (id === 40) {
+          elements.body.classList.add("ep-40-red-link");
+        }
 
         if (episode.traveler === "Eli" || episode.specialMode === "eliPerspective") {
           elements.body.classList.add("eli-perspective");
@@ -1779,8 +2072,19 @@
       function updateCinematicHint(episode) {
         const visual = visualModes[episode.visualMode] || {};
         const clock = clockModes[episode.clockMode] || {};
+        const id = Number(episode.id);
+
+        let phase = "Stable cinematic mode.";
+        if (id >= 40 && id < 50) {
+          phase = "Red-eye linkage phase: broken neon clock, time debt, and universe-level pressure.";
+        } else if (id >= 22) {
+          phase = "Time Fold phase: unstable clock, reversed machinery, and timeline tearing.";
+        } else if (id >= 11) {
+          phase = "Memory Decay phase: chromatic edges, faded memory, and sensory loss.";
+        }
+
         elements.cinematicHint.textContent =
-          `${visual.label || episode.visualMode || "Blue"} · ${visual.description || ""} ${clock.description || ""}`.trim();
+          `${visual.label || episode.visualMode || "Blue"} · ${phase} ${clock.description || ""}`.trim();
       }
 
       function renderEpisodeGrid() {
@@ -1900,7 +2204,7 @@
         elements.body.classList.remove("final-released");
 
         audio.holdOn();
-        renderFinalLines(choice.lines || [], count);
+        renderFinalLines(choice.lines || []);
         scrollToFinalChoice();
 
         if (count >= (choice.maxBeforeCollapse || 3)) {
@@ -1922,7 +2226,7 @@
         elements.body.classList.add("final-released");
 
         audio.letGo();
-        renderFinalLines(choice.lines || [], 0);
+        renderFinalLines(choice.lines || []);
         showToast("The final timeline is released.");
         scrollToFinalChoice();
 
@@ -1946,7 +2250,13 @@
         });
       }
 
-      function cinematicFlash() {
+      function cinematicFlash(type) {
+        elements.transitionFlash.classList.remove("active", "reverse");
+        if (type === "reverse") {
+          elements.transitionFlash.classList.add("reverse");
+          setTimeout(() => elements.transitionFlash.classList.remove("reverse"), 560);
+          return;
+        }
         elements.transitionFlash.classList.add("active");
         setTimeout(() => elements.transitionFlash.classList.remove("active"), 220);
       }
@@ -1968,7 +2278,9 @@
         let master = null;
         let ambient = null;
         let enabled = false;
-        let currentMode = "blue";
+        let currentMode = "blue:normal";
+        let tickTimer = null;
+        let currentEpisodeNumber = 1;
 
         function ensure() {
           if (ctx) return;
@@ -1992,9 +2304,11 @@
           if (enabled) {
             ctx.resume();
             startAmbient(currentMode);
+            startTicks();
             showToast("Cinematic sound enabled.");
           } else {
             stopAmbient();
+            stopTicks();
             showToast("Sound disabled.");
           }
         }
@@ -2006,9 +2320,13 @@
           }
         }
 
-        function switchMode(visualMode, clockMode) {
+        function switchMode(visualMode, clockMode, episodeId) {
           currentMode = `${visualMode || "blue"}:${clockMode || "normal"}`;
-          if (enabled) startAmbient(currentMode);
+          currentEpisodeNumber = Number(episodeId || 1);
+          if (enabled) {
+            startAmbient(currentMode);
+            startTicks();
+          }
         }
 
         function stopAmbient() {
@@ -2016,6 +2334,7 @@
             try {
               ambient.osc.stop();
               ambient.lfo.stop();
+              if (ambient.noise) ambient.noise.stop();
             } catch (error) {}
             ambient = null;
           }
@@ -2048,13 +2367,18 @@
             volume = 0.009;
           }
 
+          if (currentEpisodeNumber >= 22) {
+            freq -= 6;
+            volume *= 1.15;
+          }
+
           osc.type = type;
-          osc.frequency.value = freq;
+          osc.frequency.value = Math.max(28, freq);
 
           gain.gain.value = volume;
 
           lfo.type = "sine";
-          lfo.frequency.value = mode.includes("collapse") ? 7.2 : 0.18;
+          lfo.frequency.value = mode.includes("collapse") ? 7.2 : currentEpisodeNumber >= 22 ? 0.42 : 0.18;
           lfoGain.gain.value = volume * 0.7;
 
           lfo.connect(lfoGain);
@@ -2068,6 +2392,40 @@
           ambient = { osc, gain, lfo };
         }
 
+        function startTicks() {
+          if (!enabled || !ctx || !master) return;
+          stopTicks();
+
+          const loop = () => {
+            if (!enabled || !ctx) return;
+
+            if (currentEpisodeNumber >= 22 || currentMode.includes("collapse")) {
+              mechanicalReverseTick();
+            } else {
+              tick();
+            }
+
+            let delay = 1650;
+
+            if (currentEpisodeNumber >= 11) delay = 1320;
+            if (currentEpisodeNumber >= 22) delay = 860 + Math.random() * 680;
+            if (currentMode.includes("collapse")) delay = 380 + Math.random() * 420;
+            if (currentEpisodeNumber === 40) delay = 260 + Math.random() * 360;
+            if (currentEpisodeNumber === 50) delay = 2200;
+
+            tickTimer = setTimeout(loop, delay);
+          };
+
+          tickTimer = setTimeout(loop, 360);
+        }
+
+        function stopTicks() {
+          if (tickTimer) {
+            clearTimeout(tickTimer);
+            tickTimer = null;
+          }
+        }
+
         function tone(freq, duration, type, volume, rampTo) {
           if (!enabled || !ctx || !master) return;
 
@@ -2075,9 +2433,9 @@
           const gain = ctx.createGain();
 
           osc.type = type || "sine";
-          osc.frequency.setValueAtTime(freq, ctx.currentTime);
+          osc.frequency.setValueAtTime(Math.max(20, freq), ctx.currentTime);
           if (rampTo) {
-            osc.frequency.exponentialRampToValueAtTime(rampTo, ctx.currentTime + duration);
+            osc.frequency.exponentialRampToValueAtTime(Math.max(20, rampTo), ctx.currentTime + duration);
           }
 
           gain.gain.setValueAtTime(volume || 0.04, ctx.currentTime);
@@ -2089,8 +2447,23 @@
           osc.stop(ctx.currentTime + duration + 0.02);
         }
 
+        function tick() {
+          tone(980, 0.035, "triangle", 0.018, 760);
+        }
+
+        function mechanicalReverseTick() {
+          tone(420, 0.05, "square", 0.018, 180);
+          setTimeout(() => tone(190, 0.06, "sawtooth", 0.012, 90), 42);
+        }
+
         function wake() {
-          tone(220, 0.28, "sine", 0.045, 88);
+          reverseReverb();
+        }
+
+        function reverseReverb() {
+          tone(80, 0.22, "sine", 0.012, 520);
+          setTimeout(() => tone(620, 0.18, "triangle", 0.018, 120), 90);
+          setTimeout(() => tone(1180, 0.09, "sine", 0.012, 860), 180);
         }
 
         function warning() {
@@ -2101,19 +2474,27 @@
         function fragment() {
           tone(740, 0.09, "triangle", 0.04, 980);
           setTimeout(() => tone(1180, 0.12, "triangle", 0.028, 760), 80);
+          setTimeout(() => tone(530, 0.08, "square", 0.012, 420), 130);
         }
 
         function holdOn() {
           tone(120, 0.46, "sawtooth", 0.045, 45);
+          setTimeout(() => mechanicalReverseTick(), 120);
+          setTimeout(() => mechanicalReverseTick(), 260);
         }
 
         function letGo() {
           stopAmbient();
+          stopTicks();
           tone(880, 0.12, "triangle", 0.035, 990);
           setTimeout(() => tone(1210, 0.18, "sine", 0.025, 760), 140);
+          setTimeout(() => tone(640, 0.28, "sine", 0.018, 520), 520);
           setTimeout(() => {
-            if (enabled) startAmbient("white:frozen");
-          }, 900);
+            if (enabled) {
+              startAmbient("white:frozen");
+              startTicks();
+            }
+          }, 1200);
         }
 
         function clickSoft() {
