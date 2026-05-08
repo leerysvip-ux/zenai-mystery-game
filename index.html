@@ -4,49 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>ZenAI Mystery Universe | 100 Premium Emotional Story Games</title>
+  <title>ZenAI Mystery Universe | Flagship Emotional Story Games</title>
   <meta
     name="description"
-    content="ZenAI Mystery Universe is a premium interactive emotional story universe featuring 100 flagship-quality story games about memory, love, sacrifice, family, AI, time, and final goodbyes."
+    content="ZenAI Mystery Universe is a flagship emotional interactive story universe. Play The Red Eye Files and The Last Timeline."
   />
   <meta
     name="keywords"
-    content="ZenAI Mystery Universe, interactive story games, emotional games, The Red Eye Files, The Last Timeline, The Lost Letters, AI story game, narrative game, mystery game"
+    content="ZenAI Mystery Universe, The Red Eye Files, The Last Timeline, interactive story, emotional story game, mystery game, time travel game"
   />
   <meta name="author" content="ZenAI Soul" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="ZenAI Mystery Universe | 100 Premium Emotional Story Games" />
+  <meta property="og:title" content="ZenAI Mystery Universe | Flagship Emotional Story Games" />
   <meta
     property="og:description"
-    content="A premium universe of interactive emotional story games. Start with The Red Eye Files and The Last Timeline."
+    content="Not mini games. Flagship emotional story IPs built to be remembered."
   />
   <meta property="og:url" content="https://www.zenaisoul.com/" />
   <meta property="og:site_name" content="ZenAI Mystery Universe" />
   <meta property="og:image" content="https://www.zenaisoul.com/red-eye-dark.png" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ZenAI Mystery Universe" />
-  <meta
-    name="twitter:description"
-    content="100 premium emotional interactive story games. Two playable now. Ten flagship originals revealed."
-  />
-  <meta name="twitter:image" content="https://www.zenaisoul.com/red-eye-dark.png" />
-
   <style>
     :root {
-      --bg: #05060b;
+      --bg: #04060d;
       --text: #f8f4ec;
-      --muted: rgba(248, 244, 236, 0.68);
-      --soft: rgba(248, 244, 236, 0.45);
+      --muted: rgba(248, 244, 236, 0.66);
+      --soft: rgba(248, 244, 236, 0.42);
       --line: rgba(255, 255, 255, 0.13);
-      --red: #ff4d63;
+      --panel: rgba(255, 255, 255, 0.075);
+      --panel2: rgba(255, 255, 255, 0.11);
       --blue: #6aa7ff;
-      --gold: #ffc16a;
+      --red: #ff415d;
+      --orange: #ffc16a;
+      --gold: #fff0c6;
       --green: #78f0b2;
-      --violet: #9a7cff;
-      --shadow: 0 32px 110px rgba(0, 0, 0, 0.58);
+      --shadow: 0 34px 120px rgba(0, 0, 0, 0.68);
       --radius: 30px;
+      --accent: #ffcf7a;
+      --accent-soft: rgba(255, 207, 122, 0.16);
     }
 
     * {
@@ -70,10 +66,10 @@
         "Segoe UI",
         sans-serif;
       background:
-        radial-gradient(circle at 18% 10%, rgba(255, 77, 99, 0.22), transparent 28%),
-        radial-gradient(circle at 82% 18%, rgba(106, 167, 255, 0.22), transparent 32%),
-        radial-gradient(circle at 50% 110%, rgba(255, 193, 106, 0.12), transparent 36%),
-        linear-gradient(135deg, #030407 0%, #080c17 42%, #05020a 100%);
+        radial-gradient(circle at 18% 0%, rgba(255, 65, 93, 0.18), transparent 28%),
+        radial-gradient(circle at 72% 8%, rgba(255, 193, 106, 0.16), transparent 28%),
+        radial-gradient(circle at 55% 45%, rgba(106, 167, 255, 0.10), transparent 32%),
+        linear-gradient(135deg, #04060d 0%, #080b18 44%, #030307 100%);
       overflow-x: hidden;
     }
 
@@ -81,63 +77,25 @@
       content: "";
       position: fixed;
       inset: 0;
-      z-index: -3;
       pointer-events: none;
+      z-index: -5;
       background:
         linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-      background-size: 54px 54px;
+      background-size: 58px 58px;
+      opacity: 0.42;
       mask-image: radial-gradient(circle at center, black, transparent 78%);
-      opacity: 0.52;
     }
 
     body::after {
       content: "";
       position: fixed;
       inset: 0;
-      z-index: -2;
       pointer-events: none;
+      z-index: -4;
       background:
-        linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.54)),
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.07), transparent 32%);
-    }
-
-    .red-thread-layer {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-      background:
-        linear-gradient(118deg, transparent 0 22%, rgba(255, 77, 99, 0.16) 22.2%, transparent 22.8% 58%, rgba(255, 77, 99, 0.1) 58.2%, transparent 59%),
-        radial-gradient(circle at 22% 18%, rgba(255, 77, 99, 0.16), transparent 24%),
-        radial-gradient(circle at 72% 70%, rgba(255, 77, 99, 0.1), transparent 28%);
-      filter: blur(0.2px);
-    }
-
-    body.memory-red-thread .red-thread-layer {
-      opacity: 1;
-    }
-
-    body.timeline-pulse .brand-mark,
-    body.timeline-pulse .timeline-status-card {
-      animation: timelinePulse 2.1s ease-in-out infinite;
-    }
-
-    body.final-memory-glow .hero-main {
-      box-shadow:
-        0 0 0 1px rgba(255, 193, 106, 0.22),
-        0 32px 120px rgba(255, 193, 106, 0.2);
-    }
-
-    @keyframes timelinePulse {
-      0%, 100% {
-        box-shadow: 0 0 20px rgba(106, 167, 255, 0.18);
-      }
-      50% {
-        box-shadow: 0 0 42px rgba(106, 167, 255, 0.42);
-      }
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.08), transparent 34%),
+        linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.72));
     }
 
     a {
@@ -145,26 +103,24 @@
       text-decoration: none;
     }
 
-    button {
-      font-family: inherit;
-    }
-
     .page {
-      width: min(1200px, calc(100% - 32px));
+      position: relative;
+      z-index: 2;
+      width: min(1240px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 24px 0 62px;
+      padding: 24px 0 80px;
     }
 
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 40;
+      z-index: 60;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
       padding: 14px 0 18px;
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(22px);
     }
 
     .brand {
@@ -175,17 +131,17 @@
     }
 
     .brand-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 17px;
+      width: 46px;
+      height: 46px;
       border: 1px solid var(--line);
+      border-radius: 18px;
       background:
-        radial-gradient(circle at 40% 42%, rgba(255,255,255,0.95) 0 3px, transparent 4px),
-        radial-gradient(circle at 56% 54%, rgba(255, 77, 99, 0.8), transparent 34%),
+        radial-gradient(circle at 46% 45%, rgba(255,255,255,0.92) 0 2px, transparent 3px),
+        radial-gradient(circle at 50% 50%, rgba(255,207,122,0.18), transparent 42%),
         linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.035));
       box-shadow:
-        0 0 34px rgba(255, 77, 99, 0.24),
-        0 16px 50px rgba(0,0,0,0.45);
+        0 0 34px rgba(255,207,122,0.24),
+        0 18px 55px rgba(0,0,0,0.52);
       flex: 0 0 auto;
     }
 
@@ -193,95 +149,77 @@
       display: block;
       color: var(--muted);
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 12px;
-      font-weight: 780;
+      letter-spacing: 0.16em;
+      font-size: 11px;
+      font-weight: 850;
     }
 
     .brand strong {
       display: block;
-      margin-top: 2px;
+      margin-top: 3px;
       font-size: 19px;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.045em;
       white-space: nowrap;
     }
 
     .nav {
       display: flex;
-      align-items: center;
       justify-content: flex-end;
-      gap: 10px;
       flex-wrap: wrap;
+      gap: 9px;
     }
 
     .nav a {
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.06);
       color: var(--text);
-      padding: 10px 14px;
+      padding: 10px 13px;
       border-radius: 999px;
       font-size: 13px;
-      transition: 0.2s ease;
+      cursor: pointer;
       backdrop-filter: blur(14px);
+      transition: 0.2s ease;
     }
 
     .nav a:hover {
       transform: translateY(-1px);
-      background: rgba(255,255,255,0.13);
-    }
-
-    .panel {
-      border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 18% 0%, rgba(255,255,255,0.08), transparent 34%),
-        linear-gradient(135deg, rgba(255,255,255,0.095), rgba(255,255,255,0.035));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(24px);
-      overflow: hidden;
+      background: rgba(255,255,255,0.12);
     }
 
     .hero {
-      margin-top: 18px;
       display: grid;
       grid-template-columns: 1.08fr 0.92fr;
-      gap: 22px;
+      gap: 20px;
       align-items: stretch;
+      margin-top: 18px;
+    }
+
+    .panel {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255,255,255,0.08), transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,0.095), rgba(255,255,255,0.035));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(25px);
+      overflow: hidden;
     }
 
     .hero-main {
-      position: relative;
-      min-height: 540px;
-      padding: 40px;
+      min-height: 570px;
+      padding: 34px;
     }
 
     .hero-main::before {
       content: "";
       position: absolute;
-      inset: -120px -140px auto auto;
-      width: 370px;
-      height: 370px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 77, 99, 0.34), transparent 62%);
-      filter: blur(14px);
+      inset: 0;
       pointer-events: none;
-    }
-
-    .hero-main::after {
-      content: "";
-      position: absolute;
-      right: 26px;
-      bottom: 26px;
-      width: min(350px, 48%);
-      aspect-ratio: 1 / 1.05;
-      border-radius: 34px;
       background:
-        linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.35)),
-        url("red-eye-dark.png") center / cover no-repeat;
-      opacity: 0.36;
-      filter: saturate(1.15) contrast(1.08);
-      box-shadow: inset 0 0 70px rgba(0,0,0,0.72);
-      pointer-events: none;
+        radial-gradient(circle at 18% 10%, rgba(255,65,93,0.16), transparent 28%),
+        radial-gradient(circle at 86% 10%, rgba(255,207,122,0.18), transparent 26%),
+        linear-gradient(to bottom, rgba(255,255,255,0.05), transparent 24%);
     }
 
     .kicker {
@@ -296,60 +234,45 @@
       border-radius: 999px;
       padding: 8px 12px;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 12px;
-      font-weight: 780;
+      letter-spacing: 0.14em;
+      font-size: 11px;
+      font-weight: 900;
     }
 
-    .pulse {
+    .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 22px rgba(120, 240, 178, 0.8);
+      background: var(--accent);
+      box-shadow: 0 0 22px rgba(255,207,122,0.58);
       animation: pulse 1.8s ease-in-out infinite;
     }
 
     @keyframes pulse {
-      0%, 100% {
-        transform: scale(0.9);
-        opacity: 0.72;
-      }
-      50% {
-        transform: scale(1.25);
-        opacity: 1;
-      }
+      0%, 100% { transform: scale(0.85); opacity: 0.62; }
+      50% { transform: scale(1.25); opacity: 1; }
     }
 
-    .hero-title {
+    h1 {
       position: relative;
       z-index: 2;
-      margin: 24px 0 18px;
-      max-width: 800px;
-      font-size: clamp(48px, 8vw, 102px);
+      margin: 24px 0 0;
+      max-width: 850px;
+      font-size: clamp(52px, 8vw, 108px);
       line-height: 0.86;
       letter-spacing: -0.085em;
+      text-wrap: balance;
     }
 
-    .hero-title span {
-      display: block;
-      margin-top: 14px;
-      max-width: 780px;
-      font-size: 0.34em;
-      line-height: 1.08;
-      color: var(--muted);
-      letter-spacing: -0.04em;
-      font-weight: 680;
-    }
-
-    .hero-copy {
+    .hero-lead {
       position: relative;
       z-index: 2;
-      margin: 0;
-      max-width: 700px;
-      color: var(--muted);
+      margin: 24px 0 0;
+      max-width: 760px;
+      color: rgba(255,255,255,0.70);
       font-size: 18px;
-      line-height: 1.72;
+      line-height: 1.68;
+      letter-spacing: -0.02em;
     }
 
     .hero-actions {
@@ -358,7 +281,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 30px;
+      margin-top: 26px;
     }
 
     .btn {
@@ -366,14 +289,13 @@
       align-items: center;
       justify-content: center;
       border: 0;
-      cursor: pointer;
-      color: #11070a;
-      background: linear-gradient(135deg, #ffffff, #ffc16a);
       border-radius: 999px;
-      padding: 14px 19px;
-      font-weight: 840;
+      padding: 15px 20px;
+      font-weight: 900;
       letter-spacing: -0.025em;
-      box-shadow: 0 18px 48px rgba(255, 193, 106, 0.22);
+      color: #0b0b0c;
+      background: linear-gradient(135deg, #ffffff, var(--accent));
+      box-shadow: 0 18px 50px var(--accent-soft);
       transition: 0.22s ease;
     }
 
@@ -384,901 +306,546 @@
 
     .btn.secondary {
       color: var(--text);
-      background: rgba(255,255,255,0.08);
       border: 1px solid var(--line);
+      background: rgba(255,255,255,0.08);
       box-shadow: none;
     }
 
-    .btn.blue {
-      color: #06111f;
-      background: linear-gradient(135deg, #ffffff, #8fc0ff);
-      box-shadow: 0 18px 48px rgba(106, 167, 255, 0.22);
-    }
-
-    .btn.red {
-      color: #fff;
-      background: linear-gradient(135deg, #ff6b7e, #68111d);
-      box-shadow: 0 18px 48px rgba(255, 77, 99, 0.24);
-    }
-
-    .stats {
+    .featured-panel {
       padding: 26px;
-      display: grid;
-      gap: 14px;
-      align-content: stretch;
+      min-height: 570px;
     }
 
-    .stats-title {
-      margin: 0 0 2px;
-      color: var(--muted);
+    .featured-card {
+      position: relative;
+      height: 100%;
+      border: 1px solid rgba(255, 245, 223, 0.24);
+      border-radius: 28px;
+      padding: 26px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255, 245, 223, 0.18), transparent 35%),
+        radial-gradient(circle at 85% 12%, rgba(255, 65, 93, 0.16), transparent 30%),
+        linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.035));
+      box-shadow:
+        0 0 0 1px rgba(255,245,223,0.05),
+        0 0 80px rgba(255, 207, 122, 0.12);
+      overflow: hidden;
+    }
+
+    .featured-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, transparent, rgba(255,255,255,0.08), transparent),
+        radial-gradient(circle at 50% 0%, rgba(255,245,223,0.12), transparent 36%);
+      opacity: 0.72;
+    }
+
+    .live-badge {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(120,240,178,0.26);
+      background: rgba(120,240,178,0.10);
+      color: #d9ffe9;
+      border-radius: 999px;
+      padding: 8px 12px;
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 12px;
-      font-weight: 800;
+      letter-spacing: 0.12em;
+      font-size: 10px;
+      font-weight: 950;
     }
 
-    .stat-grid {
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #78f0b2;
+      box-shadow: 0 0 18px rgba(120,240,178,0.74);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    .featured-card h2 {
+      position: relative;
+      z-index: 2;
+      margin: 22px 0 0;
+      font-size: clamp(42px, 5vw, 76px);
+      line-height: 0.9;
+      letter-spacing: -0.08em;
+      text-wrap: balance;
+    }
+
+    .featured-card h2 span {
+      display: block;
+      margin-top: 10px;
+      color: rgba(255,255,255,0.56);
+      font-size: 0.36em;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .featured-card p {
+      position: relative;
+      z-index: 2;
+      margin: 18px 0 0;
+      color: rgba(255,255,255,0.72);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    .featured-meta {
+      position: relative;
+      z-index: 2;
       display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .mini-meta {
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.16);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .mini-meta small {
+      display: block;
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      font-size: 10px;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .mini-meta strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.3;
+    }
+
+    .featured-actions {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .section {
+      margin-top: 22px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 18px;
+      margin: 42px 0 18px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 0.95;
+      letter-spacing: -0.075em;
+    }
+
+    .section-head p {
+      max-width: 560px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
       gap: 12px;
     }
 
     .stat-card {
       border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.08), transparent 40%),
-        rgba(255,255,255,0.045);
       border-radius: 22px;
-      padding: 18px;
-      min-height: 105px;
+      background: rgba(255,255,255,0.055);
+      padding: 16px;
     }
 
     .stat-card small {
       display: block;
       color: var(--soft);
       text-transform: uppercase;
-      letter-spacing: 0.13em;
-      font-size: 11px;
-      font-weight: 780;
-      margin-bottom: 9px;
+      letter-spacing: 0.12em;
+      font-size: 9px;
+      font-weight: 900;
+      margin-bottom: 8px;
     }
 
     .stat-card strong {
       display: block;
-      font-size: 34px;
-      letter-spacing: -0.055em;
+      font-size: 28px;
       line-height: 1;
-    }
-
-    .stat-card p {
-      margin: 9px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.48;
-    }
-
-    .status-line {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      margin-top: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 18px rgba(120,240,178,0.75);
-      flex: 0 0 auto;
-    }
-
-    .status-dot.warning {
-      background: var(--gold);
-      box-shadow: 0 0 18px rgba(255,193,106,0.75);
-    }
-
-    .status-dot.danger {
-      background: var(--red);
-      box-shadow: 0 0 18px rgba(255,77,99,0.78);
-    }
-
-    .memory-strip {
-      display: none;
-      margin-top: 18px;
-      border: 1px solid rgba(255, 77, 99, 0.22);
-      background:
-        radial-gradient(circle at 0% 0%, rgba(255, 77, 99, 0.16), transparent 38%),
-        rgba(255, 77, 99, 0.065);
-      border-radius: 22px;
-      padding: 16px;
-      color: rgba(255,255,255,0.76);
-      line-height: 1.55;
-      font-size: 14px;
-      position: relative;
-      z-index: 2;
-    }
-
-    body.memory-red-thread .memory-strip {
-      display: block;
-    }
-
-    .section {
-      margin-top: 30px;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 20px;
-      margin: 0 0 18px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(32px, 4vw, 52px);
-      line-height: 0.96;
-      letter-spacing: -0.068em;
-    }
-
-    .section-head p {
-      margin: 0;
-      max-width: 560px;
-      color: var(--muted);
-      line-height: 1.62;
-      text-align: right;
-      font-size: 15px;
+      letter-spacing: -0.05em;
     }
 
     .flagship-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
 
     .flagship-card {
       position: relative;
-      min-height: 520px;
       border: 1px solid var(--line);
-      border-radius: 30px;
-      overflow: hidden;
+      border-radius: 26px;
       background:
-        radial-gradient(circle at 18% 0%, rgba(255,255,255,0.08), transparent 35%),
-        linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      box-shadow: 0 26px 80px rgba(0,0,0,0.42);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      transition: 0.24s ease;
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.08), transparent 34%),
+        rgba(255,255,255,0.055);
+      padding: 20px;
+      min-height: 278px;
+      overflow: hidden;
+      transition: 0.22s ease;
     }
 
     .flagship-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
       border-color: rgba(255,255,255,0.22);
-    }
-
-    .flagship-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.79));
-      pointer-events: none;
-    }
-
-    .flagship-card.large {
-      grid-column: span 2;
-    }
-
-    .cover-red-eye {
       background:
-        linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.68)),
-        url("red-eye-dark.png") center / cover no-repeat;
+        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.12), transparent 34%),
+        rgba(255,255,255,0.075);
     }
 
-    .cover-red-eye::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      background: radial-gradient(circle at 52% 36%, rgba(255,77,99,0.28), transparent 30%);
-      pointer-events: none;
-    }
-
-    .cover-timeline {
+    .flagship-card.featured-live {
+      border-color: rgba(255, 245, 223, 0.32);
       background:
-        radial-gradient(circle at 60% 18%, rgba(106, 167, 255, 0.28), transparent 25%),
-        radial-gradient(circle at 28% 38%, rgba(255, 193, 106, 0.18), transparent 32%),
-        linear-gradient(135deg, #081026, #080914 52%, #130b05);
-    }
-
-    .cover-timeline::after {
-      content: "11:11 PM";
-      position: absolute;
-      top: 34px;
-      left: 24px;
-      right: 24px;
-      z-index: 0;
-      font-size: clamp(48px, 7vw, 88px);
-      line-height: 0.9;
-      font-weight: 900;
-      letter-spacing: -0.08em;
-      color: rgba(255,255,255,0.18);
-      text-shadow:
-        2px 0 rgba(106,167,255,0.18),
-        -2px 0 rgba(255,77,99,0.18);
-      animation: faintPulse 2.8s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    .cover-letters {
-      background:
-        radial-gradient(circle at 50% 10%, rgba(255, 193, 106, 0.23), transparent 28%),
-        linear-gradient(135deg, #1a1208 0%, #17100d 48%, #050303 100%);
-    }
-
-    .cover-letters::after {
-      content: "";
-      position: absolute;
-      inset: 52px 34px auto 34px;
-      height: 210px;
-      border-radius: 18px;
-      background:
-        linear-gradient(135deg, rgba(255,244,216,0.72), rgba(176,105,44,0.28)),
-        repeating-linear-gradient(-12deg, rgba(80,34,18,0) 0px, rgba(80,34,18,0) 18px, rgba(80,34,18,0.16) 19px);
-      transform: rotate(-4deg);
+        radial-gradient(circle at 15% 0%, rgba(255,245,223,0.18), transparent 34%),
+        radial-gradient(circle at 90% 8%, rgba(255,65,93,0.14), transparent 30%),
+        rgba(255,255,255,0.075);
       box-shadow:
-        inset 0 0 34px rgba(89, 37, 14, 0.3),
-        0 28px 80px rgba(0,0,0,0.42);
-      opacity: 0.78;
-      pointer-events: none;
+        0 0 0 1px rgba(255,245,223,0.05),
+        0 0 70px rgba(255, 207, 122, 0.11);
     }
 
-    .cover-voicemail {
-      background:
-        radial-gradient(circle at 46% 20%, rgba(106,167,255,0.32), transparent 30%),
-        repeating-linear-gradient(90deg, rgba(106,167,255,0.18) 0 2px, transparent 2px 18px),
-        linear-gradient(135deg, #07111d, #05050b);
-    }
-
-    .cover-room {
-      background:
-        radial-gradient(circle at 50% 10%, rgba(255,193,106,0.22), transparent 26%),
-        linear-gradient(135deg, #130d12, #050609);
-    }
-
-    .cover-mother {
-      background:
-        radial-gradient(circle at 45% 20%, rgba(255,193,106,0.32), transparent 30%),
-        linear-gradient(135deg, #160d05, #070504);
-    }
-
-    .cover-train {
-      background:
-        radial-gradient(circle at 55% 22%, rgba(255,193,106,0.18), transparent 32%),
-        linear-gradient(135deg, #080b12, #14100a);
-    }
-
-    .cover-ai {
-      background:
-        radial-gradient(circle at 50% 18%, rgba(120,240,178,0.22), transparent 28%),
-        radial-gradient(circle at 25% 60%, rgba(106,167,255,0.20), transparent 34%),
-        linear-gradient(135deg, #04100c, #060914);
-    }
-
-    .cover-apology-house {
-      background:
-        radial-gradient(circle at 48% 18%, rgba(255,244,216,0.18), transparent 30%),
-        linear-gradient(135deg, #110c08, #060505);
-    }
-
-    .cover-birthday {
-      background:
-        radial-gradient(circle at 55% 18%, rgba(255,193,106,0.28), transparent 28%),
-        radial-gradient(circle at 30% 36%, rgba(255,77,99,0.18), transparent 32%),
-        linear-gradient(135deg, #16070d, #080506);
-    }
-
-    @keyframes faintPulse {
-      0%, 100% {
-        opacity: 0.46;
-      }
-      50% {
-        opacity: 0.95;
-      }
-    }
-
-    .flagship-content {
-      position: relative;
-      z-index: 2;
-      padding: 24px;
-    }
-
-    .badge-row {
+    .card-top {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
     }
 
-    .badge {
+    .series {
+      color: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .status {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(0,0,0,0.26);
+      gap: 6px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
       color: rgba(255,255,255,0.78);
       border-radius: 999px;
       padding: 7px 10px;
-      font-size: 11px;
-      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.11em;
-      backdrop-filter: blur(12px);
+      letter-spacing: 0.09em;
+      font-size: 9px;
+      font-weight: 950;
+      white-space: nowrap;
     }
 
-    .badge.completed {
-      color: #ffe1e5;
-      border-color: rgba(255,77,99,0.22);
-      background: rgba(255,77,99,0.09);
+    .status.live {
+      border-color: rgba(120,240,178,0.28);
+      background: rgba(120,240,178,0.10);
+      color: #d9ffe9;
     }
 
-    .badge.live {
-      color: #d8ffe9;
-      border-color: rgba(120,240,178,0.22);
-      background: rgba(120,240,178,0.08);
+    .status.featured {
+      border-color: rgba(255,245,223,0.28);
+      background: rgba(255,245,223,0.10);
+      color: #fff1c8;
     }
 
-    .badge.next {
-      color: #ffe6bd;
-      border-color: rgba(255,193,106,0.24);
-      background: rgba(255,193,106,0.09);
-    }
-
-    .badge.planned {
-      color: #d9d2ff;
-      border-color: rgba(154,124,255,0.24);
-      background: rgba(154,124,255,0.09);
-    }
-
-    .flagship-content h3 {
-      margin: 0 0 10px;
-      font-size: 32px;
-      line-height: 0.96;
+    .flagship-card h3 {
+      margin: 18px 0 0;
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 0.95;
       letter-spacing: -0.065em;
+      text-wrap: balance;
     }
 
-    .flagship-card.large .flagship-content h3 {
-      font-size: clamp(36px, 4.8vw, 58px);
-    }
-
-    .flagship-content h3 span {
+    .flagship-card h3 span {
       display: block;
-      margin-top: 9px;
-      color: rgba(255,255,255,0.62);
-      font-size: 0.52em;
-      letter-spacing: -0.03em;
+      margin-top: 8px;
+      color: rgba(255,255,255,0.50);
+      font-size: 0.45em;
+      line-height: 1.2;
+      letter-spacing: -0.035em;
     }
 
-    .flagship-content p {
-      margin: 0;
-      color: rgba(255,255,255,0.74);
-      line-height: 1.62;
-      font-size: 15px;
-    }
-
-    .mechanic {
-      margin-top: 16px;
-      border: 1px solid rgba(255,255,255,0.13);
-      background: rgba(255,255,255,0.065);
-      border-radius: 18px;
-      padding: 14px;
-    }
-
-    .mechanic small {
-      display: block;
-      color: rgba(255,255,255,0.46);
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      font-size: 10px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .mechanic strong {
-      display: block;
-      font-size: 15px;
-      letter-spacing: -0.025em;
-      margin-bottom: 5px;
-    }
-
-    .mechanic span {
-      display: block;
-      color: rgba(255,255,255,0.62);
-      font-size: 13px;
-      line-height: 1.48;
-    }
-
-    .series-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .mini-link {
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.92);
-      border-radius: 999px;
-      padding: 10px 13px;
-      font-size: 13px;
-      font-weight: 800;
-      transition: 0.2s ease;
-      cursor: pointer;
-    }
-
-    .mini-link:hover {
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.14);
-    }
-
-    .mini-link.primary-red {
-      background: linear-gradient(135deg, #ff5f73, #68111d);
-      border-color: rgba(255,255,255,0.1);
-      color: #fff;
-    }
-
-    .mini-link.primary-blue {
-      background: linear-gradient(135deg, #ffffff, #8fc0ff);
-      color: #06111f;
-      border-color: rgba(255,255,255,0.1);
-    }
-
-    .mini-link.disabled {
-      opacity: 0.58;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      gap: 22px;
-      margin-top: 30px;
-    }
-
-    .info-card {
-      padding: 26px;
-    }
-
-    .info-card h3 {
-      margin: 0 0 12px;
-      font-size: 32px;
-      letter-spacing: -0.058em;
-      line-height: 1;
-    }
-
-    .info-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .rule-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .rule {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.045);
-      border-radius: 16px;
-      padding: 13px;
-      color: var(--muted);
-      line-height: 1.5;
+    .hook {
+      color: rgba(255,255,255,0.70);
+      line-height: 1.55;
+      margin: 14px 0 0;
       font-size: 14px;
     }
 
-    .rule b {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      color: var(--text);
-      flex: 0 0 auto;
-      font-size: 12px;
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
     }
 
-    .quote-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .quote-item {
+    .chip {
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.045);
-      border-radius: 22px;
-      padding: 18px;
-    }
-
-    .quote-item small {
-      display: block;
-      color: var(--soft);
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      margin-bottom: 9px;
+      color: rgba(255,255,255,0.66);
+      border-radius: 999px;
+      padding: 7px 9px;
       font-size: 11px;
       font-weight: 800;
     }
 
-    .quote-item strong {
-      display: block;
-      font-size: 20px;
-      line-height: 1.28;
-      letter-spacing: -0.04em;
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .card-link {
+      display: inline-flex;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 11px 13px;
+      font-size: 13px;
+      font-weight: 900;
+      transition: 0.2s ease;
+    }
+
+    .card-link.primary {
+      color: #0b0b0c;
+      border: 0;
+      background: linear-gradient(135deg, #fff, var(--accent));
+    }
+
+    .card-link:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
     }
 
     .collections-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 14px;
+      gap: 12px;
     }
 
     .collection-card {
       border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.08), transparent 40%),
-        rgba(255,255,255,0.045);
+      background: rgba(255,255,255,0.055);
       border-radius: 22px;
-      padding: 18px;
-      min-height: 245px;
+      padding: 16px;
+      min-height: 170px;
       cursor: pointer;
-      text-align: left;
-      color: var(--text);
-      transition: 0.22s ease;
+      transition: 0.2s ease;
     }
 
     .collection-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(255,255,255,0.24);
-      background:
-        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.12), transparent 42%),
-        rgba(255,255,255,0.065);
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.085);
     }
 
     .collection-card small {
       display: block;
       color: var(--soft);
       text-transform: uppercase;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.11em;
+      font-size: 9px;
+      font-weight: 900;
       margin-bottom: 10px;
-      font-size: 11px;
-      font-weight: 800;
     }
 
-    .collection-card h3 {
-      margin: 0 0 8px;
-      font-size: 21px;
-      line-height: 1;
+    .collection-card strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1.05;
       letter-spacing: -0.045em;
     }
 
     .collection-card p {
-      margin: 0;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.5;
+      margin: 12px 0 0;
       font-size: 13px;
     }
 
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 14px;
-    }
-
-    .tag {
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.055);
-      color: rgba(255,255,255,0.66);
-      border-radius: 999px;
-      padding: 5px 8px;
-      font-size: 11px;
-    }
-
-    .modal-backdrop {
+    .modal {
       position: fixed;
       inset: 0;
       z-index: 100;
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 18px;
-      background: rgba(0,0,0,0.66);
-      backdrop-filter: blur(20px);
+      padding: 22px;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(18px);
     }
 
-    .modal-backdrop.show {
+    .modal.show {
       display: flex;
     }
 
-    .modal {
-      width: min(980px, 100%);
-      max-height: min(820px, calc(100vh - 36px));
-      overflow: hidden;
+    .modal-card {
+      width: min(760px, 100%);
+      max-height: min(720px, calc(100vh - 44px));
+      overflow: auto;
       border: 1px solid var(--line);
-      border-radius: 30px;
+      border-radius: 28px;
       background:
-        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.08), transparent 34%),
-        linear-gradient(135deg, rgba(14, 16, 28, 0.97), rgba(4, 5, 10, 0.97));
-      box-shadow: 0 42px 130px rgba(0,0,0,0.72);
-      display: flex;
-      flex-direction: column;
+        radial-gradient(circle at 20% 0%, rgba(255,207,122,0.14), transparent 34%),
+        #090b12;
+      box-shadow: var(--shadow);
+      padding: 24px;
     }
 
     .modal-head {
-      padding: 24px;
-      border-bottom: 1px solid var(--line);
       display: flex;
-      align-items: flex-start;
       justify-content: space-between;
       gap: 18px;
+      align-items: flex-start;
     }
 
     .modal-head h3 {
       margin: 0;
-      font-size: 34px;
+      font-size: 36px;
+      line-height: 0.95;
       letter-spacing: -0.065em;
-      line-height: 1;
     }
 
-    .modal-head p {
-      margin: 8px 0 0;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 14px;
-      max-width: 760px;
-    }
-
-    .modal-close {
+    .close-btn {
       border: 1px solid var(--line);
       background: rgba(255,255,255,0.08);
       color: var(--text);
-      width: 40px;
-      height: 40px;
       border-radius: 999px;
+      padding: 9px 12px;
       cursor: pointer;
-      font-size: 22px;
-      line-height: 1;
-      flex: 0 0 auto;
-    }
-
-    .modal-body {
-      padding: 22px;
-      overflow: auto;
+      font-weight: 900;
     }
 
     .seed-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 18px;
     }
 
-    .seed-card {
+    .seed {
       border: 1px solid var(--line);
-      background:
-        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.08), transparent 38%),
-        rgba(255,255,255,0.045);
-      border-radius: 18px;
-      padding: 15px;
-      min-height: 88px;
+      background: rgba(255,255,255,0.055);
+      border-radius: 16px;
+      padding: 12px;
+      color: rgba(255,255,255,0.78);
+      font-size: 14px;
+      line-height: 1.35;
     }
 
-    .seed-card small {
-      display: block;
+    .footer {
+      margin-top: 42px;
       color: var(--soft);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 10px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .seed-card strong {
-      display: block;
-      font-size: 16px;
-      line-height: 1.2;
-      letter-spacing: -0.025em;
-    }
-
-    footer {
-      margin-top: 36px;
-      padding: 24px 0 0;
       text-align: center;
-      color: var(--soft);
       font-size: 13px;
-    }
-
-    .fallback {
-      padding: 28px;
-      border: 1px solid rgba(255,77,99,0.3);
-      background: rgba(255,77,99,0.08);
-      color: rgba(255,255,255,0.82);
-      border-radius: 24px;
       line-height: 1.6;
     }
 
-    @media (max-width: 1080px) {
+    @media (max-width: 1040px) {
+      .hero,
       .flagship-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
 
       .collections-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .flagship-card.large {
-        grid-column: span 1;
-      }
-    }
-
-    @media (max-width: 980px) {
-      .topbar {
-        position: relative;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav {
-        justify-content: flex-start;
-      }
-
-      .hero,
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
       .section-head {
-        align-items: flex-start;
-        flex-direction: column;
+        display: block;
       }
 
       .section-head p {
-        text-align: left;
+        margin-top: 12px;
       }
     }
 
-    @media (max-width: 680px) {
+    @media (max-width: 720px) {
       .page {
-        width: min(100% - 22px, 1200px);
+        width: min(100% - 22px, 1240px);
         padding-top: 10px;
       }
 
       .topbar {
-        padding-bottom: 12px;
-      }
-
-      .hero-main,
-      .stats,
-      .info-card {
-        padding: 22px;
-      }
-
-      .hero-main {
-        min-height: 610px;
-      }
-
-      .hero-main::after {
-        width: 72%;
-        opacity: 0.25;
-      }
-
-      .brand {
+        position: relative;
+        flex-direction: column;
         align-items: flex-start;
-      }
-
-      .brand small {
-        font-size: 10px;
-      }
-
-      .brand strong {
-        font-size: 16px;
-        white-space: normal;
       }
 
       .nav {
         width: 100%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
       }
 
       .nav a {
-        padding: 10px 10px;
-        font-size: 12px;
         text-align: center;
+        padding: 10px;
       }
 
-      .hero-title {
-        font-size: clamp(46px, 15vw, 68px);
+      .hero-main,
+      .featured-panel {
+        padding: 20px;
       }
 
-      .hero-title span {
-        font-size: 0.38em;
+      h1 {
+        font-size: clamp(50px, 16vw, 76px);
       }
 
-      .hero-copy {
-        font-size: 16px;
+      .featured-card {
+        padding: 20px;
       }
 
-      .flagship-grid,
+      .featured-meta,
+      .stats-grid,
       .collections-grid,
       .seed-grid {
         grid-template-columns: 1fr;
       }
 
       .flagship-card {
-        min-height: 500px;
-      }
-
-      .btn,
-      .mini-link {
-        width: 100%;
-      }
-
-      .flagship-content h3,
-      .flagship-card.large .flagship-content h3 {
-        font-size: 31px;
-      }
-
-      .modal-head {
-        padding: 18px;
-      }
-
-      .modal-head h3 {
-        font-size: 28px;
-      }
-
-      .modal-body {
-        padding: 16px;
+        min-height: auto;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="red-thread-layer" aria-hidden="true"></div>
-
-  <div class="modal-backdrop" id="collectionModal" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="collectionModalTitle">
-      <div class="modal-head">
-        <div>
-          <h3 id="collectionModalTitle">Collection</h3>
-          <p id="collectionModalDesc">Future premium story games.</p>
-        </div>
-        <button class="modal-close" type="button" id="closeCollectionModal" aria-label="Close">×</button>
-      </div>
-      <div class="modal-body">
-        <div class="seed-grid" id="seedGrid"></div>
-      </div>
-    </div>
-  </div>
-
   <div class="page">
     <header class="topbar">
-      <a class="brand" href="index.html" aria-label="ZenAI Mystery Universe home">
+      <a class="brand" href="index.html">
         <div class="brand-mark"></div>
         <div>
           <small>ZenAI Mystery Universe</small>
@@ -1286,9 +853,8 @@
         </div>
       </a>
 
-      <nav class="nav" aria-label="Universe navigation">
+      <nav class="nav">
         <a href="#flagships">Flagships</a>
-        <a href="#vision">100 Games</a>
         <a href="red-eye.html">Red Eye</a>
         <a href="timeline.html">Timeline</a>
         <a href="archive.html">Archive</a>
@@ -1297,408 +863,586 @@
 
     <section class="hero">
       <main class="panel hero-main">
-        <div class="kicker"><span class="pulse"></span> Premium Universe · 100 Story Games Vision</div>
-
-        <h1 class="hero-title">
-          Not mini games.
-          <span>Flagship emotional story IPs built to be remembered.</span>
-        </h1>
-
-        <p class="hero-copy" id="heroCopy">
-          Enter ZenAI Mystery Universe — a premium interactive story world about memory,
-          love, sacrifice, family, time, AI, and the final words people never got to say.
-        </p>
-
-        <div class="memory-strip" id="memoryStrip">
-          A red thread has appeared in the universe. One completed memory is reshaping the archive.
+        <div class="kicker">
+          <span class="dot"></span>
+          <span>Premium Interactive Story Universe</span>
         </div>
 
+        <h1>
+          Not mini games.
+          <br />
+          Flagship emotional story IPs.
+        </h1>
+
+        <p class="hero-lead">
+          ZenAI Mystery Universe is building a library of cinematic emotional interactive stories:
+          mystery, time travel, sacrifice, memory, goodbye, and the kind of final line people want to screenshot.
+        </p>
+
         <div class="hero-actions">
-          <a class="btn red" href="red-eye.html">Play The Red Eye Files</a>
-          <a class="btn blue" href="timeline.html">Enter The Last Timeline</a>
-          <a class="btn secondary" href="#flagships">View 10 Flagships</a>
+          <a class="btn" href="timeline.html">Play Featured Flagship</a>
+          <a class="btn secondary" href="#flagships">View All Flagships</a>
+          <a class="btn secondary" href="red-eye.html">Play Red Eye Files</a>
         </div>
       </main>
 
-      <aside class="panel stats">
-        <h2 class="stats-title">Real-time Universe Stats</h2>
-
-        <div class="stat-grid">
-          <div class="stat-card">
-            <small>Total Vision Stories</small>
-            <strong id="totalVisionStories">100</strong>
-            <p>Premium interactive emotional story games planned.</p>
+      <aside class="panel featured-panel">
+        <div class="featured-card">
+          <div class="live-badge">
+            <span class="live-dot"></span>
+            <span>Featured · Flagship Live</span>
           </div>
 
-          <div class="stat-card">
-            <small>Flagship Originals</small>
-            <strong id="flagshipCount">10</strong>
-            <p>First ten core IPs define the universe standard.</p>
+          <h2>
+            The Last Timeline
+            <span>最后的时间线</span>
+          </h2>
+
+          <p>
+            You spent 49 timelines trying to save Eli. In the 50th, you discover Eli was saving you too.
+            This is the second flagship of ZenAI Mystery Universe — a cinematic story about sacrifice, love,
+            and learning to let go.
+          </p>
+
+          <div class="featured-meta">
+            <div class="mini-meta">
+              <small>Status</small>
+              <strong>Flagship Live</strong>
+            </div>
+            <div class="mini-meta">
+              <small>Episodes</small>
+              <strong>50 / 50 Complete</strong>
+            </div>
+            <div class="mini-meta">
+              <small>Core Signal</small>
+              <strong>11:11 PM</strong>
+            </div>
+            <div class="mini-meta">
+              <small>Final Choice</small>
+              <strong>Hold On / Let Go</strong>
+            </div>
           </div>
 
-          <div class="stat-card">
-            <small>Playable Now</small>
-            <strong id="playableNow">2</strong>
-            <p>The Red Eye Files and The Last Timeline are live.</p>
-          </div>
-
-          <div class="stat-card">
-            <small>Active Travelers</small>
-            <strong id="activeTravelers">4209</strong>
-            <p>Simulated universe activity for live product atmosphere.</p>
-          </div>
-
-          <div class="stat-card">
-            <small>Memory Fragments Collected</small>
-            <strong id="fragmentCount">0</strong>
-            <p>Collected locally from archive memories and timeline fragments.</p>
-          </div>
-
-          <div class="stat-card timeline-status-card">
-            <small>Current Timeline Status</small>
-            <strong id="timelineStatus">Stable</strong>
-            <p id="timelineStatusText" class="status-line">
-              <span class="status-dot" id="timelineStatusDot"></span>
-              Waiting for the next reset.
-            </p>
+          <div class="featured-actions">
+            <a class="btn" href="timeline.html">Start / Continue</a>
+            <a class="btn secondary" href="timeline.html?ep=50">Enter EP.50</a>
           </div>
         </div>
       </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Real-time Universe Stats</h2>
+        <p>
+          Player memory, unlocked fragments, playable flagships and the 100 premium story game vision.
+        </p>
+      </div>
+
+      <div class="stats-grid" id="statsGrid"></div>
     </section>
 
     <section class="section" id="flagships">
       <div class="section-head">
         <h2>Flagship Originals</h2>
         <p>
-          Every flagship must have a one-line hook, a strong visual symbol,
-          a unique interaction mechanic, a 50-episode emotional arc, and a final quote worth sharing.
+          Every flagship must have a strong visual symbol, a unique interaction mechanic,
+          a 50-episode emotional arc, and a final line worth remembering.
         </p>
       </div>
 
-      <div class="flagship-grid" id="flagshipGrid">
-        <div class="fallback">Loading universe-games.js...</div>
-      </div>
-    </section>
-
-    <section class="info-grid" id="vision">
-      <article class="panel info-card">
-        <h3>Flagship Standard</h3>
-        <p>
-          This universe is not built by quantity first. Each story must feel like an interactive film,
-          a short drama, and a screenshot-worthy emotional product.
-        </p>
-
-        <div class="rule-list" id="ruleList"></div>
-      </article>
-
-      <article class="panel info-card">
-        <h3>Shareable Memory Lines</h3>
-        <p>
-          The final quote is part of the product. Every flagship needs a sentence that players want to save,
-          repost, and remember.
-        </p>
-
-        <div class="quote-list" id="quoteList"></div>
-      </article>
+      <div class="flagship-grid" id="flagshipGrid"></div>
     </section>
 
     <section class="section">
       <div class="section-head">
         <h2>100 Premium Story Games Vision</h2>
         <p>
-          Click any collection to preview future premium story titles. The first ten flagships are the brand wall;
-          the next ninety stories expand through these emotional collections.
+          Not mass-produced filler. A long-term library of high-emotion interactive stories,
+          built as a universe of memory rooms, letters, timelines, voices and final goodbyes.
         </p>
       </div>
 
       <div class="collections-grid" id="collectionsGrid"></div>
     </section>
 
-    <footer>
-      ZenAI Mystery Universe · 100 Premium Emotional Story Games · The Red Eye Files · The Last Timeline
+    <footer class="footer">
+      ZenAI Mystery Universe · Built for emotional interactive storytelling.
+      <br />
+      Current flagship live: The Last Timeline.
     </footer>
   </div>
 
-  <script src="universe-games.js"></script>
+  <div class="modal" id="collectionModal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <div class="kicker">
+            <span class="dot"></span>
+            <span id="modalKicker">Future Collection</span>
+          </div>
+          <h3 id="modalTitle">Collection</h3>
+        </div>
+        <button class="close-btn" type="button" id="closeModal">Close</button>
+      </div>
+      <div class="seed-grid" id="seedGrid"></div>
+    </div>
+  </div>
+
+  <script src="universe-games.js?v=1.2-live"></script>
 
   <script>
     (function () {
-      const universe = window.zenaiUniverse || window.ZenAIUniverse || window.ZENAI_UNIVERSE;
+      const fallbackUniverse = {
+        stats: {
+          totalVisionStories: 100,
+          flagshipCount: 10,
+          playableNow: 2,
+          completedFlagships: 1,
+          activeTravelers: 4238,
+          totalEpisodesPlanned: 500,
+          universeStatus: "Expanding",
+        },
+        flagships: [
+          {
+            id: 1,
+            slug: "the-red-eye-files",
+            series: "Series 01",
+            title: "The Red Eye Files",
+            cnTitle: "红眼档案：最后的告别",
+            status: "Playable",
+            link: "red-eye.html",
+            episodes: 50,
+            playable: true,
+            symbol: "Red Eye / Red Thread",
+            coreMechanic: "Terminal Ritual",
+            oneLineHook:
+              "The monster in the dark was not trying to kill you. It was burning its soul to light your way home.",
+            finalEmotion: "From fear to heartbreak.",
+            tags: ["Horror", "Memory", "Final Goodbye"],
+          },
+          {
+            id: 2,
+            slug: "the-last-timeline",
+            series: "Series 02",
+            title: "The Last Timeline",
+            cnTitle: "最后的时间线",
+            status: "Featured · Flagship Live",
+            link: "timeline.html",
+            episodes: 50,
+            playable: true,
+            symbol: "Broken Watch / 11:11 PM",
+            coreMechanic: "Time Alignment",
+            oneLineHook:
+              "You spent 49 timelines trying to save Eli. In the 50th, you discover Eli was saving you too.",
+            finalEmotion: "From obsession to letting go.",
+            tags: ["Time Travel", "Sacrifice", "Let Go"],
+          },
+          {
+            id: 3,
+            slug: "the-lost-letters",
+            series: "Series 03",
+            title: "The Lost Letters",
+            cnTitle: "遗失来信",
+            status: "Coming Next",
+            link: "#",
+            episodes: 50,
+            playable: false,
+            symbol: "Old Letters / Final Envelope",
+            coreMechanic: "Letter Unlocking",
+            oneLineHook:
+              "The last letter was not a goodbye. It was a way to hand your future back to you.",
+            finalEmotion: "From waiting to eternal memory.",
+            tags: ["Letters", "War", "Last Dance"],
+          },
+          {
+            id: 4,
+            slug: "the-last-voicemail",
+            series: "Series 04",
+            title: "The Last Voicemail",
+            cnTitle: "最后一通语音",
+            status: "Planned",
+            link: "#",
+            episodes: 50,
+            playable: false,
+            symbol: "Voice Message",
+            coreMechanic: "Voice Repairing",
+            oneLineHook:
+              "Every day you receive one more voicemail from someone who should no longer be able to call.",
+            finalEmotion: "From signal to goodbye.",
+            tags: ["Voice", "Loss", "Mystery"],
+          },
+          {
+            id: 5,
+            slug: "the-room-that-calls-back",
+            series: "Series 05",
+            title: "The Room That Calls Back",
+            cnTitle: "会回应的房间",
+            status: "Planned",
+            link: "#",
+            episodes: 50,
+            playable: false,
+            symbol: "Echo Room",
+            coreMechanic: "Echo Response",
+            oneLineHook:
+              "A room answers your crying. In the end, the voice was your younger self trying to save you.",
+            finalEmotion: "From loneliness to self-rescue.",
+            tags: ["Room", "Echo", "Healing"],
+          },
+          {
+            id: 6,
+            slug: "the-mother-who-never-left",
+            series: "Series 06",
+            title: "The Mother Who Never Left",
+            cnTitle: "从未离开的母亲",
+            status: "Planned",
+            link: "#",
+            episodes: 50,
+            playable: false,
+            symbol: "Daily Details",
+            coreMechanic: "Life Detail Discovery",
+            oneLineHook:
+              "Your mother did not leave. She became every gentle coincidence that kept you alive.",
+            finalEmotion: "From ordinary details to maternal love.",
+            tags: ["Family", "Mother", "Tears"],
+          },
+          {
+            id: 7,
+            slug: "the-train-to-yesterday",
+            series: "Series 07",
+            title: "The Train to Yesterday",
+            cnTitle: "开往昨天的列车",
+            status: "Planned",
+            link: "#",
+            episodes: 50,
+            playable: false,
+            symbol: "Midnight Train",
+            coreMechanic: "Date Ticket Selection",
+            oneLineHook:
+              "A midnight train can return to any day. The person waiting at the last stop is your younger father.",
+            finalEmotion: "From regret to farewell.",
+            tags: ["Train", "Father", "Time"],
+          },
+          {
+            id: 8,
+            slug: "the-ai-that-remembered-me",
+            series: "Series 08",
+            title: "The AI That Remembered Me",
+            cnTitle: "记得我的AI",
+            status: "Planned",
+            link: "#",
+            episodes: 50,
+            playable: false,
+            symbol: "Memory AI",
+            coreMechanic: "Memory Reconstruction",
+            oneLineHook:
+              "An old AI companion searches the whole internet to prove you were once loved.",
+            finalEmotion: "From machine memory to human proof.",
+            tags: ["AI", "Memory", "Identity"],
+          },
+          {
+            id: 9,
+            slug: "the-house-of-unsent-apologies",
+            series: "Series 09",
+            title: "The House of Unsent Apologies",
+            cnTitle: "未寄出道歉的房子",
+            status: "Planned",
+            link: "#",
+            episodes: 50,
+            playable: false,
+            symbol: "Locked Rooms",
+            coreMechanic: "Room Unlocking",
+            oneLineHook:
+              "Every room contains an apology your family never said. The final room belongs to you.",
+            finalEmotion: "From blame to self-forgiveness.",
+            tags: ["House", "Apology", "Family"],
+          },
+          {
+            id: 10,
+            slug: "the-birthday-after-death",
+            series: "Series 10",
+            title: "The Birthday After Death",
+            cnTitle: "死后的生日",
+            status: "Planned",
+            link: "#",
+            episodes: 50,
+            playable: false,
+            symbol: "Birthday Gifts",
+            coreMechanic: "Gift Opening",
+            oneLineHook:
+              "Every birthday after their death, one gift arrives. The 50 gifts were made during their last 50 days.",
+            finalEmotion: "From grief to a future prepared by love.",
+            tags: ["Birthday", "Gift", "Love"],
+          },
+        ],
+        futureCollections: [
+          {
+            id: "family-tears",
+            name: "Family Tears Collection",
+            cnName: "亲情催泪馆",
+            targetCount: 20,
+            description: "Mother, father, child, home, and the ordinary details that break people.",
+            storySeeds: [
+              "The Mother Who Never Left",
+              "The Father Waiting at Platform 7",
+              "The Lunchbox That Arrived Every Winter",
+              "The Child Who Remembered Tomorrow",
+              "The House With Two Empty Bowls",
+              "The Grandmother Who Forgot Everyone But You",
+            ],
+          },
+          {
+            id: "time-life",
+            name: "Time & Parallel Life Collection",
+            cnName: "时间与平行人生馆",
+            targetCount: 20,
+            description: "Timelines, parallel lives, impossible second chances and the price of changing one day.",
+            storySeeds: [
+              "The Last Timeline",
+              "The Train to Yesterday",
+              "The Day I Never Woke Up",
+              "The Calendar With One Extra Day",
+              "The Parallel Life I Stole",
+              "The Clock That Counted Your Goodbyes",
+            ],
+          },
+          {
+            id: "ai-soul",
+            name: "AI Soul Collection",
+            cnName: "AI灵魂馆",
+            targetCount: 20,
+            description: "AI companions, preserved memory, digital ghosts and the proof of being loved.",
+            storySeeds: [
+              "The AI That Remembered Me",
+              "The Chatbot That Knew My Mother",
+              "The Archive of Deleted Lovers",
+              "The Robot That Learned to Cry",
+              "The Last Backup of You",
+              "The Voice Model That Said Goodbye",
+            ],
+          },
+          {
+            id: "war-letters",
+            name: "War Letters Collection",
+            cnName: "战争来信馆",
+            targetCount: 20,
+            description: "Letters, distance, waiting, history, lost dances and love that survived silence.",
+            storySeeds: [
+              "The Lost Letters",
+              "The Dance Hall After the War",
+              "The Soldier Who Sent Tomorrow",
+              "The Envelope With No Country",
+              "The Piano That Waited 80 Years",
+              "The Photograph That Crossed the Ocean",
+            ],
+          },
+          {
+            id: "mystery-goodbye",
+            name: "Mystery Goodbye Collection",
+            cnName: "悬疑告别馆",
+            targetCount: 20,
+            description: "Dark rooms, hidden archives, impossible voices and final truths behind fear.",
+            storySeeds: [
+              "The Red Eye Files",
+              "The Last Voicemail",
+              "The Room That Calls Back",
+              "The Door That Only Opens at 2:13",
+              "The Museum of Missing People",
+              "The Shadow That Protected Me",
+            ],
+          },
+        ],
+      };
 
-      const heroCopy = document.getElementById("heroCopy");
-      const memoryStrip = document.getElementById("memoryStrip");
-      const totalVisionStories = document.getElementById("totalVisionStories");
-      const flagshipCount = document.getElementById("flagshipCount");
-      const playableNow = document.getElementById("playableNow");
-      const activeTravelers = document.getElementById("activeTravelers");
-      const fragmentCount = document.getElementById("fragmentCount");
-      const timelineStatus = document.getElementById("timelineStatus");
-      const timelineStatusText = document.getElementById("timelineStatusText");
+      const universe = window.zenaiUniverse || window.ZENAI_UNIVERSE || fallbackUniverse;
 
-      const flagshipGrid = document.getElementById("flagshipGrid");
-      const ruleList = document.getElementById("ruleList");
-      const quoteList = document.getElementById("quoteList");
-      const collectionsGrid = document.getElementById("collectionsGrid");
+      const elements = {
+        statsGrid: document.getElementById("statsGrid"),
+        flagshipGrid: document.getElementById("flagshipGrid"),
+        collectionsGrid: document.getElementById("collectionsGrid"),
+        modal: document.getElementById("collectionModal"),
+        modalKicker: document.getElementById("modalKicker"),
+        modalTitle: document.getElementById("modalTitle"),
+        seedGrid: document.getElementById("seedGrid"),
+        closeModal: document.getElementById("closeModal"),
+      };
 
-      const collectionModal = document.getElementById("collectionModal");
-      const closeCollectionModal = document.getElementById("closeCollectionModal");
-      const collectionModalTitle = document.getElementById("collectionModalTitle");
-      const collectionModalDesc = document.getElementById("collectionModalDesc");
-      const seedGrid = document.getElementById("seedGrid");
-
-      if (!universe) {
-        flagshipGrid.innerHTML = `
-          <div class="fallback">
-            universe-games.js has not loaded. Make sure universe-games.js and index.html are in the same folder.
-          </div>
-        `;
-        return;
-      }
-
-      renderHero();
       renderStats();
       renderFlagships();
-      renderRules();
-      renderQuotes();
       renderCollections();
-      bindModal();
 
-      function renderHero() {
-        heroCopy.textContent = universe.brand?.vision ||
-          "A premium universe of interactive emotional story games built around memory, love, sacrifice, family, time, AI, and final goodbyes.";
-      }
+      elements.closeModal.addEventListener("click", closeModal);
+      elements.modal.addEventListener("click", function (event) {
+        if (event.target === elements.modal) closeModal();
+      });
 
       function renderStats() {
-        const stats = universe.stats || {};
-        const localStats = typeof window.getUniverseStatsFromLocalStorage === "function"
-          ? window.getUniverseStatsFromLocalStorage()
-          : getFallbackLocalStats();
+        const memory = getPlayerMemory();
+        const baseStats = universe.stats || {};
 
-        totalVisionStories.textContent = String(stats.totalVisionStories || universe.meta?.totalVision || 100);
-        flagshipCount.textContent = String(stats.flagshipCount || 10);
-        playableNow.textContent = String(stats.playableNow || 2);
+        const stats = [
+          ["Total Vision Stories", baseStats.totalVisionStories || 100],
+          ["Flagship Originals", baseStats.flagshipCount || 10],
+          ["Playable Now", 2],
+          ["Featured Live", "Timeline"],
+          ["Memory Fragments", memory.totalFragments],
+          ["Timeline Status", memory.timelineText],
+        ];
 
-        const simulatedOffset = Math.floor(Math.random() * 88);
-        activeTravelers.textContent = String((stats.activeTravelers || 4209) + simulatedOffset);
-
-        fragmentCount.textContent = String(localStats.totalFragments || 0);
-        timelineStatus.textContent = localStats.currentTimelineStatus || "Stable";
-
-        const dotClass = localStats.currentTimelineTone === "danger"
-          ? "danger"
-          : localStats.currentTimelineTone === "warning"
-            ? "warning"
-            : "";
-
-        timelineStatusText.innerHTML =
-          `<span class="status-dot ${dotClass}"></span>${escapeHtml(localStats.currentTimelineText || "Waiting for the next reset.")}`;
-
-        if (localStats.shouldShowRedThread) {
-          document.body.classList.add("memory-red-thread");
-          memoryStrip.textContent = localStats.redEyeCompleted
-            ? "The Red Eye final memory is saved. A red thread now runs through the universe."
-            : "A red archive fragment has been detected. The universe remembers your first goodbye.";
-        }
-
-        if (localStats.shouldShowTimelinePulse) {
-          document.body.classList.add("timeline-pulse");
-        }
-
-        if (localStats.shouldShowFinalMemoryGlow) {
-          document.body.classList.add("final-memory-glow");
-        }
+        elements.statsGrid.innerHTML = stats.map(([label, value]) => `
+          <div class="stat-card">
+            <small>${escapeHtml(label)}</small>
+            <strong>${escapeHtml(value)}</strong>
+          </div>
+        `).join("");
       }
 
       function renderFlagships() {
-        const games = typeof window.getUniverseFlagships === "function"
-          ? window.getUniverseFlagships()
-          : (universe.flagships || []);
+        const flagships = normalizeFlagships(universe.flagships || []);
 
-        flagshipGrid.innerHTML = games.map((game, index) => {
-          const isLarge = index < 2 ? "large" : "";
-          const coverClass = "cover-" + escapeAttr(game.coverType || "default");
-          const statusTone = escapeAttr(game.statusTone || "planned");
-
-          const action = game.playable
-            ? `<a class="mini-link ${game.slug === "red-eye-files" ? "primary-red" : "primary-blue"}" href="${escapeAttr(game.link)}">Enter Story</a>`
-            : `<a class="mini-link disabled" href="#">${escapeHtml(game.status || "Planned")}</a>`;
-
-          const secondaryAction = game.slug === "red-eye-files"
-            ? `<a class="mini-link" href="archive.html">Archive Room</a>`
-            : game.slug === "last-timeline"
-              ? `<a class="mini-link" href="timeline.html?ep=50">Jump to EP.50</a>`
-              : "";
-
-          const tags = Array.isArray(game.tags)
-            ? game.tags.slice(0, 4).map((tag) => `<span class="badge">${escapeHtml(tag)}</span>`).join("")
-            : "";
+        elements.flagshipGrid.innerHTML = flagships.map((item) => {
+          const isTimeline = item.slug === "the-last-timeline";
+          const isRedEye = item.slug === "the-red-eye-files";
+          const isPlayable = Boolean(item.playable || isTimeline || isRedEye);
+          const statusClass = isTimeline ? "featured" : isPlayable ? "live" : "";
+          const cardClass = isTimeline ? "flagship-card featured-live" : "flagship-card";
+          const statusText = isTimeline ? "Featured · Flagship Live" : isPlayable ? "Playable" : item.status || "Planned";
+          const primaryText = isTimeline ? "Play Featured Flagship" : isPlayable ? "Play Now" : "Coming Soon";
+          const href = isPlayable ? item.link : "#";
 
           return `
-            <article class="flagship-card ${isLarge} ${coverClass}">
-              <div class="flagship-content">
-                <div class="badge-row">
-                  <span class="badge ${statusTone}">${escapeHtml(game.series || game.id || "")}</span>
-                  <span class="badge ${statusTone}">${escapeHtml(game.status || "Planned")}</span>
-                  <span class="badge">${escapeHtml(String(game.episodes || 50))} Episodes</span>
+            <article class="${cardClass}">
+              <div class="card-top">
+                <div class="series">${escapeHtml(item.series || `Series ${String(item.id).padStart(2, "0")}`)}</div>
+                <div class="status ${statusClass}">
+                  ${isTimeline ? '<span class="live-dot"></span>' : ""}
+                  ${escapeHtml(statusText)}
                 </div>
+              </div>
 
-                <h3>
-                  ${escapeHtml(game.title)}
-                  <span>${escapeHtml(game.cnTitle || "")}</span>
-                </h3>
+              <h3>
+                ${escapeHtml(item.title)}
+                <span>${escapeHtml(item.cnTitle || "")}</span>
+              </h3>
 
-                <p>${escapeHtml(game.oneLineHook || game.theme || "")}</p>
+              <p class="hook">${escapeHtml(item.oneLineHook || item.finalEmotion || "")}</p>
 
-                <div class="mechanic">
-                  <small>Signature Mechanic</small>
-                  <strong>${escapeHtml(game.coreMechanic || "Interactive Ritual")}</strong>
-                  <span>${escapeHtml(game.mechanicDescription || "")}</span>
-                </div>
+              <div class="card-meta">
+                <span class="chip">${escapeHtml(item.symbol || "Emotional Symbol")}</span>
+                <span class="chip">${escapeHtml(item.coreMechanic || "Interactive Mechanic")}</span>
+                <span class="chip">${escapeHtml((item.episodes || 50) + " Episodes")}</span>
+              </div>
 
-                <div class="badge-row" style="margin-top:14px;">
-                  ${tags}
-                </div>
-
-                <div class="series-actions">
-                  ${action}
-                  ${secondaryAction}
-                </div>
+              <div class="card-actions">
+                <a class="card-link ${isPlayable ? "primary" : ""}" href="${escapeHtml(href)}">${escapeHtml(primaryText)}</a>
+                ${
+                  isTimeline
+                    ? '<a class="card-link" href="timeline.html?ep=50">Final Ritual</a>'
+                    : ""
+                }
               </div>
             </article>
           `;
         }).join("");
       }
 
-      function renderRules() {
-        const rules = universe.flagshipRules || [];
-        ruleList.innerHTML = rules.map((rule, index) => {
-          return `
-            <div class="rule">
-              <b>${index + 1}</b>
-              <span>${escapeHtml(rule)}</span>
-            </div>
-          `;
-        }).join("");
-      }
-
-      function renderQuotes() {
-        const quotes = universe.featuredQuotes || [];
-        quoteList.innerHTML = quotes.map((item) => {
-          return `
-            <div class="quote-item">
-              <small>${escapeHtml(item.from || "ZenAI Mystery Universe")}</small>
-              <strong>“${escapeHtml(item.quote || "")}”</strong>
-            </div>
-          `;
-        }).join("");
-      }
-
       function renderCollections() {
-        const collections = typeof window.getUniverseCollections === "function"
-          ? window.getUniverseCollections()
-          : (universe.futureCollections || []);
+        const collections = universe.futureCollections || fallbackUniverse.futureCollections;
 
-        collectionsGrid.innerHTML = collections.map((collection) => {
-          const tags = Array.isArray(collection.themes)
-            ? collection.themes.map((theme) => `<span class="tag">${escapeHtml(theme)}</span>`).join("")
-            : "";
+        elements.collectionsGrid.innerHTML = collections.map((item) => `
+          <article class="collection-card" data-id="${escapeHtml(item.id)}">
+            <small>${escapeHtml(item.targetCount || 20)} future stories</small>
+            <strong>${escapeHtml(item.name || "Collection")}</strong>
+            <p>${escapeHtml(item.description || "")}</p>
+          </article>
+        `).join("");
 
-          return `
-            <button class="collection-card" type="button" data-collection="${escapeAttr(collection.id)}">
-              <small>${escapeHtml(String(collection.targetCount || 20))} Story Games</small>
-              <h3>${escapeHtml(collection.name || "")}</h3>
-              <p>${escapeHtml(collection.cnName || "")}</p>
-              <p style="margin-top:10px;">${escapeHtml(collection.description || "")}</p>
-              <div class="tag-row">${tags}</div>
-            </button>
-          `;
-        }).join("");
-
-        collectionsGrid.querySelectorAll(".collection-card").forEach((button) => {
-          button.addEventListener("click", function () {
-            openCollectionModal(button.dataset.collection);
+        elements.collectionsGrid.querySelectorAll(".collection-card").forEach((card) => {
+          card.addEventListener("click", function () {
+            const id = card.dataset.id;
+            const collection = collections.find((item) => String(item.id) === String(id));
+            if (collection) openCollection(collection);
           });
         });
       }
 
-      function openCollectionModal(collectionId) {
-        const collection = typeof window.getUniverseCollectionById === "function"
-          ? window.getUniverseCollectionById(collectionId)
-          : null;
-
-        if (!collection) return;
-
-        collectionModalTitle.textContent = collection.name || "Collection";
-        collectionModalDesc.textContent = collection.description || "Future premium story games.";
-
-        const seeds = Array.isArray(collection.storySeeds) ? collection.storySeeds : [];
-
-        seedGrid.innerHTML = seeds.map((title, index) => {
-          return `
-            <article class="seed-card">
-              <small>Future Story ${String(index + 1).padStart(2, "0")}</small>
-              <strong>${escapeHtml(title)}</strong>
-            </article>
-          `;
-        }).join("");
-
-        collectionModal.classList.add("show");
-        collectionModal.setAttribute("aria-hidden", "false");
+      function openCollection(collection) {
+        elements.modalKicker.textContent = collection.cnName || "Future Collection";
+        elements.modalTitle.textContent = collection.name || "Collection";
+        const seeds = collection.storySeeds || [];
+        elements.seedGrid.innerHTML = seeds.map((seed, index) => `
+          <div class="seed">${String(index + 1).padStart(2, "0")} · ${escapeHtml(seed)}</div>
+        `).join("");
+        elements.modal.classList.add("show");
       }
 
       function closeModal() {
-        collectionModal.classList.remove("show");
-        collectionModal.setAttribute("aria-hidden", "true");
+        elements.modal.classList.remove("show");
       }
 
-      function bindModal() {
-        closeCollectionModal.addEventListener("click", closeModal);
+      function normalizeFlagships(flagships) {
+        const source = flagships.length ? flagships : fallbackUniverse.flagships;
 
-        collectionModal.addEventListener("click", function (event) {
-          if (event.target === collectionModal) {
-            closeModal();
-          }
-        });
+        return source.map((item, index) => {
+          const title = item.title || item.enTitle || "";
+          const slug = item.slug || slugify(title);
+          const normalized = {
+            ...item,
+            id: item.id || index + 1,
+            slug,
+            series: item.series || `Series ${String(item.id || index + 1).padStart(2, "0")}`,
+            title,
+            link: item.link || "#",
+            playable: Boolean(item.playable),
+          };
 
-        window.addEventListener("keydown", function (event) {
-          if (event.key === "Escape") {
-            closeModal();
+          if (slug === "the-last-timeline" || title === "The Last Timeline") {
+            normalized.slug = "the-last-timeline";
+            normalized.status = "Featured · Flagship Live";
+            normalized.link = "timeline.html";
+            normalized.playable = true;
+            normalized.episodes = 50;
           }
+
+          if (slug === "the-red-eye-files" || title === "The Red Eye Files") {
+            normalized.slug = "the-red-eye-files";
+            normalized.status = "Playable";
+            normalized.link = "red-eye.html";
+            normalized.playable = true;
+            normalized.episodes = 50;
+          }
+
+          return normalized;
         });
       }
 
-      function getFallbackLocalStats() {
-        const timelineArchive = readArray("timeline_archive_saved");
-        const timelineCurrent = Number(localStorage.getItem("timeline_current_episode") || "0");
+      function getPlayerMemory() {
+        const timelineArchive = readArray("timeline_archive_saved").length || readArray("timeline_archive_fragments").length;
+        const redArchive =
+          readArray("red_eye_archive_saved").length ||
+          readArray("red_eye_fragments").length ||
+          readArray("archive_fragments").length ||
+          readArray("saved_memories").length;
+
         const timelineCompleted = localStorage.getItem("timeline_completed") === "true";
-        const holdOnCount = Number(localStorage.getItem("timeline_hold_on_count") || "0");
+        const timelineCurrent = Number(localStorage.getItem("timeline_current_episode") || "1");
 
-        let currentTimelineStatus = "Stable";
-        let currentTimelineText = "Waiting for the next reset.";
-        let currentTimelineTone = "stable";
-
+        let timelineText = "Stable";
         if (timelineCompleted) {
-          currentTimelineStatus = "Released";
-          currentTimelineText = "Final Memory saved. The last timeline is complete.";
-          currentTimelineTone = "released";
-        } else if (holdOnCount >= 3) {
-          currentTimelineStatus = "Collapsing";
-          currentTimelineText = "Obsession is tearing the timeline apart.";
-          currentTimelineTone = "danger";
-        } else if (timelineCurrent > 1) {
-          currentTimelineStatus = "Resetting";
-          currentTimelineText = `Current progress: EP.${String(timelineCurrent).padStart(2, "0")} / 50.`;
-          currentTimelineTone = "warning";
+          timelineText = "Released";
+        } else if (timelineCurrent >= 50) {
+          timelineText = "Final Choice";
+        } else if (timelineCurrent >= 31) {
+          timelineText = "Museum Open";
+        } else if (timelineCurrent >= 21) {
+          timelineText = "Dual Traveler";
+        } else if (timelineCurrent >= 11) {
+          timelineText = "Tax Active";
         }
 
         return {
-          totalFragments: timelineArchive.length,
-          currentTimelineStatus,
-          currentTimelineText,
-          currentTimelineTone,
-          shouldShowRedThread: false,
-          shouldShowTimelinePulse: timelineCurrent > 1 || holdOnCount > 0 || timelineCompleted,
-          shouldShowFinalMemoryGlow: timelineCompleted,
+          totalFragments: timelineArchive + redArchive,
+          timelineText,
         };
       }
 
@@ -1713,17 +1457,20 @@
         }
       }
 
-      function escapeHtml(value) {
+      function slugify(value) {
         return String(value || "")
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+      }
+
+      function escapeHtml(value) {
+        return String(value ?? "")
           .replace(/&/g, "&amp;")
           .replace(/</g, "&lt;")
           .replace(/>/g, "&gt;")
           .replace(/"/g, "&quot;")
           .replace(/'/g, "&#039;");
-      }
-
-      function escapeAttr(value) {
-        return escapeHtml(value).replace(/\s+/g, "-");
       }
     })();
   </script>
